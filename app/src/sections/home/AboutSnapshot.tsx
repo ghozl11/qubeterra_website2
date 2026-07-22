@@ -47,7 +47,7 @@ export function AboutSnapshot() {
           <ScrollReveal pattern="C" delay={0.2}>
             <div className="relative rounded-xl overflow-hidden">
               <img
-                src="/images/about-command-center.jpg"
+                src="images/about-command-center.jpg"
                 alt="Futuristic command center"
                 className="w-full h-auto object-cover img-tech"
               />

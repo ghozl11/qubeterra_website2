@@ -18,7 +18,7 @@ export function ThinkTankPreview() {
           <ScrollReveal pattern="C">
             <div className="relative rounded-xl overflow-hidden order-2 md:order-1">
               <img
-                src="/images/consultancy-strategy.jpg"
+                src="images/consultancy-strategy.jpg"
                 alt="Strategic policy meeting"
                 className="w-full h-auto object-cover img-tech"
               />

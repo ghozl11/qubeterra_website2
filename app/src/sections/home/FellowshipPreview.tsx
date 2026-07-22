@@ -90,7 +90,7 @@ export function FellowshipPreview() {
           <ScrollReveal pattern="C" delay={0.2}>
             <div className="relative rounded-xl overflow-hidden">
               <img
-                src="/images/fellowship-lab.jpg"
+                src="images/fellowship-lab.jpg"
                 alt="Tech learning environment"
                 className="w-full h-auto object-cover img-tech"
               />

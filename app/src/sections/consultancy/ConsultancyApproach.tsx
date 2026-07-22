@@ -63,7 +63,7 @@ export function ConsultancyApproach() {
           <ScrollReveal pattern="C" delay={0.2}>
             <div className="relative rounded-xl overflow-hidden">
               <img
-                src="/images/research-docs.jpg"
+                src="images/research-docs.jpg"
                 alt="Research workspace"
                 className="w-full h-auto object-cover img-tech"
               />
