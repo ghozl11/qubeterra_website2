@@ -1,30 +1,33 @@
 import { ScrollReveal } from '@/components/ScrollReveal';
+import { Link } from 'react-router-dom';
 
 const programs = [
   {
-    badge: 'INTENSIVE',
+    badge: 'ACTIVE PROGRAM',
     badgeColor: '#00AEEF',
-    title: '1-Month Pilot MVP',
+    title: 'AI NextGen Program',
+    slug: 'ai-nextgen',
     description:
-      'The Pilot MVP is an intensive bootcamp and filtering phase designed to identify and fast-track high-potential builders. Over four weeks, participants undergo rigorous technical training in their chosen domain, work on mini-projects, and are evaluated for advancement to the Main Fellowship.',
+      'A specialized 5-week intensive journey designed to transform high-potential individuals into deep tech builders. This program focuses on Knowledge Infrastructure, Agentic Workflows, and Production Deployment.',
     meta: [
-      { label: 'Duration', value: '4 Weeks' },
-      { label: 'Format', value: 'Full-time, On-site' },
-      { label: 'Domains', value: 'All 5 Deep Tech Domains' },
+      { label: 'Duration', value: '5 Weeks' },
+      { label: 'Format', value: 'Hybrid / Intensive' },
+      { label: 'Focus', value: 'AI Agents & Infra' },
     ],
     curriculum: [
-      'Week 1: Foundation Sprint — Core concepts and tools',
-      'Week 2: Build Phase — Hands-on mini-projects',
-      'Week 3: Integration — Cross-domain collaboration',
-      'Week 4: Demo & Evaluation — Capstone presentation',
+      'Week 1: Knowledge Infrastructure — RAG & Vector DBs',
+      'Week 2: Agentic Workflows — Multi-agent systems',
+      'Week 3: Advanced Reasoning — Prompt Engineering & LLMs',
+      'Week 4: Deployment & Production — Scaling AI apps',
+      'Week 5: Capstone Project — Real-world deployment',
     ],
   },
   {
-    badge: 'ADVANCED',
+    badge: 'COMING SOON (Q4 2026)',
     badgeColor: '#00D0B8',
     title: '3-Month Main Fellowship',
     description:
-      'The Main Fellowship is where capability is forged. Fellows are organized into agile squads, assigned real-world projects from partner organizations, and guided through the full lifecycle — from requirements to cloud deployment. This is not simulated work. These are real deliverables for real clients.',
+      'The Main Fellowship is where capability is forged. Fellows are organized into agile squads, assigned real-world projects from partner organizations, and guided through the full lifecycle — from requirements to cloud deployment.',
     meta: [
       { label: 'Duration', value: '12 Weeks' },
       { label: 'Format', value: 'Agile Squads, Hybrid' },
@@ -71,6 +74,15 @@ export function ProgramDetails() {
                   <p className="font-body text-sm md:text-base text-lunar-silver leading-[1.7] mb-8">
                     {program.description}
                   </p>
+
+                  {program.slug && (
+                    <Link 
+                      to={`/fellowships/${program.slug}`}
+                      className="inline-flex items-center gap-2 px-6 py-3 bg-quantum-blue text-deep-space font-heading font-medium text-xs rounded hover:bg-[#33C2FF] transition-all duration-300 mb-8"
+                    >
+                      Learn More & Apply
+                    </Link>
+                  )}
 
                   <h4 className="font-mono text-[11px] uppercase tracking-[0.1em] text-muted-text mb-4">
                     Curriculum
