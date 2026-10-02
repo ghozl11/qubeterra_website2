@@ -7,6 +7,7 @@ import { About } from '@/pages/About';
 import { Domains } from '@/pages/Domains';
 import { Fellowships } from '@/pages/Fellowships';
 import AINextGen from '@/pages/AINextGen';
+import NextGenGraduatesPage from '@/pages/NextGenGraduatesPage';
 import { Consultancy } from '@/pages/Consultancy';
 import { Contact } from '@/pages/Contact';
 
@@ -29,6 +30,7 @@ function AppRoutes() {
           <Route path="/domains" element={<Domains />} />
           <Route path="/fellowships" element={<Fellowships />} />
           <Route path="/fellowships/ai-nextgen" element={<AINextGen />} />
+          <Route path="/nextgen-ai-fellowship-2026-graduates" element={<NextGenGraduatesPage />} />
           <Route path="/consultancy" element={<Consultancy />} />
           <Route path="/contact" element={<Contact />} />
         </Routes>
