@@ -1,101 +1,75 @@
 import { ScrollReveal } from '@/components/ScrollReveal';
 import { FellowshipCTA } from '@/sections/fellowships/FellowshipCTA';
 
+const curriculum = [
+  { number: '01', title: 'Agentic Systems Foundations', desc: 'Understand intelligent agent architectures, tool use, planning, memory, and the design principles behind reliable autonomous systems.' },
+  { number: '02', title: 'RAG & Knowledge Systems', desc: 'Build research-driven systems with retrieval-augmented generation, vector search, grounding, evaluation, and structured knowledge flows.' },
+  { number: '03', title: 'Orchestration & Workflows', desc: 'Design multi-agent workflows, task decomposition, routing, coordination, and execution loops for complex real-world problems.' },
+  { number: '04', title: 'AI Personas & Interfaces', desc: 'Explore specialized AI personas, interaction patterns, and system interfaces that make agentic products useful, clear, and dependable.' },
+  { number: '05', title: 'Research to Production', desc: 'Move from experiments to production-minded systems through testing, observability, iteration, deployment, and responsible engineering.' },
+  { number: '06', title: 'Applied Fellowship Project', desc: 'Work in an international cohort on a practical project contributing to the development and improvement of Qubeterra products and systems.' },
+];
+
+const experience = [
+  { title: 'Expert-led masterclasses', desc: 'International perspectives from practitioners and researchers working at the frontier of intelligent systems.' },
+  { title: 'Mentorship and lab sessions', desc: 'Structured feedback, technical reviews, and collaborative working sessions throughout the fellowship.' },
+  { title: 'Project-based learning', desc: 'A practical development path that turns concepts into working agentic AI systems.' },
+];
+
 export default function AINextGen() {
   return (
-    <div className="pt-24 md:pt-32">
-      {/* Hero Section */}
-      <section className="relative py-20 overflow-hidden">
-        <div className="max-w-[1280px] mx-auto px-5 md:px-12">
-          <ScrollReveal pattern="A">
-            <div className="sr-item max-w-3xl">
-              <span className="inline-block font-mono text-[10px] uppercase tracking-[0.2em] text-quantum-blue mb-4 px-2 py-1 border border-quantum-blue rounded">
-                Specialized Track
-              </span>
-              <h1 className="font-heading font-medium text-[40px] md:text-[64px] text-electric-white leading-[1.1] mb-6">
-                AI NextGen <br />
-                <span className="text-quantum-blue">Program</span>
-              </h1>
-              <p className="font-body text-base md:text-lg text-lunar-silver leading-[1.7] mb-8">
-                A specialized 5-week intensive journey designed to transform high-potential individuals into deep tech builders. Master the architecture of the future through hands-on development.
-              </p>
-            </div>
-          </ScrollReveal>
+    <div className="pt-20 md:pt-24">
+      <section className="relative z-[1] px-4 md:px-8 pb-16 md:pb-24">
+        <div className="max-w-[1440px] mx-auto overflow-hidden rounded-2xl border border-[rgba(217,221,226,0.12)] shadow-[0_0_80px_rgba(0,174,239,0.08)]">
+          <picture>
+            <source media="(max-width: 720px)" srcSet="/images/new/newprogram-mobile-1080.png" />
+            <img src="/images/new/newprogram-desktop-1920x800.png" alt="Qubeterra Agentic AI Fellowship — Build the Next Generation of Intelligent Agent Systems" className="block w-full h-auto" />
+          </picture>
         </div>
       </section>
 
-      {/* Curriculum Grid */}
-      <section className="py-20 bg-[rgba(217,221,226,0.02)]">
+      <section className="relative z-[1] py-20 md:py-[120px] bg-[rgba(217,221,226,0.02)]">
+        <div className="max-w-[1280px] mx-auto px-5 md:px-12">
+          <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-12 lg:gap-20 items-start">
+            <ScrollReveal pattern="A">
+              <div className="sr-item">
+                <span className="section-label">THE FELLOWSHIP</span>
+                <h2 className="font-heading font-medium text-[32px] md:text-[48px] text-electric-white leading-[1.05] mt-4 mb-6">Build the systems that will shape what comes next.</h2>
+                <p className="font-body text-base md:text-lg text-lunar-silver leading-[1.75]">The Qubeterra Agentic AI Fellowship is a three-month, online, international program for aspiring AI engineers and researchers. Fellows learn to build intelligent agent systems through advanced technical sessions, mentorship, labs, and practical development.</p>
+              </div>
+            </ScrollReveal>
+            <ScrollReveal pattern="C" delay={0.15}>
+              <div className="sr-item rounded-2xl p-7 md:p-9 border border-quantum-blue/20 bg-quantum-blue/5">
+                <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-quantum-blue">PROGRAM FORMAT</span>
+                <dl className="mt-6 space-y-5">
+                  <div className="flex justify-between gap-6 border-b border-white/10 pb-4"><dt className="font-body text-sm text-muted-text">Duration</dt><dd className="font-heading text-sm text-electric-white text-right">Three months</dd></div>
+                  <div className="flex justify-between gap-6 border-b border-white/10 pb-4"><dt className="font-body text-sm text-muted-text">Format</dt><dd className="font-heading text-sm text-electric-white text-right">Online · International</dd></div>
+                  <div className="flex justify-between gap-6 border-b border-white/10 pb-4"><dt className="font-body text-sm text-muted-text">Focus</dt><dd className="font-heading text-sm text-electric-white text-right">Agentic AI systems</dd></div>
+                  <div className="flex justify-between gap-6"><dt className="font-body text-sm text-muted-text">Status</dt><dd className="font-mono text-[11px] uppercase tracking-[0.08em] text-quantum-blue text-right">Applications opening soon</dd></div>
+                </dl>
+              </div>
+            </ScrollReveal>
+          </div>
+        </div>
+      </section>
+
+      <section className="relative z-[1] py-20 md:py-[120px]">
         <div className="max-w-[1280px] mx-auto px-5 md:px-12">
           <ScrollReveal pattern="A">
-            <h2 className="font-heading font-medium text-[32px] text-electric-white mb-12 text-center">
-              5-Week Curriculum
-            </h2>
+            <div className="max-w-2xl mb-12"><span className="section-label">WHAT YOU WILL BUILD</span><h2 className="font-heading font-medium text-[32px] md:text-[44px] text-electric-white leading-[1.1] mt-4 mb-5">From intelligent agents to coordinated systems.</h2><p className="font-body text-base text-lunar-silver leading-[1.7]">The fellowship connects research, engineering, and applied development across the full agentic AI workflow.</p></div>
           </ScrollReveal>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {[
-              { week: '01', title: 'Knowledge Infrastructure', desc: 'Deep dive into RAG, Vector Databases, and data orchestration for AI systems.' },
-              { week: '02', title: 'Agentic Workflows', desc: 'Building multi-agent systems, task decomposition, and autonomous execution loops.' },
-              { week: '03', title: 'Advanced Reasoning', desc: 'Prompt engineering at scale, chain-of-thought, and fine-tuning strategies.' },
-              { week: '04', title: 'Deployment & Production', desc: 'Scaling AI applications, monitoring, and production-grade DevOps for LLMs.' },
-              { week: '05', title: 'Capstone Project', desc: 'End-to-end development and deployment of a real-world AI solution.' },
-            ].map((item, i) => (
-              <ScrollReveal key={item.week} pattern="A" delay={i * 0.1}>
-                <div className="sr-item p-8 rounded-xl bg-[rgba(217,221,226,0.05)] border border-[rgba(217,221,226,0.1)] hover:border-quantum-blue/50 transition-all duration-300">
-                  <span className="font-mono text-quantum-blue text-sm mb-4 block">WEEK {item.week}</span>
-                  <h3 className="font-heading font-medium text-xl text-electric-white mb-4">{item.title}</h3>
-                  <p className="font-body text-sm text-lunar-silver leading-[1.6]">{item.desc}</p>
-                </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+            {curriculum.map((item, i) => (
+              <ScrollReveal key={item.number} pattern="A" delay={i * 0.06}>
+                <article className="sr-item h-full p-7 rounded-xl bg-[rgba(217,221,226,0.04)] border border-[rgba(217,221,226,0.1)] hover:border-quantum-blue/50 transition-all duration-300"><span className="font-mono text-quantum-blue text-sm">{item.number}</span><h3 className="font-heading font-medium text-xl text-electric-white mt-6 mb-3">{item.title}</h3><p className="font-body text-sm text-lunar-silver leading-[1.65]">{item.desc}</p></article>
               </ScrollReveal>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Support System */}
-      <section className="py-20">
-        <div className="max-w-[1280px] mx-auto px-5 md:px-12">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-            <ScrollReveal pattern="A">
-              <div className="sr-item">
-                <h2 className="font-heading font-medium text-[32px] text-electric-white mb-6">
-                  Expert-Led Support
-                </h2>
-                <div className="space-y-6">
-                  {[
-                    { role: 'TPM (Technical Program Manager)', desc: 'Daily guidance on project management and technical milestones.' },
-                    { role: 'Technical Mentor', desc: 'One-on-one code reviews and architectural deep dives.' },
-                    { role: 'Global Experts', desc: 'Weekly masterclasses from industry leaders at the forefront of AI.' },
-                  ].map((support) => (
-                    <div key={support.role}>
-                      <h4 className="font-heading text-electric-white text-base mb-1">{support.role}</h4>
-                      <p className="font-body text-sm text-lunar-silver">{support.desc}</p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </ScrollReveal>
-            <ScrollReveal pattern="A" delay={0.2}>
-              <div className="sr-item p-8 rounded-2xl bg-quantum-blue/5 border border-quantum-blue/20">
-                <h3 className="font-heading font-medium text-xl text-electric-white mb-4">Program Outcome</h3>
-                <ul className="space-y-4">
-                  {[
-                    'Production-ready AI portfolio project',
-                    'Direct path to the 3-Month Main Fellowship',
-                    'Certification of Advanced AI Development',
-                    'Access to Qubeterra Talent Network',
-                  ].map((outcome) => (
-                    <li key={outcome} className="flex items-center gap-3">
-                      <div className="w-1.5 h-1.5 rounded-full bg-quantum-blue" />
-                      <span className="font-body text-sm text-lunar-silver">{outcome}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </ScrollReveal>
-          </div>
-        </div>
+      <section className="relative z-[1] py-20 md:py-[120px] bg-[rgba(217,221,226,0.02)]">
+        <div className="max-w-[1280px] mx-auto px-5 md:px-12"><ScrollReveal pattern="A"><div className="text-center max-w-2xl mx-auto mb-12"><span className="section-label">THE EXPERIENCE</span><h2 className="font-heading font-medium text-[32px] md:text-[44px] text-electric-white leading-[1.1] mt-4">Learn together. Build together. Improve what matters.</h2></div></ScrollReveal><div className="grid grid-cols-1 md:grid-cols-3 gap-5">{experience.map((item, i) => (<ScrollReveal key={item.title} pattern="A" delay={i * 0.1}><div className="sr-item text-center p-7"><div className="w-2 h-2 rounded-full bg-quantum-blue shadow-[0_0_18px_rgba(0,174,239,0.7)] mx-auto mb-6" /><h3 className="font-heading font-medium text-lg text-electric-white mb-3">{item.title}</h3><p className="font-body text-sm text-lunar-silver leading-[1.65]">{item.desc}</p></div></ScrollReveal>))}</div></div>
       </section>
 
       <FellowshipCTA />
