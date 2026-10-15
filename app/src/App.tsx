@@ -8,42 +8,30 @@ import { Domains } from '@/pages/Domains';
 import { Fellowships } from '@/pages/Fellowships';
 import AINextGen from '@/pages/AINextGen';
 import NextGenGraduatesPage from '@/pages/NextGenGraduatesPage';
+import NextGenAchievements from '@/pages/NextGenAchievements';
 import { Consultancy } from '@/pages/Consultancy';
 import { Contact } from '@/pages/Contact';
 
 function ScrollToTop() {
   const { pathname } = useLocation();
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [pathname]);
+  useEffect(() => { window.scrollTo(0, 0); }, [pathname]);
   return null;
 }
 
 function AppRoutes() {
-  return (
-    <>
-      <ScrollToTop />
-      <PageLayout>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/domains" element={<Domains />} />
-          <Route path="/fellowships" element={<Fellowships />} />
-          <Route path="/fellowships/ai-nextgen" element={<AINextGen />} />
-          <Route path="/nextgen-ai-fellowship-2026-graduates" element={<NextGenGraduatesPage />} />
-          <Route path="/consultancy" element={<Consultancy />} />
-          <Route path="/contact" element={<Contact />} />
-        </Routes>
-      </PageLayout>
-    </>
-  );
+  return <><ScrollToTop /><PageLayout><Routes>
+    <Route path="/" element={<Home />} />
+    <Route path="/about" element={<About />} />
+    <Route path="/domains" element={<Domains />} />
+    <Route path="/fellowships" element={<Fellowships />} />
+    <Route path="/fellowships/ai-nextgen" element={<AINextGen />} />
+    <Route path="/nextgen-ai-fellowship-2026-graduates" element={<NextGenGraduatesPage />} />
+    <Route path="/nextgen-ai-fellowship-2026-achievements" element={<NextGenAchievements />} />
+    <Route path="/consultancy" element={<Consultancy />} />
+    <Route path="/contact" element={<Contact />} />
+  </Routes></PageLayout></>;
 }
 
 export default function App() {
-  return (
-    <BrowserRouter>
-      <OrbitalCanvas />
-      <AppRoutes />
-    </BrowserRouter>
-  );
+  return <BrowserRouter><OrbitalCanvas /><AppRoutes /></BrowserRouter>;
 }
