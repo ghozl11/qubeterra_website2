@@ -7,6 +7,7 @@ import { Impact } from '@/sections/home/Impact';
 import { ThinkTankPreview } from '@/sections/home/ThinkTankPreview';
 import { PartnerTicker } from '@/sections/home/PartnerTicker';
 import { CTABanner } from '@/sections/home/CTABanner';
+import { NextGenAchievementsBanner } from '@/sections/home/NextGenAchievementsBanner';
 
 export function Home() {
   return (
@@ -15,10 +16,11 @@ export function Home() {
       <AboutSnapshot />
       <ServicesGrid />
       <DomainsOverview />
+      <NextGenAchievementsBanner />
+      <PartnerTicker />
       <FellowshipPreview />
       <Impact />
       <ThinkTankPreview />
-      <PartnerTicker />
       <CTABanner />
     </>
   );
