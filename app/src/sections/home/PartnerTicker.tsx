@@ -1,22 +1,37 @@
-const partners = [
-  { name: 'Nature Eye Labs', image: '/images/new/nature_eye_logo.png' },
-  { name: 'ITU', image: '/images/new/itu_logo.png' },
-  { name: 'Huawei', image: '/images/new/Huawei_Standard_logo.png' },
+import { PARTNER_LINKS } from '@/lib/site-info';
+
+const supportingOrganizations = [
+  { name: 'International Telecommunication Union', shortName: 'ITU', image: '/images/new/itu_logo.png', href: PARTNER_LINKS.itu },
+  { name: 'Huawei', shortName: 'Huawei', image: '/images/new/Huawei_Standard_logo.png', href: PARTNER_LINKS.huawei },
 ];
 
 export function PartnerTicker() {
-  const ticker = [...partners, ...partners];
   return (
-    <section className="relative z-[1] py-12 md:py-16 border-y border-[rgba(217,221,226,0.08)] overflow-hidden bg-[rgba(217,221,226,0.025)]">
-      <p className="text-center font-mono text-[11px] uppercase tracking-[0.14em] text-muted-text mb-8">In collaboration with</p>
-      <div className="relative overflow-hidden hover:[&>div]:[animation-play-state:paused]">
-        <div className="flex w-max items-center gap-5 animate-ticker">
-          {ticker.map((partner, index) => (
-            <div key={`${partner.name}-${index}`} className="flex h-20 min-w-[180px] items-center justify-center rounded-xl border border-white/10 bg-white/[.04] px-6">
-              <img src={partner.image} alt={partner.name} className="max-h-10 max-w-[140px] object-contain" />
-              <span className="sr-only">{partner.name}</span>
-            </div>
+    <section aria-labelledby="supporting-organizations" className="relative z-[1] border-y border-white/10 bg-[#07111d] py-10 sm:py-12">
+      <div className="mx-auto max-w-7xl px-5 md:px-12">
+        <p id="supporting-organizations" className="text-center font-mono text-[10px] uppercase tracking-[0.18em] text-muted-text sm:text-xs">
+          Fully funded fellowship places supported by
+        </p>
+        <div className="mt-7 flex flex-wrap items-center justify-center gap-5 sm:gap-8">
+          {supportingOrganizations.map((partner) => (
+            <a
+              key={partner.shortName}
+              href={partner.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`${partner.name} (opens in a new tab)`}
+              className="flex min-h-20 min-w-[190px] items-center justify-center rounded-xl border border-white/10 bg-white/[.04] px-7 py-4 transition-colors hover:border-quantum-blue/40 hover:bg-white/[.07] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-quantum-blue"
+            >
+              <img src={partner.image} alt={partner.name} className="max-h-12 max-w-[150px] object-contain" />
+            </a>
           ))}
+        </div>
+        <p className="mx-auto mt-6 max-w-3xl text-center text-sm leading-6 text-lunar-silver/80">
+          Their support made advanced learning, international expertise, mentorship, and practical AI project development accessible to selected fellows. Nature Eye Labs is credited separately as a program collaborator.
+        </p>
+        <div className="mt-5 flex items-center justify-center gap-3" aria-label="Program collaborator">
+          <img src="/images/new/nature_eye_logo.png" alt="Nature Eye Labs" className="h-9 w-9 object-contain" />
+          <span className="text-sm text-lunar-silver">Program collaborator: Nature Eye Labs</span>
         </div>
       </div>
     </section>

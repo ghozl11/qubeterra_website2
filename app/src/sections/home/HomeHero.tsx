@@ -1,161 +1,55 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import gsap from 'gsap';
 import { SectionLabel } from '@/components/SectionLabel';
 
 export function HomeHero() {
-  const sectionRef = useRef<HTMLDivElement>(null);
-  const labelRef = useRef<HTMLDivElement>(null);
-  const headlineRef = useRef<HTMLHeadingElement>(null);
-  const subRef = useRef<HTMLParagraphElement>(null);
-  const ctaRef = useRef<HTMLDivElement>(null);
-  const scrollIndicatorRef = useRef<HTMLDivElement>(null);
-  const [scrolled, setScrolled] = useState(false);
+  const contentRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 200);
-    };
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  useEffect(() => {
-    const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
-
-    // Label fade in
-    tl.fromTo(
-      labelRef.current,
-      { opacity: 0 },
-      { opacity: 1, duration: 0.6 },
-      0.2
+    if (!contentRef.current) return;
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reducedMotion) return;
+    const timeline = gsap.fromTo(
+      contentRef.current.children,
+      { opacity: 0, y: 18 },
+      { opacity: 1, y: 0, duration: 0.65, stagger: 0.12, ease: 'power2.out' },
     );
-
-    // Headline character reveal
-    if (headlineRef.current) {
-      const text = headlineRef.current.textContent || '';
-      headlineRef.current.innerHTML = '';
-      const chars = text.split('').map((char) => {
-        const span = document.createElement('span');
-        span.textContent = char === ' ' ? '\u00A0' : char;
-        span.style.display = 'inline-block';
-        span.style.opacity = '0';
-        headlineRef.current!.appendChild(span);
-        return span;
-      });
-
-      tl.to(
-        chars,
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.6,
-          stagger: 0.02,
-          ease: 'power3.out',
-        },
-        0.4
-      );
-      gsap.set(chars, { y: 60 });
-    }
-
-    // Subheadline
-    tl.fromTo(
-      subRef.current,
-      { opacity: 0, y: 30 },
-      { opacity: 1, y: 0, duration: 0.8 },
-      0.8
-    );
-
-    // CTAs
-    tl.fromTo(
-      ctaRef.current,
-      { opacity: 0, y: 30 },
-      { opacity: 1, y: 0, duration: 0.8 },
-      1.0
-    );
-
-    // Scroll indicator
-    tl.fromTo(
-      scrollIndicatorRef.current,
-      { opacity: 0 },
-      { opacity: 1, duration: 0.6 },
-      1.5
-    );
-
-    return () => {
-      tl.kill();
-    };
+    return () => { timeline.kill(); };
   }, []);
 
   return (
-    <section
-      ref={sectionRef}
-      className="relative min-h-[100dvh] flex items-center justify-center overflow-hidden"
-    >
-      {/* Background Image */}
-      <div
-        className="absolute inset-0 z-0"
-        style={{
-          backgroundImage: 'url(/images/hero-earth.jpg)',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-        }}
-      >
-        <div
-          className="absolute inset-0"
-          style={{
-            background:
-              'linear-gradient(to bottom, rgba(5, 7, 10, 0.5) 0%, rgba(5, 7, 10, 0.3) 40%, rgba(5, 7, 10, 0.85) 100%)',
-          }}
+    <section className="relative isolate flex min-h-[min(760px,100svh)] items-center justify-center overflow-hidden pt-24 pb-24">
+      <div className="absolute inset-0 -z-10" aria-hidden="true">
+        <img
+          src="/images/hero-earth.jpg"
+          alt=""
+          className="h-full w-full object-cover object-center"
+          fetchPriority="high"
         />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#05070a]/55 via-[#05070a]/35 to-[#05070a]/95" />
       </div>
-
-      {/* Content */}
-      <div className="relative z-[1] max-w-[900px] mx-auto px-5 text-center pt-[72px]">
-        <div ref={labelRef} className="opacity-0 mb-6">
-          <SectionLabel text="QUBETERRA INSTITUTE" />
-        </div>
-
-        <h1
-          ref={headlineRef}
-          className="font-heading font-medium text-[36px] md:text-[64px] lg:text-[80px] text-electric-white leading-[1.05] mb-6"
-        >
-          Forging Deep Tech for a Resilient Earth
-        </h1>
-
-        <p
-          ref={subRef}
-          className="font-body text-base md:text-lg text-lunar-silver max-w-[600px] mx-auto mb-10 opacity-0"
-        >
-          Empowering the Global South to build, not just consume, the future of
-          technology.
+      <div ref={contentRef} className="mx-auto w-full max-w-5xl px-5 text-center md:px-12">
+        <div><SectionLabel text="QUBETERRA INSTITUTE" /></div>
+        <p className="mt-6 font-mono text-xs uppercase tracking-[0.16em] text-quantum-blue sm:text-sm">
+          Engineering Tomorrow. Empowering Humanity.
         </p>
-
-        <div ref={ctaRef} className="flex flex-col sm:flex-row items-center justify-center gap-4 opacity-0">
-          <Link
-            to="/fellowships"
-            className="px-8 py-3.5 bg-quantum-blue text-deep-space font-heading font-medium text-sm rounded-lg hover:bg-[#33C2FF] hover:shadow-[0_0_25px_rgba(0,174,239,0.25)] transition-all duration-300"
-          >
+        <h1 className="mx-auto mt-5 max-w-4xl text-balance font-heading text-4xl font-medium leading-[1.08] text-electric-white sm:text-5xl md:text-7xl">
+          Building AI capability. Turning ideas into impact.
+        </h1>
+        <p className="mx-auto mt-6 max-w-2xl text-pretty text-base leading-7 text-lunar-silver sm:text-lg sm:leading-8">
+          Qubeterra connects emerging talent with advanced technical learning, international expertise, and hands-on work on real-world AI challenges.
+        </p>
+        <div className="mt-9 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center sm:gap-4">
+          <Link to="/fellowships" className="rounded-lg bg-quantum-blue px-7 py-3.5 text-center font-heading text-sm font-medium text-deep-space transition-colors hover:bg-[#33C2FF] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-quantum-blue">
             Explore Fellowships
           </Link>
-          <Link
-            to="/consultancy"
-            className="px-8 py-3.5 border border-[rgba(217,221,226,0.3)] text-lunar-silver font-heading font-normal text-sm rounded-lg hover:border-[rgba(217,221,226,0.6)] hover:bg-[rgba(217,221,226,0.05)] transition-all duration-300"
-          >
-            Our Consultancy
+          <Link to="/nextgen-ai-fellowship-2026-achievements" className="rounded-lg border border-white/30 px-7 py-3.5 text-center font-heading text-sm text-electric-white transition-colors hover:border-white/60 hover:bg-white/5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-quantum-blue">
+            Discover Our Achievements
           </Link>
-        </div>
-      </div>
-
-      {/* Scroll Indicator */}
-      <div
-        ref={scrollIndicatorRef}
-        className={`absolute bottom-10 left-1/2 -translate-x-1/2 transition-opacity duration-500 ${
-          scrolled ? 'opacity-0' : 'opacity-100'
-        }`}
-      >
-        <div className="relative w-[1px] h-10 bg-lunar-silver/40">
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1.5 h-1.5 rounded-full bg-quantum-blue animate-scroll-bounce" />
+          <Link to="/contact" className="rounded-lg px-5 py-3.5 text-center font-heading text-sm text-lunar-silver transition-colors hover:text-electric-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-quantum-blue">
+            Contact the Team
+          </Link>
         </div>
       </div>
     </section>
