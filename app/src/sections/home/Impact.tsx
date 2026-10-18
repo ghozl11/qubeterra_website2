@@ -2,7 +2,6 @@ import { ScrollReveal } from '@/components/ScrollReveal';
 import { SectionLabel } from '@/components/SectionLabel';
 
 const achievements = [
-  { value: '~300', label: 'applications received' },
   { value: '100', label: 'fellows selected' },
   { value: '4', label: 'applied AI tracks' },
   { value: 'Completed', label: 'team projects presented' },
@@ -24,9 +23,9 @@ export function Impact() {
           </div>
         </ScrollReveal>
         <ScrollReveal pattern="B">
-          <dl className="grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-4">
+          <dl className="grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-3">
             {achievements.map((achievement) => (
-              <div key={achievement.label} className="rounded-xl border border-white/10 bg-white/[.035] px-4 py-7 text-center sm:px-6 sm:py-9">
+              <div key={achievement.label} className={`rounded-xl border border-white/10 bg-white/[.035] px-4 py-7 text-center sm:px-6 sm:py-9 ${achievement.value === 'Completed' ? 'col-span-2 lg:col-span-1' : ''}`}>
                 <dt className="font-mono text-[10px] uppercase tracking-[.12em] text-muted-text sm:text-xs">{achievement.label}</dt>
                 <dd className={`mt-3 font-heading font-medium text-electric-white ${achievement.value === 'Completed' ? 'whitespace-nowrap text-xl sm:text-2xl md:text-3xl' : 'text-3xl sm:text-4xl md:text-5xl'}`}>{achievement.value}</dd>
               </div>

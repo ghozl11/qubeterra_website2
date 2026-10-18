@@ -11,18 +11,7 @@ export function ConsultancyHero() {
     const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
     tl.fromTo(labelRef.current, { opacity: 0 }, { opacity: 1, duration: 0.6 }, 0.2);
     if (headingRef.current) {
-      const text = headingRef.current.textContent || '';
-      headingRef.current.innerHTML = '';
-      const chars = text.split('').map((char) => {
-        const span = document.createElement('span');
-        span.textContent = char === ' ' ? '\u00A0' : char;
-        span.style.display = 'inline-block';
-        span.style.opacity = '0';
-        headingRef.current!.appendChild(span);
-        return span;
-      });
-      gsap.set(chars, { y: 60 });
-      tl.to(chars, { opacity: 1, y: 0, duration: 0.6, stagger: 0.02 }, 0.4);
+      tl.fromTo(headingRef.current, { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.65 }, 0.4);
     }
     tl.fromTo(subRef.current, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.8 }, 0.8);
     return () => { tl.kill(); };

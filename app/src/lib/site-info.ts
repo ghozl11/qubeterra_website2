@@ -11,4 +11,5 @@ export const SOCIAL_LINKS = [
 export const PARTNER_LINKS = {
   itu: 'https://www.itu.int/',
   huawei: 'https://www.huawei.com/',
+  ainShamsEngineering: 'https://eng.asu.edu.eg/',
 } as const;
