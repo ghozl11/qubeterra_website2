@@ -1,6 +1,5 @@
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
-import { OrbitalCanvas } from '@/components/OrbitalCanvas';
 import { PageLayout } from '@/components/PageLayout';
 import { Home } from '@/pages/Home';
 import { About } from '@/pages/About';
@@ -33,5 +32,5 @@ function AppRoutes() {
 }
 
 export default function App() {
-  return <BrowserRouter><OrbitalCanvas /><AppRoutes /></BrowserRouter>;
+  return <BrowserRouter><AppRoutes /></BrowserRouter>;
 }

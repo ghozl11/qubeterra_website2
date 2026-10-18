@@ -1,30 +1,34 @@
+import { Facebook, Instagram, Linkedin, Mail } from 'lucide-react';
 import { ScrollReveal } from '@/components/ScrollReveal';
-import { Instagram, Linkedin, Facebook } from 'lucide-react';
+import { CONTACT_EMAIL, ORGANIZATION_LOCATIONS, SOCIAL_LINKS } from '@/lib/site-info';
 
-const contacts = [
-  { label: 'EMAIL US', value: 'hello@qubeterra.org', type: 'text' as const },
-  { label: 'OFFICES', value: 'Cairo, Egypt · Prague, Czech Republic', type: 'text' as const },
-  { label: 'SOCIAL', value: '', type: 'social' as const },
-];
-
-const socials = [
-  { label: 'Instagram', href: 'https://www.instagram.com/qubeterra/', icon: Instagram },
-  { label: 'LinkedIn', href: 'https://www.linkedin.com/company/qubeterra', icon: Linkedin },
-  { label: 'Facebook', href: 'https://www.facebook.com/profile.php?id=61592424611888', icon: Facebook },
-];
+const socialIcons = { Instagram, Facebook, LinkedIn: Linkedin };
 
 export function DirectContact() {
   return (
-    <section className="relative z-[1] pb-20 md:pb-[120px]">
-      <div className="max-w-[1280px] mx-auto px-5 md:px-12">
+    <section className="relative z-[1] pb-20 md:pb-28" aria-labelledby="direct-contact-heading">
+      <div className="mx-auto max-w-7xl px-5 md:px-12">
+        <h2 id="direct-contact-heading" className="sr-only">Direct contact details</h2>
         <ScrollReveal pattern="B">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {contacts.map((contact) => (
-              <div key={contact.label} className="sr-item rounded-xl p-8 text-center" style={{ background: 'rgba(217, 221, 226, 0.05)', backdropFilter: 'blur(20px)', border: '1px solid rgba(217, 221, 226, 0.1)' }}>
-                <span className="font-mono text-[11px] uppercase tracking-[0.1em] text-muted-text mb-4 block">{contact.label}</span>
-                {contact.type === 'text' ? <span className="font-heading text-base text-electric-white">{contact.value}</span> : <div className="flex items-center justify-center gap-5">{socials.map(({ label, href, icon: Icon }) => <a key={label} href={href} target="_blank" rel="noreferrer" className="text-lunar-silver hover:text-quantum-blue transition-colors duration-300" aria-label={label}><Icon size={22} strokeWidth={1.5} /></a>)}</div>}
+          <div className="grid gap-4 md:grid-cols-3">
+            <div className="rounded-xl border border-white/10 bg-white/[.04] p-7 text-center">
+              <Mail size={20} className="mx-auto mb-4 text-quantum-blue" aria-hidden="true" />
+              <span className="mb-3 block font-mono text-[11px] uppercase tracking-[.1em] text-muted-text">Email</span>
+              <a href={`mailto:${CONTACT_EMAIL}`} className="break-words text-sm text-electric-white underline-offset-4 hover:text-quantum-blue hover:underline">{CONTACT_EMAIL}</a>
+            </div>
+            <div className="rounded-xl border border-white/10 bg-white/[.04] p-7 text-center">
+              <span className="mb-4 block font-mono text-[11px] uppercase tracking-[.1em] text-muted-text">Locations</span>
+              <p className="text-sm leading-6 text-electric-white">{ORGANIZATION_LOCATIONS[0]}<br />{ORGANIZATION_LOCATIONS[1]}</p>
+            </div>
+            <div className="rounded-xl border border-white/10 bg-white/[.04] p-7 text-center">
+              <span className="mb-4 block font-mono text-[11px] uppercase tracking-[.1em] text-muted-text">Follow Qubeterra</span>
+              <div className="flex items-center justify-center gap-5">
+                {SOCIAL_LINKS.map((social) => {
+                  const Icon = socialIcons[social.label as keyof typeof socialIcons];
+                  return <a key={social.label} href={social.href} target="_blank" rel="noopener noreferrer" className="rounded-md p-1 text-lunar-silver transition-colors hover:text-quantum-blue focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-quantum-blue" aria-label={`${social.label} (opens in a new tab)`}><Icon size={22} strokeWidth={1.6} aria-hidden="true" /></a>;
+                })}
               </div>
-            ))}
+            </div>
           </div>
         </ScrollReveal>
       </div>

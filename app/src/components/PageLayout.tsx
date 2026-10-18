@@ -17,6 +17,8 @@ export function PageLayout({ children }: PageLayoutProps) {
   const location = useLocation();
 
   useEffect(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
     const lenis = new Lenis({
       lerp: 0.1,
       smoothWheel: true,

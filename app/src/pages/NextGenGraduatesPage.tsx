@@ -57,23 +57,21 @@ const graduates = [
   'Alaa Soudy Ibrahim Ibrahim',
 ];
 
-export default function NextGenGraduates() {
+export default function NextGenGraduatesPage() {
   return (
-    <main className="relative min-h-screen overflow-hidden py-24 sm:py-32">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+    <div className="relative min-h-screen overflow-hidden py-24 sm:py-32">
+      <div className="mx-auto max-w-7xl px-5 md:px-12">
         <header className="mx-auto max-w-3xl text-center">
-          <p className="section-label mb-5">Qubeterra NextGen AI Fellowship · 2026</p>
-          <h1 className="text-balance text-4xl font-semibold tracking-tight text-white sm:text-6xl">Successful Graduates</h1>
-          <p className="mx-auto mt-6 max-w-2xl text-base leading-7 text-lunar-silver/75 sm:text-lg">Celebrating the fellows who completed the Qubeterra NextGen AI Fellowship in 2026.</p>
+          <p className="section-label mb-5">Qubeterra AI NextGen Fellowship · Graduation materials</p>
+          <h1 className="text-balance font-heading text-4xl font-medium tracking-tight text-white sm:text-6xl">Names shown in the graduation materials</h1>
+          <p className="mx-auto mt-6 max-w-2xl text-pretty text-base leading-7 text-lunar-silver/80 sm:text-lg">The names below reproduce the list currently available in the project files. This page should not be read as a complete roster of all 100 fellows selected for the fellowship.</p>
         </header>
-        <section className="relative mt-16 overflow-hidden rounded-3xl border border-quantum-blue/50 bg-[#06142d]/90 p-6 shadow-[0_0_60px_rgba(0,174,239,0.12)] sm:p-10 lg:p-14" aria-label="2026 fellowship graduates">
-          <div className="pointer-events-none absolute -right-24 -top-24 h-64 w-64 rounded-full bg-quantum-blue/10 blur-3xl" />
-          <div className="pointer-events-none absolute -bottom-32 -left-24 h-72 w-72 rounded-full bg-cosmic-purple/10 blur-3xl" />
-          <div className="relative grid gap-x-8 gap-y-4 sm:grid-cols-2 lg:grid-cols-4">
-            {graduates.map((name, index) => <div key={`${name}-${index}`} className="flex items-start gap-3 text-sm leading-6 text-white/90 sm:text-base"><span className="mt-1 text-quantum-blue" aria-hidden="true">◆</span><span>{name}</span></div>)}
+        <section className="relative mt-12 overflow-hidden rounded-3xl border border-quantum-blue/30 bg-[#06142d]/90 p-6 sm:mt-16 sm:p-10 lg:p-14" aria-label="Names shown in the supplied graduation materials">
+          <div className="relative grid gap-x-8 gap-y-4 sm:grid-cols-2 lg:grid-cols-3">
+            {graduates.map((name, index) => <div key={`${name}-${index}`} className="flex min-w-0 items-start gap-3 text-sm leading-6 text-white/90 sm:text-base"><span className="mt-1 text-quantum-blue" aria-hidden="true">◆</span><span>{name}</span></div>)}
           </div>
         </section>
       </div>
-    </main>
+    </div>
   );
 }
