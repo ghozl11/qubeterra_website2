@@ -26,6 +26,7 @@ export function ScrollReveal({
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
     const animateChildren = el.querySelectorAll('.sr-item');
     const targets = animateChildren.length > 0 ? animateChildren : el;

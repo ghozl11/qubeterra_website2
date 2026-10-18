@@ -1,31 +1,48 @@
+import { Facebook, Instagram, Linkedin } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { CONTACT_EMAIL, ORGANIZATION_LOCATIONS, SOCIAL_LINKS } from '@/lib/site-info';
 
 const footerLinks = {
-  Institute: [{ label: 'About', path: '/about' }, { label: 'Domains', path: '/domains' }, { label: 'Fellowships', path: '/fellowships' }, { label: 'Think Tank', path: '/consultancy' }],
-  Connect: [{ label: 'Contact', path: '/contact' }, { label: 'Partnerships', path: '/contact' }, { label: 'Careers', path: '/contact' }],
-  Resources: [{ label: 'Research', path: '/consultancy' }, { label: 'Blog', path: '/about' }, { label: 'FAQ', path: '/contact' }],
+  Explore: [
+    { label: 'About Qubeterra', path: '/about' },
+    { label: 'Deep Tech Domains', path: '/domains' },
+    { label: 'Fellowships', path: '/fellowships' },
+    { label: 'AI NextGen achievements', path: '/nextgen-ai-fellowship-2026-achievements' },
+  ],
+  Connect: [
+    { label: 'Contact', path: '/contact' },
+    { label: 'Partnerships', path: '/contact' },
+    { label: 'Consultancy', path: '/consultancy' },
+  ],
 };
-const socialLinks = [
-  { label: 'Instagram', href: 'https://www.instagram.com/qubeterra/' },
-  { label: 'LinkedIn', href: 'https://www.linkedin.com/company/qubeterra' },
-  { label: 'Facebook', href: 'https://www.facebook.com/profile.php?id=61592424611888' },
-];
-const partners = ['Nature Eye Labs', 'ITU', 'Huawei', 'Ain Shams University', 'Smart and Future Cities Laboratory'];
+
+const socialIcons = { Instagram, Facebook, LinkedIn: Linkedin };
 
 export function Footer() {
   return (
-    <footer className="relative z-[1] border-t border-[rgba(217,221,226,0.06)]" style={{ background: 'rgba(217, 221, 226, 0.02)' }}>
-      <div className="max-w-[1280px] mx-auto px-5 md:px-12 pt-20 pb-10">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-10 md:gap-8 mb-16">
+    <footer className="relative z-[1] border-t border-white/[.08] bg-white/[.02]">
+      <div className="mx-auto max-w-7xl px-5 pt-14 pb-8 md:px-12 md:pt-16">
+        <div className="grid gap-10 md:grid-cols-[1.3fr_1fr_1fr] md:gap-8">
           <div>
-            <Link to="/" className="flex items-center gap-3 mb-4"><span className="font-heading font-medium text-sm text-electric-white tracking-[0.15em] uppercase">QUBETERRA</span></Link>
-            <p className="text-muted-text text-sm font-body leading-relaxed mb-5">Building Capabilities. Engineering Civilization.</p>
-            <div className="flex flex-wrap gap-x-4 gap-y-2">{socialLinks.map((social) => <a key={social.label} href={social.href} target="_blank" rel="noreferrer" className="text-muted-text text-[11px] font-mono uppercase tracking-[0.08em] hover:text-quantum-blue transition-colors">{social.label}</a>)}</div>
+            <Link to="/" className="inline-flex rounded-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-quantum-blue" aria-label="Qubeterra home">
+              <img src="/images/new/qubeterra_horizontal_hq.png" alt="Qubeterra Institute" className="h-10 w-[168px] object-cover" loading="lazy" />
+            </Link>
+            <p className="mt-4 max-w-xs text-sm leading-6 text-lunar-silver">Engineering Tomorrow. Empowering Humanity.</p>
+            <p className="mt-4 text-sm leading-6 text-muted-text">{ORGANIZATION_LOCATIONS.join(' | ')}</p>
+            <a href={`mailto:${CONTACT_EMAIL}`} className="mt-2 inline-block break-words text-sm text-quantum-blue underline-offset-4 hover:underline">{CONTACT_EMAIL}</a>
+            <div className="mt-5 flex items-center gap-4">
+              {SOCIAL_LINKS.map((social) => {
+                const Icon = socialIcons[social.label as keyof typeof socialIcons];
+                return <a key={social.label} href={social.href} target="_blank" rel="noopener noreferrer" aria-label={`${social.label} (opens in a new tab)`} className="rounded-md p-1 text-muted-text transition-colors hover:text-quantum-blue focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-quantum-blue"><Icon size={19} aria-hidden="true" /></a>;
+              })}
+            </div>
           </div>
-          {Object.entries(footerLinks).map(([category, links]) => <div key={category}><h4 className="font-mono text-[11px] uppercase tracking-[0.1em] text-muted-text mb-4">{category}</h4><ul className="space-y-3">{links.map((link) => <li key={link.label}><Link to={link.path} className="text-lunar-silver text-sm font-body hover:text-electric-white transition-colors">{link.label}</Link></li>)}</ul></div>)}
+          {Object.entries(footerLinks).map(([category, links]) => <nav key={category} aria-label={`${category} footer links`}><h2 className="mb-4 font-mono text-[11px] uppercase tracking-[.12em] text-muted-text">{category}</h2><ul className="space-y-3">{links.map((link) => <li key={link.label}><Link to={link.path} className="text-sm text-lunar-silver transition-colors hover:text-electric-white">{link.label}</Link></li>)}</ul></nav>)}
         </div>
-        <div className="border-t border-[rgba(217,221,226,0.06)] pt-8 mb-8"><p className="text-center font-mono text-[11px] uppercase tracking-[0.1em] text-muted-text mb-6">Trusted by institutions worldwide</p><div className="flex flex-wrap justify-center items-center gap-6 md:gap-10">{partners.map((partner, i) => <span key={partner} className="flex items-center gap-4"><span className="font-mono text-[11px] uppercase tracking-[0.1em] text-muted-text">{partner}</span>{i < partners.length - 1 && <span className="text-[rgba(138,146,157,0.3)] hidden md:inline">•</span>}</span>)}</div></div>
-        <div className="border-t border-[rgba(217,221,226,0.06)] pt-6 flex flex-col md:flex-row justify-between items-center gap-4"><p className="text-muted-text text-xs font-body">&copy; {new Date().getFullYear()} Qubeterra Institute. All rights reserved.</p><div className="flex gap-6"><span className="text-muted-text text-xs font-body">Privacy Policy</span><span className="text-muted-text text-xs font-body">Terms of Service</span></div></div>
+        <div className="mt-12 flex flex-col gap-3 border-t border-white/[.08] pt-6 text-xs text-muted-text sm:flex-row sm:items-center sm:justify-between">
+          <p>© {new Date().getFullYear()} Qubeterra Institute. All rights reserved.</p>
+          <p>{ORGANIZATION_LOCATIONS.join(' | ')}</p>
+        </div>
       </div>
     </footer>
   );
