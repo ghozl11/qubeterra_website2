@@ -26,28 +26,56 @@
     --radius: 0.625rem;
   }
 
-  * {
+  *,
+  *::before,
+  *::after {
     @apply border-border;
+    min-width: 0;
   }
 
   html {
     scroll-behavior: auto;
+    text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
   }
 
   body {
     @apply bg-deep-space text-lunar-silver antialiased;
-    font-family: 'Inter', sans-serif;
-    overflow-x: hidden;
+    min-width: 320px;
+    overflow-x: clip;
+    font-family: 'Inter', Arial, sans-serif;
+    line-height: 1.6;
+    word-break: normal;
+    overflow-wrap: break-word;
+    hyphens: manual;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Space Grotesk', sans-serif;
+    font-family: 'Space Grotesk', Inter, sans-serif;
     letter-spacing: -0.03em;
+    word-break: normal;
+    overflow-wrap: break-word;
+    hyphens: manual;
+    text-wrap: balance;
+  }
+
+  p, li, dd, dt, label, button, a {
+    word-break: normal;
+    overflow-wrap: break-word;
+    hyphens: manual;
+  }
+
+  img, svg {
+    max-width: 100%;
   }
 
   ::selection {
     background: rgba(0, 174, 239, 0.3);
     color: #F5F7FA;
+  }
+
+  :focus-visible {
+    outline-color: #00AEEF;
   }
 }
 
@@ -79,5 +107,20 @@
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+
+  .text-pretty {
+    text-wrap: pretty;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
   }
 }
