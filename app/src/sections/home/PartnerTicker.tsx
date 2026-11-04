@@ -1,11 +1,37 @@
 import { PARTNER_LINKS } from '@/lib/site-info';
 
 const supportingOrganizations = [
-  { name: 'International Telecommunication Union (ITU)', image: '/images/new/itu_logo.png', href: PARTNER_LINKS.itu, detail: 'Supported fully funded AI NextGen Fellowship places.', imageClass: 'h-[4.25rem] w-[4.25rem]' },
-  { name: 'Huawei', image: '/images/new/Huawei_Standard_logo.png', href: PARTNER_LINKS.huawei, detail: 'Supported fully funded AI NextGen Fellowship places.', imageClass: 'h-14 w-36' },
-  { name: 'Faculty of Engineering, Ain Shams University', image: '/images/new/ainshams_engineering_logo.png', href: PARTNER_LINKS.ainShamsEngineering, detail: 'An academic partner of Qubeterra.', imageClass: 'h-14 w-full max-w-[16rem]' },
-  { name: 'Nature Eye Labs', image: '/images/new/nature_eye_logo_trim.png', detail: 'Collaborates with Qubeterra on program activities.', imageClass: 'h-16 w-24' },
+  { name: 'International Telecommunication Union (ITU)', image: '/images/new/itu_logo.png', href: PARTNER_LINKS.itu, imageClass: 'h-[4.25rem] w-[4.25rem]' },
+  { name: 'Huawei', image: '/images/new/Huawei_Standard_logo.png', href: PARTNER_LINKS.huawei, imageClass: 'h-14 w-36' },
+  { name: 'University of Chemistry and Technology, Prague', image: '/images/logos/logo-uct-center-basic-inv-1.png', href: PARTNER_LINKS.uctPrague, imageClass: 'h-16 w-36' },
+  { name: 'University of Cambridge', image: '/images/logos/university-of-cambridge-tight.png', href: PARTNER_LINKS.cambridge, imageClass: 'h-16 w-36' },
+  { name: 'Massachusetts Institute of Technology (MIT)', image: '/images/logos/mit-tight.png', href: PARTNER_LINKS.mit, imageClass: 'h-16 w-36' },
+  { name: 'Stanford University', image: '/images/logos/stanford-tight.png', href: PARTNER_LINKS.stanford, imageClass: 'h-14 w-40' },
+  { name: 'Esri', image: '/images/logos/logo_esri_white-removebg-preview.png', href: PARTNER_LINKS.esri, imageClass: 'h-14 w-36' },
+  { name: 'Nature Eye Labs', image: '/images/new/nature_eye_logo_trim.png', imageClass: 'h-16 w-24' },
 ];
+
+function OrganizationLogo({ name, image, href, imageClass, isDuplicate = false }: (typeof supportingOrganizations)[number] & { isDuplicate?: boolean }) {
+  const logo = (
+    <img
+      src={image}
+      alt={isDuplicate ? '' : name}
+      className={`${imageClass} partner-logo object-contain opacity-85 transition-opacity duration-300 group-hover:opacity-100`}
+      loading="eager"
+      decoding="async"
+    />
+  );
+
+  return (
+    <li aria-hidden={isDuplicate || undefined} className="group flex h-28 w-48 shrink-0 items-center justify-center rounded-2xl border border-white/10 bg-white/[0.045] px-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)] transition-colors duration-300 hover:border-quantum-blue/35 hover:bg-white/[0.07] sm:w-52">
+      {href ? (
+        <a href={href} tabIndex={isDuplicate ? -1 : undefined} target="_blank" rel="noopener noreferrer" aria-label={`${name} official website, opens in a new tab`} className="flex h-full w-full items-center justify-center rounded-xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-quantum-blue">
+          {logo}
+        </a>
+      ) : logo}
+    </li>
+  );
+}
 
 export function PartnerTicker() {
   return (
@@ -14,27 +40,29 @@ export function PartnerTicker() {
         <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
           <div>
             <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-quantum-blue sm:text-xs">Working together</p>
-            <h2 id="supporting-organizations" className="mt-2 font-heading text-2xl font-medium text-electric-white sm:text-3xl">Our partners</h2>
+            <h2 id="supporting-organizations" className="mt-2 font-heading text-2xl font-medium text-electric-white sm:text-3xl">Organizations we work with</h2>
           </div>
-          <p className="max-w-2xl text-sm leading-6 text-muted-text">Organizations connected with Qubeterra’s work across our programs and initiatives.</p>
+          <p className="max-w-2xl text-sm leading-6 text-muted-text">Organizations and institutions that work with Qubeterra and trust our work.</p>
         </div>
-        <div role="list" aria-label="Qubeterra partners and collaborators" tabIndex={0} className="-mx-5 mt-7 flex snap-x snap-mandatory gap-4 overflow-x-auto px-5 pb-3 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-quantum-blue [scrollbar-color:rgba(255,255,255,.2)_transparent] [scrollbar-width:thin] md:mx-0 md:grid md:grid-cols-2 md:overflow-visible md:px-0 md:pb-0 lg:grid-cols-4">
-          {supportingOrganizations.map((partner) => (
-            <article key={partner.name} role="listitem" className="w-[min(78vw,17rem)] shrink-0 snap-start rounded-2xl border border-white/10 bg-white/[.035] p-4 transition-colors hover:border-quantum-blue/40 md:w-auto">
-              <div className="flex h-24 w-full items-center justify-center rounded-xl bg-white p-3 sm:h-28">
-                {partner.href ? (
-                  <a href={partner.href} target="_blank" rel="noopener noreferrer" aria-label={`${partner.name} official website, opens in a new tab`} className="flex h-full w-full items-center justify-center rounded-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-quantum-blue">
-                    <img src={partner.image} alt={partner.name} className={`${partner.imageClass} object-contain`} loading="lazy" />
-                  </a>
-                ) : (
-                  <img src={partner.image} alt={partner.name} className={`${partner.imageClass} object-contain`} loading="lazy" />
-                )}
-              </div>
-              <h3 className="mt-4 font-heading text-sm font-medium leading-5 text-electric-white">{partner.name}</h3>
-              <p className="mt-1 text-[10px] font-medium uppercase tracking-[0.14em] text-quantum-blue">Qubeterra partner</p>
-              <p className="mt-2 text-xs leading-5 text-muted-text">{partner.detail}</p>
-            </article>
-          ))}
+
+        <div
+          className="partner-marquee mt-8 rounded-3xl border border-white/[0.07] bg-[#050c14]/70 py-4"
+          role="region"
+          aria-label="Organizations we work with"
+          tabIndex={0}
+        >
+          <div className="partner-marquee-track">
+            <ul className="partner-marquee-group" aria-label="Organizations featured in the logo strip">
+              {supportingOrganizations.map((organization) => (
+                <OrganizationLogo key={organization.name} {...organization} />
+              ))}
+            </ul>
+            <ul className="partner-marquee-group" aria-hidden="true">
+              {supportingOrganizations.map((organization) => (
+                <OrganizationLogo key={organization.name} {...organization} isDuplicate />
+              ))}
+            </ul>
+          </div>
         </div>
       </div>
     </section>
