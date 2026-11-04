@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Healthcare Operations — Qubeterra Decision Labs</title>
+<meta name="description" content="Concept demonstration: explore hospital patient-flow and facility-access alternatives before committing resources. Operational decision support only, not a clinical tool. Invented data.">
+<meta property="og:title" content="Healthcare Operations — Qubeterra Decision Labs"><meta property="og:type" content="website">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif&family=Geist:wght@300;400;500&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+:root{--void:#04070D;--navy:#0A1424;--cyan:#2EE6FF;--teal:#14B8A6;--mist:#E8F1F5;--slate:#6B8394;--amber:#FFB454;--grn:#4ADE80;--line:rgba(46,230,255,.16);--ser:'Instrument Serif',Georgia,serif;--sans:'Geist',system-ui,sans-serif;--mono:'JetBrains Mono',ui-monospace,monospace;color-scheme:dark;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*,*::before,*::after{box-sizing:inherit}html{scroll-behavior:smooth}
+body{margin:0;background:var(--void);color:var(--mist);font:300 17px/1.65 var(--sans);overflow-x:hidden}
+canvas{display:block;width:100%;height:100%}a{color:inherit;text-decoration:none}p{margin:0}
+h1,h2,h3{font-family:var(--ser);font-weight:400;margin:0;line-height:1.04;letter-spacing:-.01em}
+h1{font-size:clamp(40px,7vw,84px);max-width:11em;margin:20px 0}h2{font-size:clamp(30px,4.2vw,52px)}h3{font-size:24px}
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+.mono{font:400 11px/1.4 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--cyan)}
+.lead{color:var(--slate);max-width:58ch;margin-top:16px}
+nav{border-bottom:1px solid var(--line)}nav .wrap{display:flex;justify-content:space-between;align-items:center;height:auto;min-height:64px;flex-wrap:wrap;gap:8px 24px;padding-top:8px;padding-bottom:8px}
+.brand{font:400 12px var(--mono);letter-spacing:.22em}.brand b{color:var(--cyan);font-weight:400}
+.nv{display:flex;flex-wrap:wrap;align-items:center;gap:6px 22px;font-size:13px;color:var(--slate)}.nv a:not(.btn):hover,.nv a[aria-current]{color:var(--mist)}.nv a[aria-current]{border-bottom:1px solid var(--cyan)}.nv .btn{padding:9px 14px}
+.btn{display:inline-block;border:1px solid var(--cyan);color:var(--cyan);padding:12px 20px;font:400 12px var(--mono);letter-spacing:.12em;text-transform:uppercase;background:transparent;cursor:pointer;transition:.4s}
+.btn:hover{background:var(--cyan);color:var(--void)}.btn.s{border-color:var(--line);color:var(--mist)}
+.pill{display:inline-block;border:1px solid var(--amber);color:var(--amber);font:400 10px var(--mono);letter-spacing:.12em;padding:4px 9px;text-transform:uppercase}
+.hero{padding:90px 24px 40px}.sec{padding:72px 0;border-top:1px solid var(--line)}
+.grid{display:grid;grid-template-columns:1.6fr 1fr;gap:28px;margin-top:30px}
+.vis{height:360px;border:1px solid var(--line);background:linear-gradient(var(--navy),var(--void));position:relative}
+.tag{position:absolute;left:12px;bottom:10px;color:var(--amber)!important}
+.tog{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 12px}
+.tog button{background:transparent;border:1px solid var(--line);color:var(--slate);padding:8px 12px;font:400 11px var(--mono);letter-spacing:.06em;cursor:pointer;text-align:left}
+.tog button[aria-pressed=true]{border-color:var(--cyan);color:var(--cyan)}
+.cap{font:400 11px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--slate);margin:14px 0 8px}
+table{width:100%;border-collapse:collapse;font-size:14px}td{padding:10px 0;border-bottom:1px solid var(--line);vertical-align:top;color:var(--slate)}td:first-child{color:var(--mist);width:42%;padding-right:10px}
+.bar{height:6px;background:var(--line);margin-top:6px}.bar i{display:block;height:100%;background:var(--cyan);width:0;transition:width .8s}
+.note{color:var(--slate);font-size:14px;margin-top:14px}
+.card{border-top:1px solid var(--cyan);padding-top:12px;margin-bottom:18px}.card p,.card li{font-size:14px;color:var(--slate)}.card b{color:var(--mist);font-weight:400}
+.lab{font:400 11px var(--mono);letter-spacing:.12em;text-transform:uppercase;display:block;margin-bottom:4px}
+.list{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:28px}.list div{border-top:1px solid var(--cyan);padding-top:14px;font-size:14px;color:var(--slate)}.list b{display:block;color:var(--mist);font-weight:400;margin-bottom:4px}
+footer{border-top:1px solid var(--line);padding:30px 24px;color:var(--slate);font-size:12px;text-align:center}footer a{color:var(--mist)}
+@media(max-width:900px){.grid,.list{grid-template-columns:1fr}.vis{height:300px}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+.parent-link{color:var(--slate);font:400 10px var(--mono);letter-spacing:.1em;text-transform:uppercase;margin-left:18px}.parent-link:hover{color:var(--cyan)}
+</style>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3E%3Ctext y=%27.9em%27 font-size=%2790%27%3E🏥%3C/text%3E%3C/svg%3E">
+</head>
+<body>
+<nav><div class="wrap"><a class="brand" href="index.html">QUBETERRA <b>/</b> DECISION LABS</a><div class="nv"><a href="index.html">Home</a><a href="manufacturing.html">Manufacturing</a><a href="fintech.html">Fintech</a><a href="healthcare.html" aria-current="page">Healthcare</a><a href="policy.html">Public policy</a><a href="consumer.html">Consumer products</a><a class="btn s" href="index.html#demo">Request a demo</a></div></div></nav>
+
+<header class="hero wrap"><div class="mono">Industries · Healthcare operations</div>
+<h1>Plan capacity and access before the queue forms.</h1>
+<p class="lead">Explore how a hospital might redistribute capacity, and where a health system might expand services, and see the trade-offs before committing staff, space and budget.</p>
+<p style="margin-top:22px"><span class="pill">Operational decision support only · not a clinical or diagnostic tool · invented data, no patient data</span></p></header>
+
+<section class="sec"><div class="wrap">
+<div class="mono">Scenario 1 · Hospital patient flow</div><h2 style="margin-top:14px;max-width:14em">Where does the pathway get stuck?</h2>
+<p class="lead">An invented hospital pathway from arrival to discharge. Compare options, then switch to a demand surge to stress each one.</p>
+<div class="grid"><div><div class="cap">Option</div><div class="tog" id="opt" role="group" aria-label="Capacity options"></div><div class="cap">Demand</div><div class="tog" id="dem" role="group" aria-label="Demand level"></div>
+<div class="vis"><canvas id="c1" role="img" aria-label="Animated patient pathway with seven steps from arrival to discharge. Patients queue in front of the busiest step. Choose an option or a demand level to change it."></canvas><span class="mono tag">Illustrative simulation · invented timings</span></div></div>
+<div><table aria-live="polite"><tr><td>Relative capacity<div class="bar"><i id="mb"></i></div></td><td id="mc"></td></tr><tr><td>Pressure point (live)</td><td id="mn"></td></tr><tr><td>Staff slots</td><td id="mo"></td></tr><tr><td>Space and equipment</td><td id="ms"></td></tr><tr><td>Main trade-off</td><td id="mr"></td></tr></table>
+<p class="note">Relative and invented. Real timings, staffing rules and clinical safety review are needed, and clinicians must validate any change to a care pathway.</p></div></div></div></section>
+
+<section class="sec"><div class="wrap">
+<div class="mono">Scenario 2 · Facility access and service expansion</div><h2 style="margin-top:14px;max-width:14em">Which areas are least well served?</h2>
+<p class="lead">An invented region. Each area shows illustrative demand against access to services. Compare ways to expand and see where gaps remain.</p>
+<div class="grid"><div><div class="cap">Expansion option</div><div class="tog" id="xo" role="group" aria-label="Expansion options"></div>
+<div class="vis"><canvas id="c2" role="img" aria-label="Stylised map of six areas of an invented region. Each area is marked covered, partial or gap, depending on illustrative demand and access."></canvas><span class="mono tag">Illustrative · invented region</span></div>
+<div class="cap">Area (also selectable on the map)</div><div class="tog" id="zo" role="group" aria-label="Areas"></div></div>
+<div id="out" aria-live="polite"></div></div></div></section>
+
+<section class="sec"><div class="wrap"><div class="mono">What this does and does not do</div>
+<div class="list"><div><b>It supports operations</b>Capacity, flow, resource allocation and access, as questions for planners and managers.</div><div><b>It is not clinical</b>It does not diagnose, triage real patients or replace clinical judgement. No patient data is used.</div><div><b>It needs real data</b>Real timings, staffing, catchment populations and travel times, reviewed by clinicians and analysts.</div></div>
+<p style="margin-top:30px"><a class="btn" href="index.html#demo">Request a demo: discuss a decision</a></p></div></section>
+<footer>Qubeterra Decision Labs · Products are in development and not publicly available. Concept demonstration with invented data.<p style="margin-top:10px"><a href="index.html">Home</a> · <a href="manufacturing.html">Manufacturing</a> · <a href="fintech.html">Fintech</a> · <a href="healthcare.html">Healthcare</a> · <a href="policy.html">Public policy</a> · <a href="consumer.html">Consumer products</a></p></footer>
+
+<script>
+const R=matchMedia('(prefers-reduced-motion: reduce)').matches,$=s=>document.querySelector(s),clamp=(v,a=0,b=1)=>Math.min(b,Math.max(a,v)),rnd=Math.random,CY='46,230,255',AM='255,180,84',GR='107,131,148',jobs=[];
+const mk=(s,t,f)=>{const b=document.createElement('button');b.textContent=t;b.onclick=f;$(s).appendChild(b);return b};
+function job(c,draw){const o={vis:false,draw},set=()=>{const d=Math.min(devicePixelRatio||1,2),r=c.getBoundingClientRect();c.width=r.width*d;c.height=r.height*d;o.x=c.getContext('2d');o.x.setTransform(d,0,0,d,0,0);o.w=r.width;o.h=r.height};set();addEventListener('resize',()=>{set();rd()});new IntersectionObserver(e=>o.vis=e[0].isIntersecting).observe(c);jobs.push(o);return o}
+const rd=()=>jobs.forEach(o=>{o.x.clearRect(0,0,o.w,o.h);o.draw(o,0,3)});let last=performance.now();
+const tick=n=>{const dt=Math.min(.05,(n-last)/1000);last=n;jobs.forEach(o=>{if(o.vis){o.x.clearRect(0,0,o.w,o.h);o.draw(o,dt,n/1000)}});if(!R)requestAnimationFrame(tick)};
+const ln=(x,a,b,c,al,w=1)=>{x.strokeStyle=`rgba(${c},${al})`;x.lineWidth=w;x.beginPath();x.moveTo(a[0],a[1]);x.lineTo(b[0],b[1]);x.stroke()};
+
+/* Scenario 1: ALL timings invented. [servers, seconds] */
+const NM=['Arrive','Triage','Consult','Scan','Treat','Ward','Home'],FN=['Arrival','Triage','Consultation','Imaging','Treatment','Ward beds','Discharge'],PX=[.07,.21,.35,.49,.63,.77,.91],
+OP={A:{t:'A · Current setup',s:[[1,.8],[1,1.4],[1,2.2],[1,3],[1,2],[1,2.4],[1,.8]],sp:'Low',tr:'Imaging limits the whole pathway and waiting builds before it.'},
+B:{t:'B · Add imaging capacity',s:[[1,.8],[1,1.4],[1,2.2],[2,3],[1,2],[1,2.4],[1,.8]],sp:'High',tr:'Pressure likely moves to ward beds. Needs equipment, space and extra staff.'},
+C:{t:'C · Open a fast-track lane',s:[[1,.8],[1,1.4],[1,1.8],[1,2.2],[1,2],[1,2],[1,.8]],sp:'Medium',tr:'Needs clinically safe sorting rules. A wrong sort could delay urgent cases.'}},
+DM={n:['Normal demand',1.6],s:['Demand surge',1.1]},cap=k=>Math.min(...OP[k].s.map(s=>s[0]/s[1])),
+sim=k=>({k,t:0,nx:0,q:OP[k].s.map(()=>[]),sv:OP[k].s.map(s=>Array(s[0]).fill(null)),it:[]});let ARR=1.6,dk='n';
+function step(m,dt){const o=OP[m.k];m.t+=dt;while(m.nx<=m.t){if(m.q[0].length<14){const it={};m.q[0].push(it);m.it.push(it)}m.nx+=ARR}
+for(let i=6;i>=0;i--)m.sv[i].forEach((v,j)=>{if(v){v.r-=dt;if(v.r<=0){if(i<6&&m.q[i+1].length>=8)v.r=0;else{m.sv[i][j]=null;if(i<6)m.q[i+1].push(v.it);else m.it.splice(m.it.indexOf(v.it),1)}}}
+if(!m.sv[i][j]&&m.q[i].length)m.sv[i][j]={it:m.q[i].shift(),r:o.s[i][1]*(.9+rnd()*.2)}})}
+let m1,Lp=1,NS=1,bnT='';
+function upd1(){const k=m1.k,o=OP[k];$('#mb').style.width=cap(k)/cap('A')/1.5*100+'%';$('#mc').textContent=Math.round(cap(k)/cap('A')*100)+'% of option A (illustrative)';$('#mo').textContent=o.s.reduce((a,s)=>a+s[0],0)+' (one per step, illustrative)';$('#ms').textContent=o.sp;$('#mr').textContent=o.tr;[...$('#opt').children].forEach(b=>b.setAttribute('aria-pressed',b.dataset.k==k));[...$('#dem').children].forEach(b=>b.setAttribute('aria-pressed',b.dataset.k==dk))}
+function pick(k){m1=sim(k);for(let i=0;i<2500;i++)step(m1,.1);upd1();R&&rd()}
+Object.keys(OP).forEach(k=>{mk('#opt',OP[k].t,()=>pick(k)).dataset.k=k});Object.keys(DM).forEach(k=>{mk('#dem',DM[k][0],()=>{dk=k;ARR=DM[k][1];pick(m1.k)}).dataset.k=k});
+job($('#c1'),(o,dt)=>{const{x,w,h}=o;if(dt)step(m1,dt*1.5);NS=R?(m1.k=='B'?2:1):NS+((m1.k=='B'?2:1)-NS)*.06;
+const bw=Math.min(38,w*.065),bh=bw*.8,cy=h*.46,P=PX.map(v=>v*w);let bn=-1;m1.q.forEach((q,i)=>{if(q.length>=4)bn=i});const hot=bn>=0;
+x.fillStyle='rgba(10,20,36,.6)';x.fillRect(0,cy-h*.24,w,h*.48);for(let i=0;i<6;i++)ln(x,[P[i]+bw/2,cy],[P[i+1]-bw/2,cy],CY,.22);
+m1.it.forEach(it=>{it.tx=null});
+for(let i=0;i<7;i++){const ns=i==3?NS:1,n=Math.ceil(ns);for(let j=0;j<n;j++){const py=cy+(n>1?(j?1:-1)*(ns-1)*h*.085:0),al=j?clamp(ns-1):1,isb=hot&&i==bn;
+x.globalAlpha=al;x.fillStyle='rgba(6,12,22,1)';x.fillRect(P[i]-bw/2,py-bh/2+5,bw,bh);x.fillStyle='rgba(10,20,36,.98)';x.fillRect(P[i]-bw/2,py-bh/2,bw,bh);
+x.shadowColor=`rgba(${isb?AM:CY},1)`;x.shadowBlur=isb?(R?12:8+6*Math.sin(performance.now()/300)):3;x.strokeStyle=`rgba(${isb?AM:CY},.85)`;x.lineWidth=isb?2:1;x.strokeRect(P[i]-bw/2,py-bh/2,bw,bh);x.shadowBlur=0;
+x.strokeStyle='rgba(232,241,245,.7)';x.beginPath();x.arc(P[i]+bw/2+7,py,3.5,0,6.283);x.stroke();x.globalAlpha=1;const v=m1.sv[i][j];if(v){v.it.tx=P[i];v.it.ty=py;v.it.w=1}}
+m1.q[i].forEach((it,k)=>{it.tx=P[i]-bw/2-7-(k%6)*7;it.ty=cy+((k/6|0)-.5)*7;it.w=0});
+x.fillStyle='rgba(107,131,148,.95)';x.font='10px monospace';x.textAlign='center';x.fillText(NM[i],P[i],cy+h*.3)}
+if(m1.k=='C'){x.strokeStyle=`rgba(${CY},.6)`;x.setLineDash([3,3]);x.strokeRect(P[2]-bw/2-6,cy-bh/2-8,P[3]-P[2]+bw+12,bh+16);x.setLineDash([]);x.fillStyle=`rgba(${CY},.9)`;x.fillText('fast-track',(P[2]+P[3])/2,cy-bh/2-13)}
+if(hot){x.fillStyle=`rgba(${AM},1)`;x.fillText('Pressure',P[bn],cy-bh/2-(m1.k=='B'&&bn==3?h*.1:0)-14)}x.textAlign='left';
+m1.it.forEach(it=>{if(it.tx==null)return;if(it.x==null){it.x=-10;it.y=cy}const e=Math.min(1,(dt||1)*8);it.x+=(it.tx-it.x)*e;it.y+=(it.ty-it.y)*e;x.fillStyle=it.w?'rgba(232,241,245,.95)':`rgba(${CY},.9)`;x.beginPath();x.arc(it.x,it.y,2.8,0,6.283);x.fill()});
+const t=hot?FN[bn]:'No persistent pressure point';if(t!=bnT){bnT=t;$('#mn').textContent=t}});
+pick('A');
+
+/* Scenario 2: ALL values invented. levels 1-5 */
+const XO=[['A · Current facilities',{}],['B · Add a clinic in the outer area',{5:3,4:1}],['C · Mobile outreach to under-served areas',{3:2,5:2,2:1}]],
+XT=['No change to the network.','Capital cost, and staffing a remote site.','Recurring running cost, and a limited range of services.'],
+ZN=[['Central district',.5,.5,4,5],['Northern district',.28,.27,4,4],['Eastern district',.72,.3,3,3],['Western district',.2,.64,3,2],['Southern district',.5,.82,4,3],['Outer periphery',.84,.68,3,1]],
+LV=['','Low','Below average','Average','High','Very high'],acc=(o,z)=>Math.min(5,ZN[z][4]+(XO[o][1][z]||0)),cl=(o,z)=>{const g=ZN[z][3]-acc(o,z);return g<=0?0:g==1?1:2},
+COL=[CY,GR,AM],SYM=['+','~','!'],WD=['Covered','Partial','Gap'],C={o:0,z:-1},ZC=ZN.map(()=>GR.split(',').map(Number));
+XO.forEach((x,i)=>mk('#xo',x[0],()=>{C.o=i;go()}));ZN.forEach((z,i)=>mk('#zo',z[0],()=>{C.z=C.z==i?-1:i;go()}));
+function go(){[...$('#xo').children].forEach((b,i)=>b.setAttribute('aria-pressed',i==C.o));[...$('#zo').children].forEach((b,i)=>b.setAttribute('aria-pressed',i==C.z));const c=ZN.map((_,z)=>cl(C.o,z)),n=k=>c.filter(v=>v==k).length;
+let h=`<div class="card"><h3>${XO[C.o][0]}</h3><span class="lab" style="color:var(--cyan)">\u25c6 AI-generated analysis on invented inputs</span><p>In this simulation: ${n(0)} areas covered, ${n(1)} partial, ${n(2)} with a gap. <b>Trade-off:</b> ${XT[C.o]}</p></div>`;
+if(C.z>=0){const z=ZN[C.z];h+=`<div class="card"><h3>${z[0]}</h3><p><b>${SYM[c[C.z]]} ${WD[c[C.z]]}</b>. Demand: ${LV[z[3]]}. Access: ${LV[acc(C.o,C.z)]}. All illustrative.</p></div>`}
+h+=`<div class="card"><span class="lab" style="color:var(--grn)">\u25a0 Verified evidence</span><p>None connected. Real needs data: catchment populations, travel times, service use and clinical advice.</p></div>`;$('#out').innerHTML=h;R&&rd()}
+const cv=$('#c2'),HEX=(x,X,Y,r)=>{x.beginPath();for(let i=0;i<6;i++){const a=i*Math.PI/3+Math.PI/6;i?x.lineTo(X+Math.cos(a)*r,Y+Math.sin(a)*r):x.moveTo(X+Math.cos(a)*r,Y+Math.sin(a)*r)}x.closePath()},rad=(w,h)=>Math.min(w*.14,h*.2);
+job(cv,(o,dt,t)=>{const{x,w,h}=o,r=rad(w,h);x.font='11px monospace';x.fillStyle=`rgba(${AM},1)`;x.fillText('ILLUSTRATIVE \u00b7 INVENTED REGION',12,20);x.textAlign='center';
+ZN.forEach((z,i)=>{const px=z[1]*w,py=z[2]*h,k=cl(C.o,i),tc=COL[k].split(',').map(Number);ZC[i]=ZC[i].map((v,q)=>R?tc[q]:v+(tc[q]-v)*Math.min(1,(dt||1)*5));const c=ZC[i].map(Math.round).join(','),sel=C.z==i;
+HEX(x,px,py,r);x.fillStyle=`rgba(${c},.22)`;x.fill();x.shadowColor=`rgba(${c},1)`;x.shadowBlur=sel?14:3;x.strokeStyle=`rgba(${c},${sel?1:.7})`;x.lineWidth=sel?2.5:1.2;x.stroke();x.shadowBlur=0;
+x.fillStyle=`rgba(${c},1)`;x.font='20px monospace';x.fillText(SYM[k],px,py+4);x.font='10px monospace';x.fillStyle='rgba(232,241,245,.85)';x.fillText(z[0].split(' ')[0],px,py+r*.62)});x.textAlign='left'});
+cv.style.cursor='pointer';cv.addEventListener('click',e=>{const b=cv.getBoundingClientRect(),r=rad(b.width,b.height),i=ZN.findIndex(z=>Math.hypot(z[1]*b.width-(e.clientX-b.left),z[2]*b.height-(e.clientY-b.top))<r);if(i>=0){C.z=i;go()}});
+go();if(R)rd();else requestAnimationFrame(tick);
+</script>
+</body>
+</html>

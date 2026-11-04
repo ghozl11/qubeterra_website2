@@ -10,6 +10,7 @@ import NextGenGraduatesPage from '@/pages/NextGenGraduatesPage';
 import NextGenAchievements from '@/pages/NextGenAchievements';
 import { Consultancy } from '@/pages/Consultancy';
 import { Contact } from '@/pages/Contact';
+import { DecisionLabs } from '@/pages/DecisionLabs';
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -28,6 +29,12 @@ function AppRoutes() {
     <Route path="/nextgen-ai-fellowship-2026-achievements" element={<NextGenAchievements />} />
     <Route path="/consultancy" element={<Consultancy />} />
     <Route path="/contact" element={<Contact />} />
+    <Route path="/decision-labs" element={<DecisionLabs page="overview" />} />
+    <Route path="/decision-labs/industries/manufacturing" element={<DecisionLabs page="manufacturing" />} />
+    <Route path="/decision-labs/industries/fintech" element={<DecisionLabs page="fintech" />} />
+    <Route path="/decision-labs/industries/healthcare" element={<DecisionLabs page="healthcare" />} />
+    <Route path="/decision-labs/industries/policy" element={<DecisionLabs page="policy" />} />
+    <Route path="/decision-labs/industries/consumer" element={<DecisionLabs page="consumer" />} />
   </Routes></PageLayout></>;
 }
 

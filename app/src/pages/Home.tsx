@@ -1,4 +1,5 @@
 import { HomeHero } from '@/sections/home/HomeHero';
+import { DecisionLabsGateway } from '@/sections/home/DecisionLabsGateway';
 import { PartnerTicker } from '@/sections/home/PartnerTicker';
 import { Impact } from '@/sections/home/Impact';
 import { ProjectsPreview } from '@/sections/home/ProjectsPreview';
@@ -15,6 +16,7 @@ export function Home() {
   return (
     <>
       <HomeHero />
+      <DecisionLabsGateway />
       <PartnerTicker />
       <Impact />
       <ProjectsPreview />

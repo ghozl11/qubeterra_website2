@@ -15,6 +15,7 @@ interface PageLayoutProps {
 
 export function PageLayout({ children }: PageLayoutProps) {
   const location = useLocation();
+  const isDecisionLabs = location.pathname.startsWith('/decision-labs');
 
   useEffect(() => {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
@@ -44,11 +45,11 @@ export function PageLayout({ children }: PageLayoutProps) {
 
   return (
     <div className="relative min-h-screen">
-      <Navigation />
+      {!isDecisionLabs && <Navigation />}
       <main className="relative z-[1]">
         {children}
       </main>
-      <Footer />
+      {!isDecisionLabs && <Footer />}
     </div>
   );
 }

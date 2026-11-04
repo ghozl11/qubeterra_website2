@@ -4,6 +4,7 @@ import { Menu, X } from 'lucide-react';
 
 const navLinks = [
   { label: 'Domains', path: '/domains' },
+  { label: 'Decision Labs', path: '/decision-labs' },
   { label: 'Fellowships', path: '/fellowships' },
   { label: 'Achievements', path: '/nextgen-ai-fellowship-2026-achievements' },
   { label: 'Think Tank', path: '/consultancy' },
