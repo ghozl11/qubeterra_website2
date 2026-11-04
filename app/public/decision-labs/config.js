@@ -1,3 +1,3 @@
-// Site configuration. Set formEndpoint to a URL that accepts JSON POSTs
-// (Formspree, Getform, Basin, your own API). While empty, forms run in demo mode.
-window.QT_CONFIG={formEndpoint:""};
+// Site configuration. This uses the same Formspree endpoint as the main
+// Qubeterra Institute contact form so Decision Labs enquiries reach the team.
+window.QT_CONFIG={formEndpoint:"https://formspree.io/f/xqpejzbo"};

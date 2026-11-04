@@ -18,13 +18,14 @@ Plain HTML/CSS/JS. No build step.
 - Cloudflare Pages / Vercel / GitHub Pages: connect a repo, no build command, publish directory `/`
 - Then attach your domain, and replace YOUR-DOMAIN in robots.txt and sitemap.xml.
 
-## Make the forms real
-Edit config.js and set `formEndpoint` to a URL that accepts JSON POSTs
-(for example a Formspree form URL). Until then forms run in demo mode and send nothing.
-Add a privacy notice before collecting real enquiries.
+## Forms
+The demo and meeting forms use the Qubeterra Institute Formspree endpoint configured
+in `config.js`, so submitted enquiries are delivered to the team's configured inbox.
+If the endpoint changes, replace it with another URL that accepts JSON POSTs and
+update the privacy notice before collecting sensitive information.
 
 ## What is real and what is illustrative
-Real: pages, navigation, responsive layout, reduced-motion support, form code (needs an endpoint).
+Real: pages, navigation, responsive layout, reduced-motion support, and form code connected to Formspree.
 Illustrative: every map, simulation, persona, segment and number. All data is invented,
 and no simulation is a validated model or real research. Keep those labels when editing.
 Not built yet: Nature AI Labs page, backend, analytics, privacy policy text.
