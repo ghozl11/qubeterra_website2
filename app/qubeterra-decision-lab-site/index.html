@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Qubeterra Decision Labs — Intelligence before decisions</title>
+<meta name="description" content="Qubeterra Decision Labs: AI-augmented decision intelligence and strategic consultancy, in development. Understand complex systems, explore possible futures, make evidence-informed decisions.">
+<meta property="og:title" content="Qubeterra Decision Labs — Intelligence before decisions"><meta property="og:description" content="AI-augmented decision intelligence and strategic consultancy, making advanced decision support more accessible to organisations of every scale."><meta property="og:type" content="website">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif&family=Geist:wght@300;400;500&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+:root{--void:#04070D;--navy:#0A1424;--cyan:#2EE6FF;--teal:#14B8A6;--mist:#E8F1F5;--slate:#6B8394;--amber:#FFB454;--line:rgba(46,230,255,.16);
+--ser:'Instrument Serif',Georgia,serif;--sans:'Geist',system-ui,sans-serif;--mono:'JetBrains Mono',ui-monospace,monospace;color-scheme:dark;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*,*::before,*::after{box-sizing:inherit}
+html{height:100%;scroll-behavior:smooth;scroll-padding-top:70px}
+body{margin:0;background:var(--void);color:var(--mist);font:300 17px/1.65 var(--sans);overflow-x:hidden}
+canvas{display:block;width:100%;height:100%}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+.mono{font:400 11px/1.4 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--cyan)}
+h1,h2,h3{font-family:var(--ser);font-weight:400;margin:0;letter-spacing:-.01em;line-height:1.02}
+h2{font-size:clamp(34px,5vw,62px)}
+p{margin:0}
+.sec{padding:140px 0;position:relative}
+.lead{color:var(--slate);max-width:56ch;margin-top:22px}
+nav{position:fixed;top:0;left:0;right:0;z-index:20;padding-top:env(safe-area-inset-top,0px);background:linear-gradient(var(--void),transparent)}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
+.brand{font:400 12px var(--mono);letter-spacing:.22em}
+.brand b{color:var(--cyan);font-weight:400}
+nav ul{display:flex;gap:26px;list-style:none;margin:0;padding:0;font-size:13px;color:var(--slate)}
+nav ul a:hover{color:var(--mist)}
+.btn{display:inline-block;border:1px solid var(--cyan);color:var(--cyan);padding:13px 22px;font:400 12px var(--mono);letter-spacing:.12em;text-transform:uppercase;background:transparent;cursor:pointer;transition:.4s cubic-bezier(.22,1,.36,1)}
+.btn:hover{background:var(--cyan);color:var(--void)}
+.btn.s{border-color:var(--line);color:var(--mist)}
+.btn.s:hover{border-color:var(--mist);background:transparent;color:var(--mist)}
+#hero{height:100svh;min-height:640px;position:relative;display:flex;align-items:center}
+#net{position:absolute;inset:0}
+#hero .wrap{position:relative;pointer-events:none}
+#hero .wrap>*{pointer-events:auto}
+#hero h1{font-size:clamp(44px,8vw,112px);max-width:9.5em;margin:22px 0}
+.sub{color:var(--slate);max-width:46ch}
+.cta{display:flex;gap:14px;flex-wrap:wrap;margin-top:36px}
+.chip{position:absolute;bottom:28px;left:24px;right:24px;display:flex;justify-content:space-between;gap:12px;color:var(--slate);z-index:2}
+.chip span:last-child{color:var(--amber)}
+.rv{opacity:0;transform:translateY(26px);transition:opacity 1.2s cubic-bezier(.22,1,.36,1),transform 1.2s cubic-bezier(.22,1,.36,1)}
+.rv.on{opacity:1;transform:none}
+.split{display:grid;grid-template-columns:1fr 1.2fr;gap:56px;align-items:center}
+.vis{height:420px;border:1px solid var(--line);background:linear-gradient(var(--navy),var(--void));position:relative}
+.tag{position:absolute;left:12px;bottom:10px;color:var(--slate)!important}
+.pipe{display:grid;grid-template-columns:repeat(5,1fr);margin-top:70px;position:relative}
+.pipe::before{content:"";position:absolute;top:7px;left:0;height:1px;width:100%;background:var(--line)}
+.pipe::after{content:"";position:absolute;top:7px;left:0;height:1px;width:calc(var(--pp,0)*100%);background:var(--cyan);box-shadow:0 0 12px var(--cyan)}
+.pipe div{padding-top:30px;position:relative;font-size:14px;color:var(--slate)}
+.pipe div::before{content:"";position:absolute;top:0;left:0;width:15px;height:15px;border:1px solid var(--cyan);background:var(--void);border-radius:50%;transition:.6s}
+.pipe div.on::before{background:var(--cyan);box-shadow:0 0 16px var(--cyan)}
+.pipe b{display:block;font:400 12px var(--mono);letter-spacing:.14em;color:var(--mist);margin-bottom:6px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin-top:56px}
+.card{background:var(--void);padding:26px;display:flex;flex-direction:column;gap:14px}
+.card canvas{height:150px;border-bottom:1px solid var(--line)}
+.card h3{font-size:28px}
+.card p{font-size:14px;color:var(--slate)}
+#nature{height:260vh;padding:0}
+#nature .stick{position:sticky;top:0;height:100svh;display:flex;align-items:center;overflow:hidden}
+.nsplit{display:grid;grid-template-columns:1fr 1.1fr;gap:40px;align-items:center}
+.scene{height:min(60vh,520px);perspective:1200px;position:relative;--m:0;--r:0}
+.stack{position:absolute;left:50%;top:50%;width:260px;height:260px;margin:-130px 0 0 -130px;transform-style:preserve-3d;transform:rotateX(62deg) rotateZ(-38deg)}
+.ly{position:absolute;inset:0;border:1px solid rgba(46,230,255,.55);transform:translateZ(calc((1 - var(--m)) * var(--i) * 52px - 160px + var(--i) * 6px));background:
+repeating-linear-gradient(0deg,transparent 0 23px,rgba(46,230,255,.18) 23px 24px),repeating-linear-gradient(90deg,transparent 0 23px,rgba(46,230,255,.18) 23px 24px),rgba(10,20,36,.45);backdrop-filter:blur(1px)}
+.ly:nth-child(even){border-color:rgba(20,184,166,.7)}
+.ly i{position:absolute;left:104%;top:42%;font:400 10px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--mist);white-space:nowrap;opacity:calc(1 - var(--m) * 1.4);transform:rotateZ(38deg) rotateX(-62deg)}
+.pin{position:absolute;left:58%;top:34%;width:22px;height:22px;border-radius:50%;background:var(--amber);box-shadow:0 0 30px var(--amber);transform:translateZ(60px);opacity:var(--r)}
+.res{position:absolute;right:0;bottom:0;border:1px solid var(--amber);padding:16px 18px;background:rgba(4,7,13,.85);max-width:260px;opacity:var(--r);font-size:13px;color:var(--slate)}
+.res b{color:var(--amber);font:400 11px var(--mono);letter-spacing:.14em;display:block;margin-bottom:6px;text-transform:uppercase}
+.ind{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin-top:56px}
+.ind div{background:var(--void);padding:34px 22px;font-family:var(--ser);font-size:24px;transition:.5s}
+.ind div:hover,.ind a:hover{background:var(--navy);color:var(--cyan)}.ind a{background:var(--void);padding:34px 22px;font-family:var(--ser);font-size:24px;transition:.5s;display:block}.ind a::after{content:" \2192";color:var(--cyan)}.ind small{display:block;font:400 10px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--amber);margin-top:6px}
+.models{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:56px}
+.models div{border-top:1px solid var(--cyan);padding-top:20px}
+.models h3{font-size:30px;margin-bottom:10px}
+.models p{font-size:14px;color:var(--slate)}
+.ph{border:1px dashed var(--slate);padding:18px;margin-top:28px;color:var(--slate);font-size:14px}
+#final{text-align:center;padding:170px 0}
+#final h2{max-width:14em;margin:20px auto 40px}
+#final .cta{justify-content:center}
+footer{border-top:1px solid var(--line);padding:30px 0 40px;color:var(--slate);font-size:12px}
+footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+dialog{background:var(--navy);color:var(--mist);border:1px solid var(--cyan);padding:34px;width:min(480px,92vw);box-shadow:0 0 80px rgba(46,230,255,.15)}
+dialog::backdrop{background:rgba(4,7,13,.8)}
+dialog h3{font-size:34px;margin-bottom:6px}
+label{display:block;margin-top:16px}
+input,textarea,select{width:100%;margin-top:6px;background:var(--void);border:1px solid var(--line);color:var(--mist);padding:11px 12px;font:300 15px var(--sans)}
+input:focus,textarea:focus,select:focus{outline:1px solid var(--cyan)}
+.note{margin-top:16px;color:var(--amber);font-size:13px;min-height:20px}
+.row{display:flex;gap:12px;margin-top:20px}
+.sims{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:50px}.sims h3{font-size:30px;margin:14px 0 6px}.cap{min-height:36px;color:var(--cyan)}.sims .vis{height:380px}#rt{cursor:pointer}.tog{display:flex;flex-wrap:wrap;gap:6px;margin:12px 0}.tog button{background:transparent;border:1px solid var(--line);color:var(--slate);padding:6px 10px;font:400 11px var(--mono);cursor:pointer}.tog button[aria-pressed=true]{border-color:var(--cyan);color:var(--cyan)}.btn:disabled{opacity:.35;pointer-events:none}.rep{color:var(--slate);font-size:14px;margin-top:14px;min-height:44px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);margin-top:50px}.two>div{background:var(--void);padding:28px}.two h3{font-size:28px;margin-bottom:10px}.two ul{padding-left:18px;margin:0}.two li{color:var(--slate);font-size:14px;margin:6px 0}.infra{border:1px solid var(--cyan);padding:18px;text-align:center;margin-top:-1px;font:400 12px var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--cyan)}.aud{display:flex;flex-wrap:wrap;gap:8px;margin-top:26px}.aud span{border:1px solid var(--line);padding:6px 12px;font:400 11px var(--mono);color:var(--slate)}.cat{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:50px}.cat>div{border-top:2px solid var(--c);padding-top:14px}.cat b{display:block;font:400 11px var(--mono);letter-spacing:.14em;color:var(--c);text-transform:uppercase;margin-bottom:6px}.cat p{font-size:14px;color:var(--slate)}.tl{list-style:none;margin:20px 0 0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}.tl li{background:var(--void);padding:14px;font-size:13px;color:var(--slate)}.tl b{display:block;color:var(--cyan);font:400 10px var(--mono);letter-spacing:.12em;margin-bottom:4px}.pill{display:inline-block;border:1px solid var(--amber);color:var(--amber);font:400 10px var(--mono);letter-spacing:.12em;padding:3px 8px;text-transform:uppercase;margin-top:14px}
+@media(max-width:900px){.two,.cat{grid-template-columns:1fr}.tl{grid-template-columns:1fr 1fr}}
+.steps{list-style:none;display:flex;gap:6px;padding:0;margin:30px 0 0}.steps li{flex:1;border-top:2px solid var(--line);padding-top:8px;font:400 11px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--slate);transition:.5s}.steps li.on{border-color:var(--cyan);color:var(--cyan)}.cairo{display:grid;grid-template-columns:1.5fr 1fr;gap:28px;margin-top:22px}.cmap{height:480px}.cpanel{display:flex;flex-direction:column;gap:12px}#cinfo h3{font-size:30px}#cinfo p,#cinfo li{font-size:14px;color:var(--slate)}#cinfo ul{padding-left:18px;margin:6px 0}#cinfo b{color:var(--mist);font-weight:400}.tog.col{flex-direction:column;margin:0}.tog.col button{text-align:left;font:300 13px var(--sans);padding:8px 10px}
+@media(max-width:900px){.cairo{grid-template-columns:1fr}.cmap{height:340px}.steps li{font-size:9px}}
+[hidden]{display:none!important}.mb{display:none;background:none;border:1px solid var(--line);color:var(--mist);padding:8px 12px;font:400 11px var(--mono);letter-spacing:.1em;text-transform:uppercase;cursor:pointer}.mp{display:none;position:fixed;top:calc(64px + env(safe-area-inset-top,0px));left:0;right:0;background:var(--navy);border-bottom:1px solid var(--line);padding:8px 24px 18px;z-index:19}.mp.on{display:block}.mp a{display:block;padding:13px 0;border-bottom:1px solid var(--line)}footer a:hover{color:var(--mist)}
+@media(max-width:900px){.mb{display:inline-block}nav .s{display:none}}
+.bp{position:absolute;left:0;top:28%;border:1px solid var(--cyan);padding:12px 14px;background:rgba(4,7,13,.88);font:400 11px var(--mono);letter-spacing:.1em;color:var(--cyan);text-transform:uppercase;max-width:190px;opacity:var(--b,0);transform:translateX(calc((1 - var(--b,0)) * -40px))}.bp small{display:block;color:var(--slate);margin-top:4px;text-transform:none;letter-spacing:0;font:300 12px var(--sans)}
+@media(max-width:900px){.sims{grid-template-columns:1fr}}
+@media(max-width:900px){nav ul{display:none}.split,.nsplit{grid-template-columns:1fr}.grid,.models{grid-template-columns:1fr}.ind{grid-template-columns:1fr 1fr}.pipe{grid-template-columns:1fr;gap:24px}.pipe::before,.pipe::after{display:none}.vis{height:320px}.sec{padding:96px 0}#nature .stick{align-items:flex-start;padding-top:80px}.scene{height:46vh}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}.rv{opacity:1;transform:none}}
+</style>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3E%3Ctext y=%27.9em%27 font-size=%2790%27%3E🔷%3C/text%3E%3C/svg%3E">
+</head>
+<body>
+<nav><div class="wrap"><a class="brand" href="#hero">QUBETERRA <b>/</b> DECISION LABS</a>
+<ul><li><a href="#complexity">Complexity</a></li><li><a href="#engine">Decision Engine</a></li><li><a href="#nature">Nature AI Labs</a></li><li><a href="#industries">Industries</a></li><li><a href="#trust">Trust</a></li><li><a href="#about">About</a></li></ul>
+<button class="btn s" data-open="Request a demonstration">Request a demo</button><button class="mb" id="mb" aria-expanded="false" aria-controls="mp">Menu</button></div></nav>
+<div class="mp" id="mp"><a href="#complexity">Complexity</a><a href="#engine">Decision Engine</a><a href="#nature">Nature AI Labs</a><a href="#industries">Industries</a><a href="#trust">Trust</a><a href="#about">About</a><a href="#" data-open="Request a demonstration">Request a demonstration</a></div>
+
+<header id="hero"><canvas id="net" aria-hidden="true"></canvas>
+<div class="wrap"><div class="mono">Qubeterra Decision Labs</div>
+<h1>Intelligence before decisions.</h1>
+<p class="sub">Understand complex systems, explore possible futures, and make evidence-informed decisions with AI-augmented strategic intelligence.</p>
+<div class="cta"><a class="btn" href="#infra">Explore our approach</a><button class="btn s" data-open="Request a demo">Request a demo</button></div></div>
+<div class="chip mono"><span>Scroll</span><span>Both products currently in development</span></div></header>
+
+<section class="sec" id="complexity"><div class="wrap split">
+<div class="rv"><div class="mono">01 — The complexity of decisions</div><h2 style="margin-top:18px">Complex decisions. Fragmented information. Limited resources.</h2>
+<p class="lead">Strategic decisions involve many stakeholders, interconnected systems, fragmented information and uncertain outcomes. Qubeterra brings the fragments together, so the structure behind a decision becomes visible before it is made.</p></div>
+<div class="vis rv"><canvas id="conv" role="img" aria-label="Scattered fragments of information converging into a connected network"></canvas><span class="mono tag">Fragments → structure</span></div></div></section>
+
+<section class="sec" id="cairo" style="padding-top:40px"><div class="wrap">
+<div class="mono rv">02b — Signature experience · concept demonstration</div><h2 class="rv" style="margin-top:18px">Explore the geography behind a decision.</h2>
+<p class="lead rv">See how geographic context, business activity, infrastructure and customer segments can be brought together to support more informed strategic decisions.</p>
+<ol class="steps rv" id="cst"><li>Context</li><li>Layers</li><li>Area</li><li>Questions</li><li>Summary</li></ol>
+<div class="cairo rv"><div><div class="tog" id="cl" role="group" aria-label="Map layers"></div><div class="vis cmap"><canvas id="cmv" role="img" aria-label="Stylised illustrative map of Cairo areas with synthetic data layers. Use the area and layer buttons to explore."></canvas></div><p class="mono" id="cleg" style="color:var(--slate);margin-top:10px"></p><p class="rep" id="cfb" hidden>The interactive map is unavailable. Use the area list to explore the illustrative profiles.</p></div>
+<div class="cpanel"><span class="pill" style="align-self:flex-start;margin:0">Synthetic data — for demonstration only</span><div class="tog" id="ca" role="group" aria-label="Areas (illustrative)"></div><div class="tog col" id="cq" role="group" aria-label="Decision questions"></div><div id="cinfo" aria-live="polite"></div></div></div></div></section>
+
+<section class="sec" id="infra" style="padding-top:40px"><div class="wrap">
+<div class="mono rv">02 — Our intelligence infrastructure</div><h2 class="rv" style="margin-top:18px;max-width:14em">One continuous line, from raw data to decision support.</h2>
+<div class="pipe" id="pipe">
+<div><b>DATA</b>Datasets, documents, laws, statistics.</div><div><b>RESEARCH</b>Evidence gathered and organised.</div><div><b>INTELLIGENCE</b>Relationships and patterns mapped.</div><div><b>SIMULATION</b>Possible outcomes explored.</div><div><b>DECISION SUPPORT</b>Reviewed, auditable reporting.</div></div></div></section>
+
+<section class="sec" id="engine" style="padding-top:40px"><div class="wrap">
+<div class="mono rv">03 — Product one · In development</div><h2 class="rv" style="margin-top:18px">Decision Intelligence Engine</h2>
+<p class="lead rv">An AI-powered system to evaluate and stress-test policies, corporate strategies, operational decisions, business proposals and regulatory interventions.</p>
+<div class="grid" id="caps">
+<div class="card" data-m="evidence"><canvas></canvas><h3>Evidence Intelligence</h3><p>Aggregates research papers, statistics, laws and documents, then organises and connects them.</p></div>
+<div class="card" data-m="stake"><canvas></canvas><h3>Stakeholder Intelligence</h3><p>Maps stakeholders and the relationships between them.</p></div>
+<div class="card" data-m="round"><canvas></canvas><h3>Roundtable Simulation</h3><p>Up to six simulated stakeholders in a virtual discussion, with agreements and conflicts emerging.</p></div>
+<div class="card" data-m="delphi"><canvas></canvas><h3>Agentic Delphi Simulation</h3><p>Independent expert agents assess in rounds. Consensus may emerge, and disagreement is reported too.</p></div>
+<div class="card" data-m="comm"><canvas></canvas><h3>Community Simulation</h3><p>A synthetic population responding to a proposal. Simulation only, not public consultation.</p></div>
+<div class="card" data-m="gov"><canvas></canvas><h3>Reporting &amp; Governance</h3><p>Decision reports with audit trails, compliance and human-in-the-loop validation.</p></div></div>
+<p class="mono" style="color:var(--slate);margin-top:14px">Illustrative simulations — not real data</p></div></section>
+
+<section class="sec" id="scenes" style="padding-top:40px"><div class="wrap">
+<div class="mono rv">03b — Simulations in motion</div><h2 class="rv" style="margin-top:18px;max-width:13em">Two ways to explore a decision.</h2>
+<div class="sims">
+<div class="rv"><div class="vis"><canvas id="dl" role="img" aria-label="Agentic Delphi simulation: expert agents assess in rounds, converging partly while one dissents"></canvas><span class="mono tag">Illustrative simulation</span></div><h3>Agentic Delphi</h3><p class="cap mono" id="dlc"></p></div>
+<div class="rv"><div class="vis"><canvas id="rt" role="img" aria-label="Stakeholder roundtable: choose up to six simulated stakeholders"></canvas><span class="mono tag">Simulated stakeholders · choose up to six</span></div><h3>Stakeholder roundtable</h3><div class="mono" id="rtm" style="color:var(--slate)"></div><div class="tog" id="rtg"></div><div class="row" style="margin-top:0"><button class="btn" id="rtb">Run discussion</button><button class="btn s" id="rts">Reset</button></div><p class="rep" id="rtr"></p></div>
+</div></div></section>
+
+<section class="sec" id="scenes2" style="padding-top:40px"><div class="wrap">
+<div class="mono rv">03c — More scenes</div><h2 class="rv" style="margin-top:18px;max-width:13em">From scattered evidence to a simulated city.</h2>
+<div class="sims">
+<div class="rv"><div class="vis"><canvas id="ev" role="img" aria-label="Evidence intelligence: datasets, papers, statistics, laws and documents enter an engine, are organised, analysed and linked"></canvas><span class="mono tag">Illustrative · no real sources</span></div><h3>Evidence Intelligence</h3><p class="cap mono" id="evc"></p></div>
+<div class="rv"><div class="vis"><canvas id="cm" role="img" aria-label="Community simulation: a synthetic population in a city responds to a proposed policy, aggregated into a spatial map"></canvas><span class="mono tag">Synthetic simulation · not public consultation</span></div><h3>Community Simulation</h3><p class="cap mono" id="cmc"></p></div>
+</div></div></section>
+
+<section id="nature"><div class="stick"><div class="wrap nsplit">
+<div><div class="mono">04 — Product two · In development</div><h2 style="margin-top:18px">Nature AI Labs</h2>
+<p class="lead">A geospatial intelligence platform that combines geographic, demographic, economic, market, environmental, infrastructure and regulatory layers into one spatial model, to help businesses evaluate where to locate. Scroll to merge the layers.</p></div>
+<div class="scene" id="scene"><div class="stack" id="stack"></div><div class="bp">Business profile<small>Illustrative: retail, 3 staff, mid-income catchment</small></div><div class="pin"></div>
+<div class="res"><b>Candidate location · illustrative</b>Feasibility assessment shown here is a placeholder, not a finding.</div></div></div></div></section>
+
+<section class="sec" id="industries"><div class="wrap">
+<div class="mono rv">05 — Industries</div><h2 class="rv" style="margin-top:18px">Wherever decisions are complex.</h2>
+<div class="ind rv"><a href="fintech.html">Banking &amp; Finance</a><a href="fintech.html">Fintech</a><a href="healthcare.html">Healthcare</a><a href="manufacturing.html">Manufacturing</a><a href="manufacturing.html">Supply Chain</a><a href="consumer.html">Consumer Products &amp; FMCG</a><a href="policy.html">Government</a><a href="policy.html">Consulting &amp; Research</a></div></div></section>
+
+<section class="sec" id="access" style="padding-top:40px"><div class="wrap">
+<div class="mono rv">05b — Our mission</div><h2 class="rv" style="margin-top:18px;max-width:15em">Strategic intelligence shouldn’t be reserved for the largest organizations.</h2>
+<p class="lead rv">High-quality research and expert decision support have been hard for smaller organisations to reach. Qubeterra combines AI-powered workflows with human expertise to make them more accessible, scalable and flexible. AI-augmented consulting extends human judgement, it does not replace it.</p>
+<div class="two rv"><div><h3>Large corporation</h3><ul><li>Internal research teams</li><li>Consulting budgets</li><li>Cross-department decisions</li></ul></div><div><h3>Growing SME</h3><ul><li>A smaller team</li><li>Limited resources</li><li>Equally important decisions</li></ul></div></div>
+<div class="infra rv">Shared intelligence infrastructure · engagement model fits the need</div>
+<p class="lead rv" style="color:var(--mist)">Your organisation may be growing. Your access to strategic intelligence should grow with it.</p>
+<div class="aud rv"><span>SMEs</span><span>Growing businesses &amp; startups</span><span>Enterprises</span><span>Governments &amp; public institutions</span><span>Research centres &amp; think tanks</span></div>
+<p class="mono rv" style="color:var(--slate);margin-top:16px">Scope varies by engagement. No guaranteed outcomes or fixed pricing.</p></div></section>
+
+<section class="sec" id="trust" style="padding-top:40px"><div class="wrap">
+<div class="mono rv">05c — Trust &amp; governance</div><h2 class="rv" style="margin-top:18px;max-width:14em">Transparent about what is evidence and what is not.</h2>
+<div class="cat rv"><div style="--c:#4ADE80"><b>■ Verified evidence</b><p>Information supported by identified sources.</p></div><div style="--c:var(--cyan)"><b>◆ AI-generated analysis</b><p>Interpretation, synthesis and analytical output. Reviewable and challengeable.</p></div><div style="--c:var(--amber)"><b>○ Simulated perspectives</b><p>Illustrative, AI-generated viewpoints. Never real interviewees.</p></div></div>
+<ol class="tl rv"><li><b>01</b>Project created</li><li><b>02</b>Evidence uploaded</li><li><b>03</b>Source reviewed</li><li><b>04</b>Assumption added</li><li><b>05</b>Assumption modified</li><li><b>06</b>Scenario executed</li><li><b>07</b>Analyst review</li><li><b>08</b>Output generated</li></ol>
+<span class="pill rv">Audit trail · intended platform design, not yet a live feature</span>
+<p class="lead rv">We are building toward evidence traceability, controlled access and human oversight. We make no claims about security certifications, compliance or encryption standards until they are independently verified.</p></div></section>
+
+<section class="sec" id="human" style="padding-top:40px"><div class="wrap">
+<div class="mono rv">06 — Engagement models</div><h2 class="rv" style="margin-top:18px;max-width:13em">Analysts stay in the loop.</h2>
+<p class="lead rv">Human analysts validate evidence, review assumptions and support complex cases, so the technology serves judgement and never replaces it.</p>
+<div class="models rv"><div><h3>Intelligence Platform</h3><p>Tools and workflows to structure information, explore scenarios and support decisions.</p></div><div><h3>AI-Augmented Research</h3><p>Structured projects: evidence synthesis, stakeholder exploration and scenario comparison.</p></div><div><h3>Expert-Led Engagements</h3><p>Specialists and analysts for deeper interpretation, validation and advisory support.</p></div></div><p class="mono rv" style="color:var(--slate);margin-top:18px">Three connected layers: start with one, expand into another.</p></div></section>
+
+<section class="sec" id="about" style="padding-top:40px"><div class="wrap split">
+<div class="rv"><div class="mono">07 — About Qubeterra</div><h2 style="margin-top:18px">Building intelligence for a world of complex decisions.</h2></div>
+<div class="rv"><p class="lead" style="margin-top:0">Qubeterra Decision Labs is building an AI-powered decision intelligence ecosystem that combines structured research, evidence, stakeholder perspectives, scenario exploration, geospatial analysis and human expertise. Our mission is to democratise access to decision intelligence and strategic consultancy for organisations of every scale.</p>
+<div class="ph">Placeholder — verified collaborations, affiliations and achievements will be added here once confirmed.</div></div></div></section>
+
+<section id="final"><div class="wrap"><div class="mono rv">08</div><h2 class="rv">Let’s explore what better decisions can make possible.</h2>
+<div class="cta rv"><button class="btn" data-open="Request a demonstration">Request a demonstration</button><button class="btn s" data-open="Schedule a meeting">Schedule a meeting</button></div></div></section>
+
+<footer><div class="wrap"><span>© Qubeterra Decision Labs. Products are in development and not publicly available.</span><span><a href="manufacturing.html">Manufacturing</a> · <a href="fintech.html">Fintech</a><a href="healthcare.html">Healthcare</a> · <a href="policy.html">Public policy</a> · <a href="consumer.html">Consumer products</a></span><span><a href="#" data-info="privacy">Privacy</a> · <a href="#" data-info="status">Status</a> · <a href="#" data-open="Contact">Contact</a></span></div></footer>
+
+<dialog id="dlg"><form id="f"><input name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px"><h3 id="dt">Request a demonstration</h3>
+<p id="dn" style="color:var(--slate);font-size:14px">Demo form: nothing is sent or stored yet.</p>
+<label>Name<input required name="n"></label><label>Work email<input required type="email" name="e"></label>
+<label>Organisation<input name="o"></label><label id="tm" hidden>Preferred time<input name="t" placeholder="e.g. weekday mornings (nothing is scheduled yet)"></label><label>Message<textarea rows="3" name="m"></textarea></label>
+<div class="note" id="nt"></div><div class="row"><button class="btn" type="submit">Submit</button><button class="btn s" type="button" id="cl">Close</button></div></form></dialog>
+
+<dialog id="idg"><h3 id="it"></h3><p id="ip" style="color:var(--slate);margin-top:10px"></p><div class="row"><button class="btn s" type="button" id="ic">Close</button></div></dialog>
+
+<script src="config.js"></script>
+<script>
+const R=matchMedia('(prefers-reduced-motion: reduce)').matches,$=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)],clamp=(v,a=0,b=1)=>Math.min(b,Math.max(a,v)),rnd=Math.random;
+const CY='46,230,255',AM='255,180,84',jobs=[];
+function job(c,draw){const o={vis:false,t0:rnd()*9};const set=()=>{const d=Math.min(devicePixelRatio||1,2),r=c.getBoundingClientRect();c.width=r.width*d;c.height=r.height*d;o.x=c.getContext('2d');o.x.setTransform(d,0,0,d,0,0);o.w=r.width;o.h=r.height;o.c=c};set();addEventListener('resize',set);new IntersectionObserver(e=>o.vis=e[0].isIntersecting).observe(c);o.draw=draw;jobs.push(o)}
+const dot=(x,X,Y,r,c,a=1)=>{x.fillStyle=`rgba(${c},${a})`;x.shadowColor=`rgba(${c},.9)`;x.shadowBlur=r*4;x.beginPath();x.arc(X,Y,r,0,6.283);x.fill();x.shadowBlur=0};
+const ln=(x,a,b,c,al,w=1)=>{x.strokeStyle=`rgba(${c},${al})`;x.lineWidth=w;x.beginPath();x.moveTo(a[0],a[1]);x.lineTo(b[0],b[1]);x.stroke()};
+
+/* Hero network */
+const N=[...Array(72)].map(()=>({a:rnd()*6.283,r:.2+rnd()*.8,y:rnd()*2-1}));
+job($('#net'),(o,t)=>{const{x,w,h}=o,m=w<760,cx=m?w*.5:w*.7,cy=m?h*.74:h*.5,S=Math.min(w,h)*(m?.4:.52);
+const P=N.map(n=>{const a=n.a+t*.07,X=Math.cos(a)*n.r,Z=Math.sin(a)*n.r,k=1/(1.8-Z*.6);return[cx+X*S*k*1.3,cy+n.y*S*.8*k,k]});
+const D=S*.4;for(let i=0;i<72;i++)for(let j=i+1;j<72;j++){const d=Math.hypot(P[i][0]-P[j][0],P[i][1]-P[j][1]);if(d<D)ln(x,P[i],P[j],CY,(1-d/D)*.28)}
+P.forEach(p=>dot(x,p[0],p[1],p[2]*2.2,CY,.4+p[2]*.4));
+for(let k=0;k<7;k++){const a=P[k*9%72],b=P[(k*9+17)%72],u=(t*.25+k/7)%1;dot(x,a[0]+(b[0]-a[0])*u,a[1]+(b[1]-a[1])*u,2,k%4==0?AM:'255,255,255',.9)}});
+
+/* Section B: fragments converge */
+const F=[...Array(90)].map((_,i)=>({x:rnd(),y:rnd(),a:rnd()*3,tx:.5+Math.cos(i*2.4)*Math.sqrt(i/90)*.4,ty:.5+Math.sin(i*2.4)*Math.sqrt(i/90)*.4}));
+job($('#conv'),(o,t)=>{const{x,w,h,c}=o,r=c.getBoundingClientRect(),p=R?1:clamp((innerHeight*.85-r.top)/(innerHeight*.55)),e=p*p*(3-2*p);
+const Q=F.map(f=>[(f.x+(f.tx-f.x)*e)*w+Math.sin(t+f.a)*(1-e)*8,(f.y+(f.ty-f.y)*e)*h+Math.cos(t+f.a)*(1-e)*8]);
+if(e>.55)for(let i=0;i<90;i++)for(let j=i+1;j<i+4&&j<90;j++)ln(x,Q[i],Q[j],CY,(e-.55)*.7);
+Q.forEach((q,i)=>{x.save();x.translate(q[0],q[1]);x.rotate(F[i].a*(1-e));x.fillStyle=`rgba(${e>.8?CY:'107,131,148'},.85)`;x.fillRect(-4*(1-e)-1.5,-1.5,8*(1-e)+3,3);x.restore()})});
+
+/* Capability mini-scenes */
+const G=[...Array(40)].map(()=>[rnd(),rnd(),rnd()*6]);
+$$('#caps .card').forEach(cd=>{const m=cd.dataset.m;job(cd.querySelector('canvas'),(o,t)=>{const{x,w,h}=o,s=(t+o.t0)%8;
+if(m=='evidence'){G.forEach((g,i)=>{const u=clamp(((s/6)-g[2]/12)*1.4),e=u*u*(3-2*u);dot(x,(g[0]+(.5-g[0])*e)*w,(g[1]+(.5-g[1])*e)*h,1.6,e>.9?CY:'107,131,148',.9)});dot(x,w/2,h/2,5+Math.sin(t*3)*1.5,CY,.9)}
+if(m=='stake'||m=='round'){const n=m=='round'?6:9,P=[...Array(n)].map((_,i)=>{const a=i/n*6.283+(m=='round'?t*.15:0);return[w/2+Math.cos(a)*w*.32,h/2+Math.sin(a)*h*.36]});
+for(let i=0;i<n;i++)for(let j=i+1;j<n;j++){const v=Math.sin(t*.9+i*1.7+j*2.3);ln(x,P[i],P[j],v<-.25&&m=='round'?AM:CY,.1+Math.abs(v)*.6,.5+Math.abs(v)*2)}P.forEach(p=>dot(x,p[0],p[1],4,CY))}
+if(m=='delphi'){const rd=Math.floor(s/2.2),k=clamp(rd/3);for(let i=0;i<6;i++){const v0=Math.sin(i*2.1+1),v=v0*(1-.7*k)+(i==5?.9*k:0),bw=(v*.5+.5)*(w-40);x.fillStyle=`rgba(${i==5&&k>0?AM:CY},.7)`;x.fillRect(20,16+i*(h-30)/6,bw,8)}x.fillStyle='rgba(107,131,148,.9)';x.font='10px monospace';x.fillText('ROUND '+(rd+1),w-70,14)}
+if(m=='comm'){for(let i=0;i<18;i++)for(let j=0;j<8;j++){const wv=Math.sin(i*.5+t*1.6)*.5+.5*Math.cos(j*.6-t),g=(i*3+j)%3;dot(x,18+i*(w-36)/17,16+j*(h-32)/7,1.8+wv*1.4,g==1?AM:CY,.35+wv*.5)}}
+if(m=='gov'){const st=['Draft','Evidence','Review','Report'];st.forEach((l,i)=>{const X=24+i*(w-48)/3,on=Math.floor(s/2)>=i;i&&ln(x,[X-(w-48)/3,h/2],[X,h/2],CY,.3);dot(x,X,h/2,on?6:4,i==2?AM:CY,on?1:.35);x.fillStyle='rgba(107,131,148,.9)';x.font='10px monospace';x.fillText(l,X-14,h/2+26)})}
+})});
+
+/* Delphi scene */
+const DL=[.15,.3,.45,.6,.72,.95],CAP=['A strategic question enters the system.','Independent expert agents appear.','Each agent receives its own evidence stream.','Independent assessments are generated.','Aggregated feedback returns for another round.','Responses evolve across rounds.','Agreement and disagreement emerge.','Final output. Consensus is never guaranteed.'],dlc=$('#dlc');let lc=-1;
+job($('#dl'),(o,t)=>{const{x,w,h}=o,T=R?19:t%20,st=T<2?0:T<4?1:T<6?2:T<8?3:T<11?4:T<14?5:T<17?6:7;if(st!=lc){lc=st;dlc.textContent=CAP[st]}
+const q=[w*.07,h*.5],core=[w*.27,h*.5],ax=w*.5,A=DL.map((_,i)=>[ax,h*(.13+i*.148)]),bw=w*.4,m=DL.reduce((a,b)=>a+b)/6,k=clamp((T-8)/6),bx=ax+14;
+const V=DL.map((d,i)=>d+(m-d)*(i==5?.1:.7)*k);
+dot(x,q[0],q[1],3,CY,.5);if(T<1.8)dot(x,q[0]+(core[0]-q[0])*clamp(T/1.6),q[1],5,AM,1);
+if(T>1.4)dot(x,core[0],core[1],6+Math.sin(t*3),CY,.9);
+const aA=clamp((T-2)/1.5);A.forEach((p,i)=>{if(T>=4)ln(x,core,p,CY,.14*clamp(T-4));dot(x,p[0],p[1],5,CY,aA);if(T>=4&&T<8)dot(x,core[0]+(p[0]-core[0])*((t*.8+i*.17)%1),core[1]+(p[1]-core[1])*((t*.8+i*.17)%1),2,'255,255,255',.9)});
+if(T>=6){const g=clamp((T-6)/1.2);V.forEach((v,i)=>{x.fillStyle=`rgba(${i==5&&k>.3?AM:CY},.75)`;x.fillRect(bx,A[i][1]-4,v*bw*g,8)})}
+if(T>=8&&T<14){const ph=((T-8)%2)/2;x.strokeStyle=`rgba(${CY},${(1-ph)*.5})`;x.lineWidth=1;x.beginPath();x.arc(core[0],core[1],ph*w*.14,0,6.283);x.stroke()}
+if(T>=8){const mv=bx+V.reduce((a,b)=>a+b)/6*bw;ln(x,[mv,h*.06],[mv,h*.94],CY,.3)}
+x.font='10px monospace';x.fillStyle='rgba(107,131,148,.95)';if(T>=14){const ex=bx+Math.max(...V.slice(0,5))*bw+8;ln(x,[ex,A[0][1]],[ex,A[4][1]],CY,.8,2);x.fillText('agreement zone',ex+6,A[2][1]);x.fillStyle=`rgba(${AM},1)`;x.fillText('dissent',bx+V[5]*bw+8,A[5][1]+3)}
+if(T>=17){x.globalAlpha=clamp((T-17)/.8);x.fillStyle='rgba(4,7,13,.92)';x.strokeStyle=`rgba(${CY},.7)`;x.fillRect(w*.03,h*.7,w*.38,h*.25);x.strokeRect(w*.03,h*.7,w*.38,h*.25);x.fillStyle='rgba(46,230,255,1)';x.fillText('FINAL OUTPUT',w*.05,h*.78);x.fillStyle='rgba(232,241,245,.9)';x.fillText('Range + dissent reported',w*.05,h*.85);x.fillText('Consensus not guaranteed',w*.05,h*.91);x.globalAlpha=1}});
+
+/* Roundtable scene */
+const SN=['Regulator','Industry body','Union','Investor','Municipality','NGO','Academic','Customers','Supplier','Media','Ministry','Community'],rt={sel:[],run:0,t0:0},tg=$('#rtg'),rep=$('#rtr'),rb=$('#rtb'),sgn=(i,j,t)=>Math.sin(t*.5+i*1.9+j*2.7)>-.15?1:-1;
+function rtu(){[...tg.children].forEach((b,i)=>b.setAttribute('aria-pressed',rt.sel.includes(i)));rb.disabled=rt.sel.length<2||rt.run>0;$('#rtm').textContent=rt.sel.length+'/6 selected'+(rt.sel.length==6?' (maximum)':'')}
+function tgl(i){if(rt.run)return;const k=rt.sel.indexOf(i);k>=0?rt.sel.splice(k,1):rt.sel.length<6&&rt.sel.push(i);rtu()}
+SN.forEach((n,i)=>{const b=document.createElement('button');b.textContent=n;b.onclick=()=>tgl(i);tg.appendChild(b)});
+rb.onclick=()=>{rt.run=1;rt.t0=performance.now()/1000;rep.textContent='';rtu()};$('#rts').onclick=()=>{rt.run=0;rt.sel=[];rep.textContent='';rtu()};rtu();
+job($('#rt'),(o,t)=>{const{x,w,h}=o,c=[w/2,h/2],S=Math.min(w,h),run=rt.run,tt=run?(R?9:performance.now()/1000-rt.t0):0,e=clamp(tt/1.5),E=e*e*(3-2*e);
+const P=o.P=SN.map((_,i)=>{const a=i/12*6.283-1.571,b=[c[0]+Math.cos(a)*S*.4,c[1]+Math.sin(a)*S*.4],k=rt.sel.indexOf(i);if(!run||k<0)return b;const a2=k/rt.sel.length*6.283-1.571,d=[c[0]+Math.cos(a2)*S*.2,c[1]+Math.sin(a2)*S*.2];return[b[0]+(d[0]-b[0])*E,b[1]+(d[1]-b[1])*E]});
+if(!run){for(let i=0;i<12;i++)for(let j=i+1;j<12;j++)if((i*7+j*3)%5==0)ln(x,P[i],P[j],CY,.12)}
+else if(e>.6){const T2=Math.min(tt,8);rt.sel.forEach((i,a)=>rt.sel.forEach((j,b)=>{if(b>a){const s=.5+.5*Math.sin(T2*.9+i+j*1.3);ln(x,P[i],P[j],sgn(i,j,T2)>0?CY:AM,.2+s*.6,.5+s*2.5)}}))}
+SN.forEach((n,i)=>{const on=rt.sel.includes(i),p=P[i],al=run&&!on?.2:1;dot(x,p[0],p[1],on?7:4,on?CY:'107,131,148',al);x.fillStyle=`rgba(232,241,245,${al*.85})`;x.font='10px monospace';x.textAlign='center';x.fillText(n,p[0],p[1]+(on?22:16))});x.textAlign='left';
+if(run&&tt>=8&&!rep.textContent){let A=0,C=0;rt.sel.forEach((i,a)=>rt.sel.forEach((j,b)=>{if(b>a)sgn(i,j,8)>0?A++:C++}));rep.textContent=`Simulated report: ${rt.sel.length} stakeholders, ${A} emerging agreements, ${C} persistent conflicts. Illustrative output, not a forecast.`}});
+const rto=jobs[jobs.length-1];$('#rt').addEventListener('click',e=>{const r=e.target.getBoundingClientRect(),X=e.clientX-r.left,Y=e.clientY-r.top,i=(rto.P||[]).findIndex(p=>Math.hypot(p[0]-X,p[1]-Y)<22);if(i>=0)tgl(i)});
+
+/* Evidence scene */
+const EV=[...Array(45)].map((_,i)=>({k:i%5,s:rnd()*6.283,d:rnd()})),EC=['Fragmented sources drift toward the engine.','Items are organised by kind.','The engine analyses each item.','Relationships are found and linked.'],ek=['Datasets','Papers','Statistics','Laws','Documents'],ez=t=>t*t*(3-2*t),evc=$('#evc');let el=-1;
+job($('#ev'),(o,t)=>{const{x,w,h}=o,T=R?15:t%16,st=T<4?0:T<7?1:T<10?2:3;if(st!=el){el=st;evc.textContent=EC[st]}
+const sy=h*(.08+clamp((T-7)/3)*.84),P=EV.map((d,i)=>{const s=[w/2+Math.cos(d.s)*w*.6,h/2+Math.sin(d.s)*h*.7],n=[w/2+Math.cos(d.s)*(26+d.d*30),h/2+Math.sin(d.s)*(26+d.d*30)],c=[w*(.12+d.k*.19),h*(.12+(i/5|0)*.09)],a=ez(clamp(T/3.5)),b=ez(clamp((T-4)/2.5)),p=[s[0]+(n[0]-s[0])*a,s[1]+(n[1]-s[1])*a];return[p[0]+(c[0]-p[0])*b,p[1]+(c[1]-p[1])*b]});
+if(T<6)dot(x,w/2,h/2,8+Math.sin(t*3)*2,CY,.9*(1-clamp(T-5)));
+if(T>=10){const g=clamp((T-10)/1.5);EV.forEach((d,i)=>{const j=(i*7+3)%45;if(EV[j].k!=d.k)ln(x,P[i],P[j],CY,g*.3)})}
+if(T>=7&&T<10)ln(x,[0,sy],[w,sy],CY,.5,1.5);
+x.font='9px monospace';x.textAlign='center';if(T>=4){x.fillStyle='rgba(107,131,148,.9)';ek.forEach((n,k)=>x.fillText(n.toUpperCase(),w*(.12+k*.19),h*.055))}
+EV.forEach((d,i)=>{const p=P[i],an=T>=7&&(p[1]<sy||T>=10),col=an?`rgba(${CY},.9)`:'rgba(107,131,148,.9)';x.strokeStyle=col;x.fillStyle=col;x.lineWidth=1;const X=p[0]-6,Y=p[1]-7;
+if(d.k==0){x.strokeRect(X,Y,12,12);x.fillRect(X+3,Y+3,2,2);x.fillRect(X+7,Y+7,2,2)}
+else if(d.k==1){x.strokeRect(X,Y,10,13);x.fillRect(X+2,Y+3,6,1);x.fillRect(X+2,Y+6,6,1)}
+else if(d.k==2){x.fillRect(X,Y+7,3,5);x.fillRect(X+4,Y+3,3,9);x.fillRect(X+8,Y+5,3,7)}
+else if(d.k==3){x.font='13px serif';x.fillText('§',p[0],p[1]+5);x.font='9px monospace'}
+else{x.strokeRect(X,Y,11,13);x.fillRect(X+3,Y+4,5,1)}});x.textAlign='left'});
+
+/* Community scene */
+const GX=10,GY=7,inc=(a,b)=>clamp(.5+.45*Math.sin(a*.8+1)*Math.cos(b*.7)),RS=[.8,-.7,.15],CR=Array.from({length:GX},()=>Array(GY).fill(0)),cn=Array.from({length:GX},()=>Array(GY).fill(0)),
+CM=[...Array(520)].map(()=>{const a=rnd()*GX,b=rnd()*GY,i=inc(a|0,b|0),r=rnd(),g=r<i*.6?0:r<.5+i*.2?1:2;return{a,b,g,s:rnd()*6}}),
+CC=['A city takes shape: geography in 3D.','Demographic and socioeconomic layers are added.','A synthetic population is generated.','The population is segmented into groups.','A proposed policy enters the system.','Different groups respond differently.','Responses aggregate into a spatial view.'],cmc=$('#cmc');let cl=-1;
+CM.forEach(d=>{CR[d.a|0][d.b|0]+=RS[d.g];cn[d.a|0][d.b|0]++});
+job($('#cm'),(o,t)=>{const{x,w,h}=o,T=R?19:t%20,st=T<3?0:T<6?1:T<9?2:T<12?3:T<14?4:T<17?5:6;if(st!=cl){cl=st;cmc.textContent=CC[st]}
+const cw=w*.112,ch=h*.094,ox=(w-(GX+GY)*cw/2)/2+GY*cw/2,S=(a,b)=>[ox+(a-b)*cw/2,h*.12+(a+b)*ch/2],ap=clamp(T/1.5);
+for(let a=0;a<GX;a++)for(let b=0;b<GY;b++){const q=[S(a,b),S(a+1,b),S(a+1,b+1),S(a,b+1)];let f=null;
+if(T>=17){const v=CR[a][b]/Math.max(1,cn[a][b]);f=`rgba(${v>0?CY:AM},${clamp((T-17)/1.2)*Math.min(.85,Math.abs(v)*.9)})`}
+else if(T>=3)f=`rgba(20,184,166,${clamp((T-3)/1.5)*.4*inc(a,b)})`;
+x.beginPath();q.forEach((p,i)=>i?x.lineTo(p[0],p[1]):x.moveTo(p[0],p[1]));x.closePath();if(f){x.fillStyle=f;x.fill()}x.strokeStyle=`rgba(${CY},${.18*ap})`;x.lineWidth=1;x.stroke()}
+if(T>=6){const n=Math.min(520,((T-6)*175)|0),fade=T>=17?1-clamp((T-17)/1.2)*.9:1,C=['46,230,255','255,180,84','107,131,148'],C0=['46,230,255','20,184,166','232,241,245'];
+for(let i=0;i<n;i++){const d=CM[i],p=S(d.a,d.b),k=T>=14?C[d.g]:T>=9?C0[d.g]:'107,131,148',r=1.4+(T>=14&&T<17?Math.max(0,Math.sin(t*5+d.s))*(d.g==2?.3:1.3):0);x.fillStyle=`rgba(${k},${.85*fade})`;x.beginPath();x.arc(p[0],p[1],r,0,6.283);x.fill()}}
+if(T>=12&&T<17){const r=(T-12)*w*.28;x.strokeStyle=`rgba(${AM},${Math.max(0,.6-(T-12)*.12)})`;x.lineWidth=2;x.beginPath();x.arc(w*.04,h*.5,r,0,6.283);x.stroke()}
+if(T>=17){x.font='10px monospace';x.fillStyle='rgba(107,131,148,.95)';x.fillText('cyan: favourable  ·  amber: unfavourable (simulated)',14,h-30)}});
+
+/* Cairo Decision Map: every value below is synthetic */
+const LY=['Population density','Commercial activity','Accessibility','Infrastructure','Business distribution','Customer segments'],LV=['','Low','Below average','Average','High','Very high'],SG=[['Dense mixed-income households','46,230,255'],['Small retail & services','255,180,84'],['Newer higher-income communities','74,222,128']],
+QS=['Where might a new business location be worth investigating?','Which areas may contain underserved customer segments?','How might accessibility affect commercial opportunity?','Which geographic factors should be considered before expansion?'],QF=[a=>a.v[1]+a.v[2],a=>a.v[0]-a.v[1],a=>Math.abs(a.v[2]-a.v[1]),a=>6-a.v[3]],
+LG=['Extrusion height = illustrative density level','Amber points = illustrative commercial activity','Green fill and lines = illustrative accessibility to the core','Lines and nodes = illustrative infrastructure links','Squares = illustrative business concentration','Segments: A dense mixed-income · B small retail · C newer higher-income'],
+RV=[[.44,0],[.40,.2],[.42,.38],[.41,.56],[.44,.78],[.42,1]],HP=[[0,2],[1,2],[2,3],[2,4],[2,5],[5,6],[4,7],[3,4],[4,5]],
+CA=[{n:'Giza & West',d:'Residential districts west of the river.',v:[4,3,3,3,3],g:0,p:[[.06,.34],[.30,.30],[.38,.36],[.38,.66],[.22,.72],[.08,.60]]},
+{n:'Shubra & North',d:'Dense northern neighbourhoods.',v:[5,3,2,2,3],g:0,p:[[.44,.04],[.62,.04],[.62,.26],[.46,.26]]},
+{n:'Downtown & Core',d:'Central business and civic core.',v:[4,5,5,5,5],g:1,p:[[.46,.30],[.60,.30],[.60,.52],[.46,.52]]},
+{n:'Heliopolis & North-East',d:'Established north-eastern districts.',v:[3,4,4,4,4],g:1,p:[[.66,.06],[.90,.10],[.92,.30],[.68,.32]]},
+{n:'Nasr City & East',d:'Large eastern mixed-use area.',v:[4,4,3,4,4],g:1,p:[[.64,.36],[.88,.36],[.88,.56],[.64,.56]]},
+{n:'Old Cairo & South',d:'Historic southern districts.',v:[4,2,2,2,2],g:0,p:[[.46,.58],[.60,.58],[.62,.76],[.46,.78]]},
+{n:'Maadi & South',d:'Southern residential and services area.',v:[2,3,4,3,3],g:2,p:[[.46,.82],[.64,.80],[.68,.96],[.48,.97]]},
+{n:'New Cairo & Far East',d:'Newer eastern expansion areas.',v:[2,3,2,4,2],g:2,p:[[.74,.62],[.94,.62],[.95,.88],[.74,.90]]}],
+C={layer:0,area:-1,q:-1,lt:0},ins=(p,x,y)=>{let r=false;for(let i=0,j=p.length-1;i<p.length;j=i++)if((p[i][1]>y)!=(p[j][1]>y)&&x<(p[j][0]-p[i][0])*(y-p[i][1])/(p[j][1]-p[i][1])+p[i][0])r=!r;return r},mk=(s,t,f)=>{const b=document.createElement('button');b.textContent=t;b.onclick=f;$(s).appendChild(b)};let cmo=null;
+CA.forEach(a=>{a.c=[a.p.reduce((s,p)=>s+p[0],0)/a.p.length,a.p.reduce((s,p)=>s+p[1],0)/a.p.length];const X=a.p.map(p=>p[0]),Y=a.p.map(p=>p[1]),x0=Math.min(...X),y0=Math.min(...Y),dx=Math.max(...X)-x0,dy=Math.max(...Y)-y0;a.k=[];while(a.k.length<48){const x=x0+rnd()*dx,y=y0+rnd()*dy;ins(a.p,x,y)&&a.k.push([x,y])}});
+const top2=()=>C.q<0?[]:CA.map((a,i)=>[QF[C.q](a),i]).sort((a,b)=>b[0]-a[0]).slice(0,2).map(e=>e[1]);
+function cr(){const a=C.area>=0?CA[C.area]:null,tp=top2();[...$('#cl').children].forEach((b,i)=>b.setAttribute('aria-pressed',i==C.layer));[...$('#ca').children].forEach((b,i)=>b.setAttribute('aria-pressed',i==C.area));[...$('#cq').children].forEach((b,i)=>b.setAttribute('aria-pressed',i==C.q));
+let h='';if(C.q>=0)h+=`<p><b>${QS[C.q]}</b><br>Illustrative ranking from synthetic values: ${tp.map(i=>CA[i].n).join(' and ')}. A prompt for research, not a finding.</p>`;
+if(!a)h+='<p>Select an area on the map or from the list to see an illustrative profile.</p>';else{const v=a.v,L=i=>LV[i],opp=v[1]-v[2]>=1?'Commercial activity outpaces access: a possible underserved-segment hypothesis.':v[2]>=4&&v[1]<=3?'Well connected, with room for more commercial presence.':'Balanced profile: compare against other areas.',con=v[3]<=2?'Limited infrastructure may constrain expansion.':'Competition, rents and regulation are not yet known.';
+h+=`<h3>${a.n}</h3><p>${a.d}</p><p><b>${LY[C.layer]}:</b> ${C.layer==5?SG[a.g][0]:L(v[C.layer])} <span class="mono" style="color:var(--amber)">illustrative</span></p><p class="mono" style="color:var(--cyan)">◆ AI-generated analysis · on ○ synthetic inputs, not verified evidence</p><ul><li><b>Observation:</b> ${L(v[0])} density, ${L(v[1])} commercial activity, ${L(v[2])} accessibility.</li><li><b>Possible opportunity:</b> ${opp}</li><li><b>Constraint:</b> ${con}</li><li><b>To validate:</b> real population, business-registry and mobility data.</li><li><b>Next step:</b> connect verified datasets, then run stakeholder and scenario work.</li></ul>`}
+$('#cinfo').innerHTML=h;$('#cleg').textContent=LG[C.layer];const s=a&&C.q>=0?5:C.q>=0?4:a?3:C.lt?2:1;[...$('#cst').children].forEach((li,i)=>li.classList.toggle('on',i<s));if(R&&cmo){cmo.x.clearRect(0,0,cmo.w,cmo.h);cmo.draw(cmo,3)}}
+LY.forEach((n,i)=>mk('#cl',n,()=>{C.layer=i;C.lt=1;cr()}));CA.forEach((a,i)=>mk('#ca',a.n,()=>{C.area=i;cr()}));QS.forEach((q,i)=>mk('#cq',q,()=>{C.q=C.q==i?-1:i;cr()}));cr();
+try{job($('#cmv'),(o,t)=>{const{x,w,h}=o,sh=.18+(R?0:Math.sin(t*.3)*.03),P=(p,l=0)=>[w*(.5+(p[0]-.5)*.8+(p[1]-.5)*sh),h*(.2+p[1]*.66)-l],ly=C.layer,tp=top2(),ord=[...CA.keys()].sort((a,b)=>CA[a].c[1]-CA[b].c[1]);o.T={};
+x.font='11px monospace';x.fillStyle=`rgba(${AM},1)`;x.fillText('SYNTHETIC DATA — FOR DEMONSTRATION ONLY',12,20);
+x.strokeStyle='rgba(46,150,255,.28)';x.lineWidth=Math.max(8,w*.025);x.lineCap=x.lineJoin='round';x.beginPath();RV.forEach((p,i)=>{const q=P(p);i?x.lineTo(q[0],q[1]):x.moveTo(q[0],q[1])});x.stroke();
+ord.forEach(i=>{const a=CA[i],v=a.v,l=(ly==0?v[0]*h*.022:h*.012)+(C.area==i?h*.02:0),T=a.p.map(p=>P(p,l)),B=a.p.map(p=>P(p)),n=T.length;o.T[i]=T;
+for(let k=0;k<n;k++){const m=(k+1)%n;x.fillStyle='rgba(8,16,30,.95)';x.strokeStyle=`rgba(${CY},.18)`;x.lineWidth=1;x.beginPath();x.moveTo(B[k][0],B[k][1]);x.lineTo(B[m][0],B[m][1]);x.lineTo(T[m][0],T[m][1]);x.lineTo(T[k][0],T[k][1]);x.closePath();x.fill();x.stroke()}
+const fc=ly==0?`rgba(${CY},${.08+.1*v[0]})`:ly==2?`rgba(74,222,128,${.05+.09*v[2]})`:ly==5?`rgba(${SG[a.g][1]},.28)`:'rgba(10,20,36,.7)';
+x.beginPath();T.forEach((p,k)=>k?x.lineTo(p[0],p[1]):x.moveTo(p[0],p[1]));x.closePath();x.fillStyle=fc;x.fill();
+const hi=C.q>=0&&tp.includes(i);x.shadowColor=hi?`rgba(${AM},1)`:`rgba(${CY},1)`;x.shadowBlur=C.area==i||hi?14:4;x.strokeStyle=hi?`rgba(${AM},${R?1:.6+.4*Math.sin(t*3)})`:`rgba(${CY},${C.area==i?1:.5})`;x.lineWidth=C.area==i||hi?2.2:1;x.stroke();x.shadowBlur=0;
+if(ly==1||ly==4)for(let j=0;j<v[ly]*8;j++){const q=P(a.k[j],l);if(ly==1)dot(x,q[0],q[1],1.8,AM,R?.8:.5+.5*Math.sin(t*2+j+i));else{x.fillStyle=`rgba(${j%2?'20,184,166':CY},.85)`;x.fillRect(q[0]-2,q[1]-2,4,4)}}
+if(ly==2&&i!=2){const s=P(a.c,l),e=P(CA[2].c,l);ln(x,s,e,'74,222,128',.15+.12*v[2],1.5)}});
+if(ly==3){HP.forEach(([i,j])=>ln(x,P(CA[i].c,h*.012),P(CA[j].c,h*.012),CY,.5,.5+Math.min(CA[i].v[3],CA[j].v[3])*.8));CA.forEach(a=>{const q=P(a.c,h*.012);dot(x,q[0],q[1],2+a.v[3],CY,.9)})}
+x.font='11px monospace';x.textAlign='center';ord.forEach(i=>{const a=CA[i],T=o.T[i],q=P(a.c,(ly==0?a.v[0]*h*.022:h*.012)+h*.03);x.fillStyle=C.area==i?`rgba(${CY},1)`:'rgba(232,241,245,.85)';x.fillText(a.n.split(' ')[0]+(ly==5?' · '+'ABC'[a.g]:''),q[0],q[1])});x.textAlign='left'});
+cmo=jobs[jobs.length-1];$('#cmv').addEventListener('click',e=>{const r=e.target.getBoundingClientRect(),X=e.clientX-r.left,Y=e.clientY-r.top,hit=[...CA.keys()].sort((a,b)=>CA[b].c[1]-CA[a].c[1]).find(i=>cmo.T&&cmo.T[i]&&ins(cmo.T[i],X,Y));if(hit!=null){C.area=hit;cr()}});$('#cmv').style.cursor='pointer'}catch(e){$('#cfb').hidden=false}
+
+/* Pipeline */
+const pipe=$('#pipe');function pp(){const r=pipe.getBoundingClientRect(),p=R?1:clamp((innerHeight*.8-r.top)/(innerHeight*.45));pipe.style.setProperty('--pp',p);[...pipe.children].forEach((d,i)=>d.classList.toggle('on',p>=i/4-.01))}
+
+/* Nature layers */
+const names=['Geographic','Demographic','Economic','Market','Environmental','Infrastructure','Regulatory'],st=$('#stack'),sc=$('#scene');
+names.forEach((n,i)=>{const d=document.createElement('div');d.className='ly';d.style.setProperty('--i',i);d.innerHTML='<i>'+n+'</i>';st.appendChild(d)});
+const ns=$('#nature');function nat(){const r=ns.getBoundingClientRect(),p=R?1:clamp(-r.top/(r.height-innerHeight)),m=clamp((p-.1)/.45);sc.style.setProperty('--m',m);sc.style.setProperty('--b',clamp((p-.6)/.12));sc.style.setProperty('--r',clamp((p-.76)/.1))}
+
+function tick(){jobs.forEach(o=>{if(o.vis||R){o.x.clearRect(0,0,o.w,o.h);o.draw(o,R?3:performance.now()/1000+o.t0)}});pp();nat();if(!R)requestAnimationFrame(tick)}
+tick();if(R)addEventListener('scroll',()=>{pp();nat()},{passive:true});
+const io=new IntersectionObserver(e=>e.forEach(i=>i.isIntersecting&&i.target.classList.add('on')),{threshold:.15});$$('.rv').forEach(el=>io.observe(el));
+
+/* Dummy forms */
+const dlg=$('#dlg');$$('[data-open]').forEach(b=>b.addEventListener('click',e=>{e.preventDefault();$('#dt').textContent=b.dataset.open;$('#tm').hidden=b.dataset.open!='Schedule a meeting';mp.classList.remove('on');$('#nt').textContent='';dlg.showModal()}));
+$('#cl').onclick=()=>dlg.close();
+const mp=$('#mp'),mb=$('#mb'),idg=$('#idg'),INFO={privacy:['Privacy','This site currently collects nothing. The forms are demonstrations and do not send or store data. A full privacy notice will be published before any form is connected.'],status:['Product status','Decision Intelligence Engine and Nature AI Labs are under development. Neither is publicly available. Nothing on this site is a live product, real data or a performance claim.']};
+mb.onclick=()=>{const on=mp.classList.toggle('on');mb.setAttribute('aria-expanded',on)};$$('#mp a[href^="#"]:not([data-open])').forEach(a=>a.addEventListener('click',()=>mp.classList.remove('on')));
+$$('[data-info]').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();const v=INFO[a.dataset.info];$('#it').textContent=v[0];$('#ip').textContent=v[1];idg.showModal()}));$('#ic').onclick=()=>idg.close();
+if((window.QT_CONFIG||{}).formEndpoint)$('#dn').textContent='Share a few details and we will reply.';
+if(location.hash=='#demo'){$('#dt').textContent='Request a demonstration';$('#nt').textContent='';dlg.showModal()}
+$('#f').addEventListener('submit',async e=>{e.preventDefault();const fd=Object.fromEntries(new FormData(e.target)),ep=(window.QT_CONFIG||{}).formEndpoint,nt=$('#nt');if(fd.website){e.target.reset();return}
+if(!ep){nt.textContent='Demo mode: nothing was sent. Set formEndpoint in config.js to receive enquiries.';return}
+nt.textContent='Sending…';try{const r=await fetch(ep,{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},body:JSON.stringify({type:$('#dt').textContent,...fd})});if(!r.ok)throw 0;nt.textContent='Thank you. We will be in touch.';e.target.reset()}catch(_){nt.textContent='Something went wrong. Please try again later.'}});
+</script>
+</body>
+</html>

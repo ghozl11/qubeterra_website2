@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Consumer Products — Test a concept before you launch · Qubeterra Decision Labs</title>
+<meta name="description" content="Concept demonstration: describe a new product, offer or pack, choose an audience, then run a simulated survey or focus group. Simulated personas, not real people.">
+<meta property="og:title" content="Consumer Products — Qubeterra Decision Labs"><meta property="og:type" content="website">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif&family=Geist:wght@300;400;500&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+:root{--void:#04070D;--navy:#0A1424;--cyan:#2EE6FF;--mist:#E8F1F5;--slate:#6B8394;--amber:#FFB454;--grn:#4ADE80;--line:rgba(46,230,255,.16);--ser:'Instrument Serif',Georgia,serif;--sans:'Geist',system-ui,sans-serif;--mono:'JetBrains Mono',ui-monospace,monospace;color-scheme:dark;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*,*::before,*::after{box-sizing:inherit}html{scroll-behavior:smooth}
+body{margin:0;background:var(--void);color:var(--mist);font:300 17px/1.65 var(--sans);overflow-x:hidden}
+canvas{display:block;width:100%;height:100%}a{color:inherit;text-decoration:none}p{margin:0}
+h1,h2,h3{font-family:var(--ser);font-weight:400;margin:0;line-height:1.04;letter-spacing:-.01em}
+h1{font-size:clamp(40px,7vw,84px);max-width:11em;margin:20px 0}h2{font-size:clamp(30px,4.2vw,50px)}h3{font-size:24px}
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+.mono{font:400 11px/1.4 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--cyan)}
+.lead{color:var(--slate);max-width:58ch;margin-top:16px}
+nav{border-bottom:1px solid var(--line)}nav .wrap{display:flex;justify-content:space-between;align-items:center;height:64px}
+.brand{font:400 12px var(--mono);letter-spacing:.22em}.brand b{color:var(--cyan);font-weight:400}
+.btn{display:inline-block;border:1px solid var(--cyan);color:var(--cyan);padding:11px 18px;font:400 12px var(--mono);letter-spacing:.12em;text-transform:uppercase;background:transparent;cursor:pointer;transition:.4s}
+.btn:hover{background:var(--cyan);color:var(--void)}.btn.s{border-color:var(--line);color:var(--mist)}
+.pill{display:inline-block;border:1px solid var(--amber);color:var(--amber);font:400 10px var(--mono);letter-spacing:.12em;padding:4px 9px;text-transform:uppercase}
+.hero{padding:90px 24px 40px}.sec{padding:64px 0;border-top:1px solid var(--line)}
+.f{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:24px}.f.w2{grid-template-columns:1fr 1fr}
+label{display:block;font:400 11px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--slate)}
+input,select,textarea{width:100%;margin-top:6px;background:var(--navy);border:1px solid var(--line);color:var(--mist);padding:11px 12px;font:300 15px var(--sans);border-radius:0}
+input:focus,select:focus,textarea:focus{outline:1px solid var(--cyan)}
+.tog{display:flex;flex-wrap:wrap;gap:6px;margin:14px 0 0}
+.tog button{background:transparent;border:1px solid var(--line);color:var(--slate);padding:8px 12px;font:300 13px var(--sans);cursor:pointer;text-align:left}
+.tog button:hover,.tog button[aria-pressed=true]{border-color:var(--cyan);color:var(--cyan)}
+.tab button{font:400 12px var(--mono);letter-spacing:.1em;text-transform:uppercase}
+.ask{display:flex;gap:8px;margin-top:12px}.ask input{margin:0}
+.vis{height:360px;border:1px solid var(--line);background:linear-gradient(var(--navy),var(--void));position:relative;margin-top:16px}
+.tag{position:absolute;left:12px;bottom:10px;color:var(--amber)!important}
+.row{border-top:1px solid var(--line);padding:12px 0}.row b{font-weight:400}.row small{color:var(--slate);font-size:12px}
+.st{font:400 13px var(--mono);margin-left:6px}
+.sim{border-left:2px solid var(--amber);padding:2px 0 2px 12px;margin-top:6px;color:var(--mist);font-size:15px}
+.lab{font:400 11px var(--mono);letter-spacing:.12em;text-transform:uppercase;display:block;margin:14px 0 4px}
+.card{border-top:1px solid var(--cyan);padding-top:12px;margin-top:18px}.card p{font-size:14px;color:var(--slate)}
+#tr{max-height:320px;overflow:auto;margin-top:14px}#tr p{padding:8px 0;border-top:1px solid var(--line);font-size:15px}#tr p.m{color:var(--cyan)}#tr b{font-weight:400}
+.cols{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:28px}.cols div{border-top:1px solid var(--cyan);padding-top:12px;font-size:14px;color:var(--slate)}.cols b{display:block;color:var(--mist);font-weight:400;margin-bottom:4px}
+footer{border-top:1px solid var(--line);padding:30px 24px;color:var(--slate);font-size:12px;text-align:center}
+@media(max-width:900px){.f,.f.w2,.cols{grid-template-columns:1fr}.vis{height:300px}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+nav .wrap{height:auto;min-height:64px;flex-wrap:wrap;gap:8px 24px;padding-top:8px;padding-bottom:8px}.nv{display:flex;flex-wrap:wrap;align-items:center;gap:6px 22px;font-size:13px;color:var(--slate)}.nv a:not(.btn):hover,.nv a[aria-current]{color:var(--mist)}.nv a[aria-current]{border-bottom:1px solid var(--cyan)}.nv .btn{padding:9px 14px}footer a{color:var(--mist)}
+</style>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3E%3Ctext y=%27.9em%27 font-size=%2790%27%3E🛒%3C/text%3E%3C/svg%3E">
+</head>
+<body>
+<nav><div class="wrap"><a class="brand" href="index.html">QUBETERRA <b>/</b> DECISION LABS</a><div class="nv"><a href="index.html">Home</a><a href="manufacturing.html">Manufacturing</a><a href="fintech.html">Fintech</a><a href="healthcare.html">Healthcare</a><a href="policy.html">Public policy</a><a href="consumer.html" aria-current="page">Consumer products</a><a class="btn s" href="index.html#demo">Request a demo</a></div></div></nav>
+
+<header class="hero wrap"><div class="mono">Industries · Consumer products &amp; FMCG</div>
+<h1>Hear the room before you launch the product.</h1>
+<p class="lead">Launching a new snack, a new powder, a new offer or a new pack? Describe it, choose who you want to hear from, then run a simulated survey or sit in a simulated focus group, and talk with the participants.</p>
+<p style="margin-top:22px"><span class="pill">Simulated personas · not real people · no market research has been conducted</span></p></header>
+
+<section class="sec"><div class="wrap"><div class="mono">Step 1 · Describe the concept</div>
+<div class="f"><div><label for="ct">What are you launching?</label><select id="ct"><option>New snack or food product</option><option>New detergent or cleaning powder</option><option>New offer or promotion</option><option>New pack size or packaging</option></select></div>
+<div><label for="cn">Name</label><input id="cn" value="Crunch Mix" maxlength="40"></div>
+<div><label for="cp">Pack or format</label><input id="cp" value="a 70 g pack" maxlength="40"></div></div>
+<div class="f w2"><div><label for="cd">Key specifications (optional)</label><textarea id="cd" rows="2" maxlength="160">A spicy baked snack with less oil</textarea></div>
+<div><label for="cr">Price position</label><select id="cr"><option>Similar to current options</option><option>Lower than current options</option><option>Premium</option></select></div></div></div></section>
+
+<section class="sec"><div class="wrap"><div class="mono">Step 2 · Choose who to ask</div>
+<div class="f"><div><label for="ai">Income level</label><select id="ai"><option value="-1">Any</option><option value="0">Lower-income</option><option value="1">Middle-income</option><option value="2">Higher-income</option></select></div>
+<div><label for="aa">Life stage</label><select id="aa"><option value="-1">Any</option><option value="0">Young adults</option><option value="1">Parents</option><option value="2">Older adults</option></select></div>
+<div><label for="ar">Area type</label><select id="ar"><option value="-1">Any</option><option value="0">Dense urban area</option><option value="1">Provincial town</option><option value="2">Rural village</option></select></div></div>
+<p class="lead" id="mt" aria-live="polite"></p></div></section>
+
+<section class="sec"><div class="wrap"><div class="mono">Step 3 · Ask them</div>
+<div class="tog tab" id="tabs" role="group" aria-label="Mode"></div>
+
+<div id="m0"><h2 style="margin-top:18px">Survey</h2><p class="lead">Ask the panel a question. Each simulated respondent answers on their own.</p>
+<div class="tog" id="sq"></div><div class="ask"><input id="sc" placeholder="Or type your own question" maxlength="120" aria-label="Custom survey question"><button class="btn" id="sb">Ask the panel</button></div><div id="sr" aria-live="polite"></div></div>
+
+<div id="m1" hidden><h2 style="margin-top:18px">Focus group</h2><p class="lead">Up to six simulated participants discuss your concept. Ask, listen, then challenge them. They also respond to each other.</p>
+<div class="vis"><canvas id="cv" role="img" aria-label="Six simulated participants around a table and a moderator seat. Lines show who is replying to whom."></canvas><span class="mono tag">Simulated participants · invented personas</span></div>
+<div class="tog" id="fq"></div><div class="ask"><input id="fc" placeholder="Or type your own message" maxlength="120" aria-label="Custom focus group message"><button class="btn" id="fb">Send</button></div>
+<div id="tr" aria-live="polite"></div><div class="tog" id="fu"></div></div>
+
+<p class="lead" style="font-size:14px;margin-top:30px">In this demo, responses are pre-written and routed by keyword (price, pack, offer, trust, product). A real engagement would use live AI personas calibrated with real data, then validated with real people.</p></div></section>
+
+<section class="sec"><div class="wrap"><div class="mono">How it works in a real engagement</div>
+<div class="cols"><div><b>Explore early</b>Test wording, packs, prices and offers with simulated panels while ideas are cheap to change.</div><div><b>Sharpen the questions</b>Find where audiences might differ, then decide what is worth asking real people.</div><div><b>Validate for real</b>Recruit real respondents and run real research. Simulation prepares it and never replaces it.</div></div>
+<p style="margin-top:30px"><a class="btn" href="index.html#demo">Request a demo: discuss a launch</a></p></div></section>
+<footer>Qubeterra Decision Labs · Products are in development and not publicly available. Concept demonstration with invented personas.<p style="margin-top:10px"><a href="index.html">Home</a> · <a href="manufacturing.html">Manufacturing</a> · <a href="fintech.html">Fintech</a><a href="healthcare.html">Healthcare</a> · <a href="policy.html">Public policy</a> · <a href="consumer.html">Consumer products</a></p></footer>
+
+<script>
+const R=matchMedia('(prefers-reduced-motion: reduce)').matches,$=s=>document.querySelector(s),jobs=[],CY='46,230,255',AM='255,180,84',GR='107,131,148',
+esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])),
+mk=(s,t,f)=>{const b=document.createElement('button');b.textContent=t;b.onclick=f;$(s).appendChild(b);return b};
+/* ALL PERSONAS ARE INVENTED. pr=price sensitivity, ly=brand loyalty, nv=novelty seeking, pk=pack preference */
+const INC=['Lower-income','Middle-income','Higher-income'],AGE=['Young adult','Parent','Older adult'],REG=['Dense urban','Provincial town','Rural village'],
+P=[['Salma',1,0,0,'M','L','H','s'],['Omar',0,1,0,'H','H','L','l'],['Mona',1,1,1,'H','M','M','l'],['Karim',2,0,0,'L','L','H','s'],['Hassan',0,2,2,'H','H','L','s'],['Dalia',1,0,1,'M','M','H','s'],['Youssef',0,1,2,'H','M','M','l'],['Nour',2,1,0,'L','M','M','l'],['Ahmed',1,2,0,'M','H','L','l'],['Heba',0,0,1,'H','L','H','s'],['Tarek',1,1,2,'M','H','L','l'],['Farida',2,2,1,'L','H','L','s']].map(a=>({n:a[0],i:a[1],a:a[2],r:a[3],pr:a[4],ly:a[5],nv:a[6],pk:a[7]})),
+QS=[['What is your first reaction?','intent'],['What do you expect from the product itself?','product'],['How do you feel about the price?','price'],['What do you think of the pack or format?','pack'],['Would an offer change what you do?','offer'],['Do you trust it? Why or why not?','trust'],['What would change your mind?','mind']],
+lv=c=>c=='H'?1:c=='M'?0:-1,V=id=>$(id).value,
+G=()=>({name:V('#cn').trim()||'the new product',pack:V('#cp').trim()||'this pack size',desc:V('#cd').trim(),price:V('#cr'),type:V('#ct')});
+function st(p){const g=G();let b=lv(p.nv);if(g.price=='Premium')b-=p.pr=='H'?2:p.pr=='M'?1:0;if(g.price.startsWith('Lower')&&p.pr=='H')b+=1;if(/offer/i.test(g.type)&&p.pr=='H')b+=1;return b>=1?'+':b<=-1?'!':'~'}
+const SC={'+':CY,'~':GR,'!':AM};
+function line(p,t){const g=G(),s=st(p);
+if(t=='price')return p.pr=='H'?(g.price=='Premium'?'At a premium price I would probably pass.':g.price.startsWith('Lower')?'A lower price would get my attention straight away.':'I count every pound. If it costs more than what I buy now, I need a clear reason.'):p.pr=='M'?'A fair price matters, but I would pay a little more if it is clearly better.':'Price is not my main worry. I care that it is good.';
+if(t=='pack')return p.pk=='s'?`I buy small packs to control spending, so I would check whether ${g.pack} suits me.`:`Larger packs suit my household, if ${g.pack} saves money per use.`;
+if(t=='offer')return p.pr=='H'?'Offers decide it for me. I will switch for a good deal.':'An offer might get me to try it once, but not to stay.';
+if(t=='trust')return p.ly=='H'?'I trust brands I grew up with. A new product from a known name gets a chance.':p.ly=='M'?'I trust it more if people I know have tried it.':'The brand matters less than whether it actually works.';
+if(t=='mind')return p.pr=='H'?'A lower price or a free sample.':p.ly=='H'?'Seeing a brand I trust behind it.':p.nv=='H'?'A clearly different taste or a real improvement.':'A friend using it and liking it.';
+if(t=='product'){const d=g.desc?` You say \u201c${g.desc}\u201d.`:'';return (p.nv=='H'?`I like trying new things, so I would try ${g.name} at least once.`:p.nv=='M'?`I would try ${g.name} if someone I know recommended it.`:`I stick with what I know. ${g.name} would have to prove itself.`)+d}
+if(t=='intent')return s=='+'?`Sounds interesting. I would probably try ${g.name}.`:s=='~'?`I am not sure yet. It depends on the price and who else is buying ${g.name}.`:'Not for me, I think. I already have what I buy.';
+return 'Honestly, it depends on what it means for me day to day.'}
+const route=q=>/pric|cost|expens|cheap|afford|pay/i.test(q)?'price':/pack|size|bag|bottle|box|design|format/i.test(q)?'pack':/offer|promo|discount|deal|free|bundle/i.test(q)?'offer':/trust|brand|believe/i.test(q)?'trust':/change|convince|persuade|mind/i.test(q)?'mind':/taste|flavo|smell|scent|clean|quality|ingredient/i.test(q)?'product':/buy|try|think|feel|react|like/i.test(q)?'intent':'other';
+let PN=[],P6=[];
+function aud(){const f=[+V('#ai'),+V('#aa'),+V('#ar')];PN=P.filter(p=>(f[0]<0||p.i==f[0])&&(f[1]<0||p.a==f[1])&&(f[2]<0||p.r==f[2]));P6=PN.slice(0,6);said=P6.map(()=>0);$('#mt').textContent=PN.length?`${PN.length} matching simulated persona${PN.length>1?'s':''}: ${PN.map(p=>p.n).join(', ')}.`+(PN.length<3?' Few matches. Try widening the audience.':''):'No simulated persona matches. Try widening the audience.';rd&&rd()}
+['#ai','#aa','#ar'].forEach(s=>$(s).addEventListener('change',aud));
+const tag=p=>`${INC[p.i]} \u00b7 ${AGE[p.a].toLowerCase()} \u00b7 ${REG[p.r].toLowerCase()}`;
+/* Survey */
+QS.forEach(q=>mk('#sq',q[0],()=>survey(q[0],q[1])));$('#sb').onclick=()=>{const q=$('#sc').value.trim();if(q)survey(q,route(q))};
+function survey(q,t){const L=PN.slice(0,8);if(!L.length){$('#sr').innerHTML='<p class="lead">Choose an audience with at least one matching persona.</p>';return}
+const pick=f=>L.filter(f).map(p=>p.n).join(', ')||'none',syn={price:`Most price-sensitive here: ${pick(p=>p.pr=='H')}.`,pack:`Prefer small packs: ${pick(p=>p.pk=='s')}.`,offer:`Most deal-driven: ${pick(p=>p.pr=='H')}.`,trust:`Most brand-loyal: ${pick(p=>p.ly=='H')}.`,mind:'Common triggers in this simulation: price, a trusted brand, and a peer recommendation.',product:`Most eager to try: ${pick(p=>p.nv=='H')}.`,intent:`Leaning positive: ${pick(p=>st(p)=='+')}. Leaning negative: ${pick(p=>st(p)=='!')}.`,other:'Answers are general because the question did not match a known topic.'}[t];
+$('#sr').innerHTML=`<div class="card"><h3>${esc(q)}</h3><span class="lab" style="color:var(--amber)">\u25cb Simulated respondents (AI-generated, not real people)</span>${L.map(p=>`<div class="row"><b>${p.n}</b> <small>${tag(p)}</small><span class="st" style="color:rgb(${SC[st(p)]})" title="Overall inclination toward the concept">${st(p)}</span><p class="sim">\u201c${esc(line(p,t))}\u201d</p></div>`).join('')}<span class="lab" style="color:var(--cyan)">\u25c6 AI-generated analysis</span><p>${syn} A hypothesis to test, not a result. The + ~ ! marks show each persona\u2019s overall inclination toward the concept.</p><span class="lab" style="color:var(--grn)">\u25a0 Verified evidence</span><p>None. No real respondent has been asked.</p></div>`}
+/* Focus group */
+let said=[],act={f:-2,t:-2,ts:0},busy=false;const tr=$('#tr');
+const rel=(p,t)=>t=='price'||t=='offer'||t=='mind'?lv(p.pr):t=='trust'?lv(p.ly):t=='pack'?(p.pk=='s'?1:0):({'+':1,'~':0,'!':-1})[st(p)];
+function add(m){const p=document.createElement('p');p.className=m.mod?'m':'';p.innerHTML=`<b>${m.mod?'You (moderator)':P6[m.who].n}:</b> ${esc(m.text)}`;tr.appendChild(p);tr.scrollTop=tr.scrollHeight;if(!m.mod)said[m.who]=1;act={f:m.mod?-1:m.who,t:m.to,ts:performance.now()};R&&rd()}
+function play(list,after){busy=true;list.forEach((m,k)=>setTimeout(()=>add(m),R?0:k*1300));setTimeout(()=>{busy=false;after&&after()},R?0:list.length*1300)}
+function round(q,t){if(busy||!P6.length)return;const sp=[...P6].sort((a,b)=>rel(b,t)-rel(a,t)).slice(0,4),out=[{mod:1,text:q}];sp.forEach((p,k)=>{const pv=k?sp[k-1]:null;out.push({who:P6.indexOf(p),to:pv?P6.indexOf(pv):-1,text:(pv?(st(p)==st(pv)?`I agree with ${pv.n}. `:`I see it differently from ${pv.n}. `):'')+line(p,t)})});
+play(out,()=>{const f=$('#fu');f.innerHTML='';const o=sp.find(p=>st(p)!=st(sp[0]))||sp[sp.length-1];mk('#fu',`Ask ${o.n} why`,()=>why(o));mk('#fu','Challenge the price',()=>round('Let\u2019s talk about the price. Does it work for you?','price'));mk('#fu','What would change your mind?',()=>round('What would change your mind?','mind'))})}
+function why(p){if(busy)return;const s=st(p),rs=s=='!'?(p.pr=='H'?'Because money is tight and I cannot risk it on something unproven.':'Because I already have a product I trust.'):s=='+'?'Because it feels new and I like to try things.':'Because I would need to see it in my own shop first.',ot=P6.find(x=>x!=p),i=P6.indexOf(p),out=[{mod:1,text:`Why do you say that, ${p.n}?`},{who:i,to:-1,text:rs}];if(ot)out.push({who:P6.indexOf(ot),to:i,text:`I get that, ${p.n}. ${line(ot,'intent')}`});play(out)}
+QS.forEach(q=>mk('#fq',q[0],()=>round(q[0],q[1])));$('#fb').onclick=()=>{const q=$('#fc').value.trim();if(q)round(q,route(q))};
+/* Canvas */
+function job(c,draw){const o={vis:false,draw},set=()=>{const d=Math.min(devicePixelRatio||1,2),r=c.getBoundingClientRect();c.width=r.width*d;c.height=r.height*d;o.x=c.getContext('2d');o.x.setTransform(d,0,0,d,0,0);o.w=r.width;o.h=r.height};set();addEventListener('resize',()=>{set();rd()});new IntersectionObserver(e=>o.vis=e[0].isIntersecting).observe(c);jobs.push(o);return o}
+const rd=()=>jobs.forEach(o=>{o.x.clearRect(0,0,o.w,o.h);o.draw(o,0,3)});
+const tick=()=>{jobs.forEach(o=>{if(o.vis){o.x.clearRect(0,0,o.w,o.h);o.draw(o,.016,performance.now()/1000)}});if(!R)requestAnimationFrame(tick)};
+const dot=(x,X,Y,r,c,a=1)=>{x.fillStyle=`rgba(${c},${a})`;x.shadowColor=`rgba(${c},.9)`;x.shadowBlur=r*1.2;x.beginPath();x.arc(X,Y,r,0,6.283);x.fill();x.shadowBlur=0};
+job($('#cv'),(o,dt,t)=>{const{x,w,h}=o,cx=w/2,cy=h*.44,rx=w*.34,ry=h*.3,n=P6.length,pos=i=>[cx+Math.cos(i/n*6.283-1.571)*rx,cy+Math.sin(i/n*6.283-1.571)*ry],md=[cx,h*.9];
+x.strokeStyle=`rgba(${CY},.16)`;x.beginPath();x.ellipse(cx,cy,rx*.62,ry*.5,0,0,6.283);x.stroke();x.textAlign='center';x.font='11px monospace';
+if(!n){x.fillStyle='rgba(107,131,148,.95)';x.fillText('No matching participants. Widen the audience.',cx,cy);x.textAlign='left';return}
+if(act.f>-2){const a=act.f<0?md:pos(act.f),b=act.t<0?md:pos(act.t),u=R?.5:((performance.now()-act.ts)/1000*.8)%1;x.strokeStyle=`rgba(${CY},.7)`;x.lineWidth=1.5;x.beginPath();x.moveTo(a[0],a[1]);x.lineTo(b[0],b[1]);x.stroke();dot(x,a[0]+(b[0]-a[0])*u,a[1]+(b[1]-a[1])*u,3,'255,255,255',.9)}
+x.fillStyle='rgba(10,20,36,1)';x.strokeStyle=`rgba(${CY},.8)`;x.lineWidth=1;x.fillRect(md[0]-24,md[1]-12,48,24);x.strokeRect(md[0]-24,md[1]-12,48,24);x.fillStyle='rgba(232,241,245,.95)';x.fillText('You',md[0],md[1]+4);
+P6.forEach((p,i)=>{const[px,py]=pos(i),sp=act.f==i,c=said[i]?SC[st(p)]:GR;x.fillStyle='rgba(10,20,36,1)';x.beginPath();x.arc(px,py,sp?17:14,0,6.283);x.fill();x.shadowColor=`rgba(${c},1)`;x.shadowBlur=sp?16:3;x.strokeStyle=`rgba(${c},.95)`;x.lineWidth=sp?2.5:1.2;x.stroke();x.shadowBlur=0;x.fillStyle=`rgba(${c},1)`;x.fillText(said[i]?st(p):p.n[0],px,py+4);x.fillStyle='rgba(232,241,245,.85)';x.fillText(p.n,px,py+30)});x.textAlign='left'});
+/* Tabs */
+['Survey','Focus group'].forEach((n,i)=>mk('#tabs',n,()=>{$('#m0').hidden=i!=0;$('#m1').hidden=i!=1;[...$('#tabs').children].forEach((b,k)=>b.setAttribute('aria-pressed',k==i));dispatchEvent(new Event('resize'))}));
+$('#tabs').children[0].setAttribute('aria-pressed',true);aud();if(R)rd();else requestAnimationFrame(tick);
+</script>
+</body>
+</html>

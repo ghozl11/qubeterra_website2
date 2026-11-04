@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Financial Services &amp; Fintech — Qubeterra Decision Labs</title>
+<meta name="description" content="Concept demonstration: how a financial institution could structure research on digital-payment adoption among small merchants. Illustrative and simulated, no survey conducted.">
+<meta property="og:title" content="Financial Services &amp; Fintech — Qubeterra Decision Labs"><meta property="og:type" content="website">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif&family=Geist:wght@300;400;500&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+:root{--void:#04070D;--navy:#0A1424;--cyan:#2EE6FF;--teal:#14B8A6;--mist:#E8F1F5;--slate:#6B8394;--amber:#FFB454;--grn:#4ADE80;--line:rgba(46,230,255,.16);--ser:'Instrument Serif',Georgia,serif;--sans:'Geist',system-ui,sans-serif;--mono:'JetBrains Mono',ui-monospace,monospace;color-scheme:dark;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*,*::before,*::after{box-sizing:inherit}html{scroll-behavior:smooth}
+body{margin:0;background:var(--void);color:var(--mist);font:300 17px/1.65 var(--sans);overflow-x:hidden}
+canvas{display:block;width:100%;height:100%}a{color:inherit;text-decoration:none}p{margin:0}
+h1,h2,h3{font-family:var(--ser);font-weight:400;margin:0;line-height:1.04;letter-spacing:-.01em}
+h1{font-size:clamp(40px,7vw,84px);max-width:11em;margin:20px 0}h2{font-size:clamp(32px,4.5vw,54px)}h3{font-size:26px}
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+.mono{font:400 11px/1.4 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--cyan)}
+.lead{color:var(--slate);max-width:58ch;margin-top:18px}
+nav{border-bottom:1px solid var(--line)}nav .wrap{display:flex;justify-content:space-between;align-items:center;height:64px}
+.brand{font:400 12px var(--mono);letter-spacing:.22em}.brand b{color:var(--cyan);font-weight:400}
+.btn{display:inline-block;border:1px solid var(--cyan);color:var(--cyan);padding:12px 20px;font:400 12px var(--mono);letter-spacing:.12em;text-transform:uppercase;background:transparent;cursor:pointer;transition:.4s}
+.btn:hover{background:var(--cyan);color:var(--void)}.btn.s{border-color:var(--line);color:var(--mist)}
+.pill{display:inline-block;border:1px solid var(--amber);color:var(--amber);font:400 10px var(--mono);letter-spacing:.12em;padding:4px 9px;text-transform:uppercase}
+.hero{padding:90px 24px 40px}.sec{padding:80px 0;border-top:1px solid var(--line)}
+.vis{height:420px;border:1px solid var(--line);background:linear-gradient(var(--navy),var(--void));position:relative;margin-top:30px}
+.tag{position:absolute;left:12px;bottom:10px;color:var(--amber)!important}
+.tog{display:flex;flex-wrap:wrap;gap:6px;margin:14px 0 0}
+.tog button{background:transparent;border:1px solid var(--line);color:var(--slate);padding:8px 12px;font:400 11px var(--mono);letter-spacing:.06em;cursor:pointer;text-align:left}
+.tog button[aria-pressed=true]{border-color:var(--cyan);color:var(--cyan)}
+.tog.col{flex-direction:column}.tog.col button{font:300 14px var(--sans);letter-spacing:0}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:10px}
+.card{border-top:1px solid var(--cyan);padding-top:14px;margin-top:22px}
+.card h3{font-size:24px;margin-bottom:8px}.card p,.card li{font-size:14px;color:var(--slate)}.card ul{padding-left:18px;margin:6px 0}.card b{color:var(--mist);font-weight:400}
+.lab{font:400 11px var(--mono);letter-spacing:.12em;text-transform:uppercase;display:block;margin-bottom:4px}
+.sim{border-left:2px solid var(--amber);padding:4px 0 4px 14px;margin:8px 0;color:var(--mist)!important;font-size:15px!important}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:30px}.steps div{border-top:1px solid var(--cyan);padding-top:12px;font-size:14px;color:var(--slate)}.steps b{display:block;color:var(--mist);font-weight:400}
+footer{border-top:1px solid var(--line);padding:30px 24px;color:var(--slate);font-size:12px;text-align:center}
+@media(max-width:900px){.two,.steps{grid-template-columns:1fr}.vis{height:320px}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+nav .wrap{height:auto;min-height:64px;flex-wrap:wrap;gap:8px 24px;padding-top:8px;padding-bottom:8px}.nv{display:flex;flex-wrap:wrap;align-items:center;gap:6px 22px;font-size:13px;color:var(--slate)}.nv a:not(.btn):hover,.nv a[aria-current]{color:var(--mist)}.nv a[aria-current]{border-bottom:1px solid var(--cyan)}.nv .btn{padding:9px 14px}footer a{color:var(--mist)}
+</style>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3E%3Ctext y=%27.9em%27 font-size=%2790%27%3E💳%3C/text%3E%3C/svg%3E">
+</head>
+<body>
+<nav><div class="wrap"><a class="brand" href="index.html">QUBETERRA <b>/</b> DECISION LABS</a><div class="nv"><a href="index.html">Home</a><a href="manufacturing.html">Manufacturing</a><a href="fintech.html" aria-current="page">Fintech</a><a href="healthcare.html">Healthcare</a><a href="policy.html">Public policy</a><a href="consumer.html">Consumer products</a><a class="btn s" href="index.html#demo">Request a demo</a></div></div></nav>
+
+<header class="hero wrap"><div class="mono">Industries · Financial services &amp; fintech</div>
+<h1>Understand merchants before you design for them.</h1>
+<p class="lead">How could a financial institution structure its research on digital-payment adoption among small merchants? Walk from a Cairo street into a segmented view, then explore illustrative questions.</p>
+<p style="margin-top:22px"><span class="pill">Simulated scenario · no survey has been conducted</span></p></header>
+
+<section class="sec"><div class="wrap">
+<div class="mono">Scenario · Digital payments among small merchants</div><h2 style="margin-top:14px;max-width:14em">From the street to the segments.</h2>
+<p class="lead">The street is an illustration, not a real location. Enter the intelligence view, choose a merchant segment, then ask a question.</p>
+<div class="vis"><canvas id="cv" role="img" aria-label="Illustrative Cairo commercial street with kiosks, groceries, street carts and small shops, which can transition to a view of four invented merchant segments."></canvas><span class="mono tag">Illustrative · not a real location · invented segments</span></div>
+<div class="tog"><button id="mode">Enter the intelligence view</button></div>
+<div class="tog" id="sg" role="group" aria-label="Merchant segments (illustrative)"></div>
+<div class="two"><div><div class="mono" style="margin-top:26px">Ask a question</div><div class="tog col" id="qs" role="group" aria-label="Questions"></div></div><div id="out" aria-live="polite"></div></div>
+</div></section>
+
+<section class="sec"><div class="wrap"><div class="mono">What a real engagement would do</div>
+<div class="steps"><div><b>1 · Structure the research</b>Define the decision, segments and hypotheses.</div><div><b>2 · Explore hypotheses</b>Use available evidence and simulated perspectives to sharpen questions.</div><div><b>3 · Mark what to validate</b>Separate verified evidence from analysis and simulation.</div><div><b>4 · Go to the field</b>Real merchant interviews or a survey, led by your team or ours.</div></div>
+<p style="margin-top:34px"><a class="btn" href="index.html#demo">Request a demo: discuss a decision</a></p></div></section>
+<footer>Qubeterra Decision Labs · Products are in development and not publicly available. Concept demonstration with invented segments and simulated perspectives.<p style="margin-top:10px"><a href="index.html">Home</a> · <a href="manufacturing.html">Manufacturing</a> · <a href="fintech.html">Fintech</a><a href="healthcare.html">Healthcare</a> · <a href="policy.html">Public policy</a> · <a href="consumer.html">Consumer products</a></p></footer>
+
+<script>
+const R=matchMedia('(prefers-reduced-motion: reduce)').matches,$=s=>document.querySelector(s),clamp=(v,a=0,b=1)=>Math.min(b,Math.max(a,v)),CY='46,230,255',AM='255,180,84',jobs=[];
+const mk=(s,t,f)=>{const b=document.createElement('button');b.textContent=t;b.onclick=f;$(s).appendChild(b);return b};
+/* ALL CONTENT BELOW IS INVENTED. Levels: H/M/L for sensitivity per question. */
+const SG=[
+{n:'Kiosk & street vendors',c:'46,230,255',d:'Very small, mostly cash-based sellers on busy foot-traffic streets.',b:['fees could eat their thin margins','they cannot easily check an app they do not know'],l:'Daily takings fund tomorrow\u2019s stock, so waiting for settlement is hard.',x:'Even a small charge per sale feels large against thin margins.',i:'Same-day settlement, no setup cost, and a trusted neighbour already using it.',z:'Very small scale leaves little room to absorb fees or downtime.',t:'Trust is built face to face; unfamiliar brands meet scepticism.',f:'Basic phone use, limited app familiarity.',lv:'HHHHH'},
+{n:'Neighbourhood grocers',c:'255,180,84',d:'Established local shops with regular customers and supplier credit.',b:['it is unclear the benefits justify changing routines','reconciling digital sales with supplier payments looks complicated'],l:'Settlement timing matters because suppliers expect payment on schedule.',x:'They weigh fees against the cost of handling cash and giving change.',i:'Visible savings on cash handling, and help paying suppliers digitally.',z:'Slightly larger scale can justify a device, but not at any price.',t:'Moderate: they follow providers that suppliers or peers recommend.',f:'Comfortable with phones, mixed with paper accounts.',lv:'MHMHM'},
+{n:'Small retail & services',c:'74,222,128',d:'Clothing, electronics, repair and service shops with some card familiarity.',b:['integrating with existing sales and accounting routines','dispute and chargeback handling is unclear'],l:'They prefer predictable settlement, and depend less on same-day cash.',x:'They compare total fees across providers, including hidden charges.',i:'Bundled services such as invoicing, inventory and reporting.',z:'Larger volume makes fee structure and integration more decisive.',t:'Higher: they look for regulation and clear dispute processes.',f:'Comfortable with digital tools.',lv:'MLHMH'},
+{n:'Larger multi-staff shops',c:'232,241,245',d:'Shops with several staff or outlets and formal bookkeeping.',b:['system integration and staff training needs','concern about being locked in to one vendor'],l:'Less liquidity-constrained, but they care about reconciliation across outlets.',x:'Volume gives them room to negotiate fees.',i:'Integration support, reporting and negotiated pricing.',z:'At this scale, adoption is a procurement decision, not a quick trial.',t:'They rely on formal assessments and references.',f:'High digital familiarity.',lv:'LLMMH'}],
+QS=[['What prevents merchants from adopting digital payment systems?',s=>`Honestly, ${s.b[0]}, and ${s.b[1]}.`],['How important is immediate access to liquidity?',s=>s.l],['What transaction costs may affect adoption?',s=>s.x],['Which incentives could encourage adoption?',s=>s.i],['How does merchant size influence adoption decisions?',s=>s.z]],
+AG=['most cautious about barriers','most sensitive to liquidity','most sensitive to costs','most responsive to incentives','most affected by scale'],
+C={m:0,s:-1,q:-1,mt:0},CL=[[.2,.36],[.5,.66],[.76,.3],[.82,.74]];
+SG.forEach((s,i)=>mk('#sg',String.fromCharCode(65+i)+' · '+s.n,()=>{C.s=i;go()}));QS.forEach((q,i)=>mk('#qs',q[0],()=>{C.q=C.q==i?-1:i;go()}));
+const mb=$('#mode');mb.onclick=()=>{C.m=C.m?0:1;go()};
+function go(){mb.textContent=C.m?'Back to the street':'Enter the intelligence view';[...$('#sg').children].forEach((b,i)=>b.setAttribute('aria-pressed',i==C.s));[...$('#qs').children].forEach((b,i)=>b.setAttribute('aria-pressed',i==C.q));
+const s=SG[C.s];let h='';
+if(!s)h='<div class="card"><p>Choose a merchant segment to see its illustrative profile.</p></div>';
+else{h=`<div class="card"><h3>${String.fromCharCode(65+C.s)} · ${s.n}</h3><p>${s.d}</p><ul><li><b>Digital familiarity:</b> ${s.f}</li><li><b>Trust:</b> ${s.t}</li><li><b>Liquidity:</b> ${s.l}</li><li><b>Costs:</b> ${s.x}</li></ul><span class="lab" style="color:var(--amber)">illustrative profile, invented</span></div>`;
+if(C.q>=0){const q=QS[C.q],hi=SG.map((g,i)=>g.lv[C.q]=='H'?String.fromCharCode(65+i):null).filter(Boolean);
+h+=`<div class="card"><h3>${q[0]}</h3><span class="lab" style="color:var(--amber)">\u25cb Simulated merchant perspective (AI-generated, not a real merchant)</span><p class="sim">\u201c${q[1](s)}\u201d</p><span class="lab" style="color:var(--cyan)">\u25c6 AI-generated analysis</span><p>In this simulation, segment${hi.length>1?'s':''} ${hi.join(', ')} appear${hi.length>1?'':'s'} ${AG[C.q]}. A hypothesis to test, not a result.</p><span class="lab" style="color:var(--grn)">\u25a0 Verified evidence</span><p>None connected. No survey, interview or merchant dataset is used here.</p><span class="lab" style="color:var(--amber)">Needs real-world validation</span><p>Merchant interviews or a survey, actual provider fee schedules, and a check that these segments match the real market.</p></div>`}
+else h+='<div class="card"><p>Now pick a question to see a simulated perspective and what would need validating.</p></div>'}
+$('#out').innerHTML=h;R&&rd()}
+function job(c,draw){const o={vis:false,draw},set=()=>{const d=Math.min(devicePixelRatio||1,2),r=c.getBoundingClientRect();c.width=r.width*d;c.height=r.height*d;o.x=c.getContext('2d');o.x.setTransform(d,0,0,d,0,0);o.w=r.width;o.h=r.height};set();addEventListener('resize',()=>{set();rd()});new IntersectionObserver(e=>o.vis=e[0].isIntersecting).observe(c);jobs.push(o);return o}
+const rd=()=>jobs.forEach(o=>{o.x.clearRect(0,0,o.w,o.h);o.draw(o,0,3)});let last=performance.now();
+const tick=n=>{const dt=Math.min(.05,(n-last)/1000);last=n;jobs.forEach(o=>{if(o.vis){o.x.clearRect(0,0,o.w,o.h);o.draw(o,dt,n/1000)}});if(!R)requestAnimationFrame(tick)};
+const dot=(x,X,Y,r,c,a=1)=>{x.fillStyle=`rgba(${c},${a})`;x.shadowColor=`rgba(${c},.9)`;x.shadowBlur=r*3;x.beginPath();x.arc(X,Y,r,0,6.283);x.fill();x.shadowBlur=0};
+const SH=['KIOSK','GROCERY','CART','RETAIL','KIOSK','GROCERY','RETAIL','CART'],mod=(a,n)=>((a%n)+n)%n,cv=$('#cv');
+const o1=job(cv,(o,dt,t)=>{const{x,w,h}=o;C.mt=R?C.m:C.mt+(C.m-C.mt)*Math.min(1,dt*3);const m=C.mt,a=1-m,cx=R?0:t*38,gy=h*.74,L=Math.max(1040,w+260);
+x.font='11px monospace';x.fillStyle=`rgba(${AM},1)`;x.fillText('ILLUSTRATIVE \u00b7 NOT A REAL LOCATION',12,20);
+if(a>.01){x.globalAlpha=a;for(let i=0;i<10;i++){const bx=mod(i*150-cx*.3,L)-100,bh=60+(i*37%70);x.fillStyle='rgba(10,20,36,1)';x.fillRect(bx,gy-bh-90,90,bh+90);x.fillStyle='rgba(46,230,255,.12)';for(let r=0;r<4;r++)for(let c=0;c<3;c++)x.fillRect(bx+10+c*26,gy-bh-78+r*22,12,8)}
+x.fillStyle='rgba(10,20,36,.95)';x.fillRect(0,gy,w,h-gy);x.strokeStyle=`rgba(${CY},.3)`;x.beginPath();x.moveTo(0,gy);x.lineTo(w,gy);x.stroke();
+SH.forEach((k,i)=>{const sx=mod(i*135-cx*.8,L)-120,sw=k=='CART'?70:105,sh=k=='CART'?40:92,top=gy-sh;x.strokeStyle=`rgba(${CY},.6)`;x.fillStyle='rgba(6,12,22,1)';x.fillRect(sx,top,sw,sh);x.strokeRect(sx,top,sw,sh);
+if(k!='CART'){for(let s=0;s<6;s++){x.fillStyle=s%2?`rgba(${AM},.55)`:'rgba(20,184,166,.55)';x.fillRect(sx+s*sw/6,top,sw/6,12)}x.fillStyle='rgba(46,230,255,.18)';x.fillRect(sx+8,top+26,sw-16,sh-34)}else{x.beginPath();x.arc(sx+14,gy+2,6,0,6.283);x.arc(sx+sw-14,gy+2,6,0,6.283);x.stroke();x.fillStyle=`rgba(${AM},.5)`;x.fillRect(sx+4,top+4,sw-8,14)}
+x.fillStyle='rgba(232,241,245,.85)';x.textAlign='center';x.fillText(k,sx+sw/2,top-8);x.textAlign='left'});
+for(let i=0;i<7;i++){const px=mod(i*170+(R?0:t*(14+i*3))-cx*1.1,L)-60;dot(x,px,gy+16+i%3*6,3,'232,241,245',.8);x.fillStyle='rgba(232,241,245,.5)';x.fillRect(px-2,gy+19+i%3*6,4,9)}x.globalAlpha=1}
+if(m>.01){x.globalAlpha=m;x.strokeStyle='rgba(46,230,255,.08)';for(let i=0;i<w;i+=40){x.beginPath();x.moveTo(i,0);x.lineTo(i,h);x.stroke()}for(let j=0;j<h;j+=40){x.beginPath();x.moveTo(0,j);x.lineTo(w,j);x.stroke()}
+SG.forEach((s,i)=>{const[px,py]=[CL[i][0]*w,CL[i][1]*h],r=Math.min(w,h)*.14,sel=C.s==i;x.strokeStyle=`rgba(${s.c},${sel?1:.35})`;x.lineWidth=sel?2:1;x.beginPath();x.arc(px,py,r,0,6.283);x.stroke();
+for(let k=0;k<36;k++){const an=k*2.4,rr=Math.sqrt(k/36)*r*.92;dot(x,px+Math.cos(an)*rr,py+Math.sin(an)*rr,1.7,s.c,R?.8:.45+.4*Math.sin(t*2+k+i))}
+x.fillStyle=`rgba(${s.c},1)`;x.textAlign='center';x.fillText(String.fromCharCode(65+i)+' \u00b7 '+s.n.split(' ')[0],px,py+r+16);x.textAlign='left'});x.globalAlpha=1}});
+cv.style.cursor='pointer';cv.addEventListener('click',e=>{if(C.mt<.5)return;const r=cv.getBoundingClientRect(),X=e.clientX-r.left,Y=e.clientY-r.top,rr=Math.min(r.width,r.height)*.16,i=CL.findIndex(p=>Math.hypot(p[0]*r.width-X,p[1]*r.height-Y)<rr);if(i>=0){C.s=i;go()}});
+go();if(R)rd();else requestAnimationFrame(tick);
+</script>
+</body>
+</html>
