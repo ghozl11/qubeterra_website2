@@ -11,5 +11,9 @@ export const SOCIAL_LINKS = [
 export const PARTNER_LINKS = {
   itu: 'https://www.itu.int/',
   huawei: 'https://www.huawei.com/',
-  ainShamsEngineering: 'https://eng.asu.edu.eg/',
+  uctPrague: 'https://www.vscht.cz/?jazyk=en',
+  cambridge: 'https://www.cam.ac.uk/',
+  mit: 'https://www.mit.edu/',
+  stanford: 'https://www.stanford.edu/',
+  esri: 'https://www.esri.com/',
 } as const;
