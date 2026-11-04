@@ -28,3 +28,5 @@ Real: pages, navigation, responsive layout, reduced-motion support, form code (n
 Illustrative: every map, simulation, persona, segment and number. All data is invented,
 and no simulation is a validated model or real research. Keep those labels when editing.
 Not built yet: Nature AI Labs page, backend, analytics, privacy policy text.
+
+Integrated into the parent Qubeterra.tech application at /decision-labs.
