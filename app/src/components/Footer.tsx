@@ -25,7 +25,7 @@ export function Footer() {
         <div className="grid gap-10 md:grid-cols-[1.3fr_1fr_1fr] md:gap-8">
           <div>
             <Link to="/" className="inline-flex rounded-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-quantum-blue" aria-label="Qubeterra home">
-              <img src="/images/new/qubeterra_horizontal_hq.png" alt="Qubeterra Institute" className="h-10 w-[168px] object-cover" loading="lazy" />
+              <img src="/images/new/qubeterra_horizontal_hq.png" alt="Qubeterra" className="h-10 w-[168px] object-cover" loading="lazy" />
             </Link>
             <p className="mt-4 max-w-xs text-sm leading-6 text-lunar-silver">Engineering Tomorrow. Empowering Humanity.</p>
             <p className="mt-4 text-sm leading-6 text-muted-text">{ORGANIZATION_LOCATIONS.join(' | ')}</p>
@@ -40,7 +40,7 @@ export function Footer() {
           {Object.entries(footerLinks).map(([category, links]) => <nav key={category} aria-label={`${category} footer links`}><h2 className="mb-4 font-mono text-[11px] uppercase tracking-[.12em] text-muted-text">{category}</h2><ul className="space-y-3">{links.map((link) => <li key={link.label}><Link to={link.path} className="text-sm text-lunar-silver transition-colors hover:text-electric-white">{link.label}</Link></li>)}</ul></nav>)}
         </div>
         <div className="mt-12 flex flex-col gap-3 border-t border-white/[.08] pt-6 text-xs text-muted-text sm:flex-row sm:items-center sm:justify-between">
-          <p>© {new Date().getFullYear()} Qubeterra Institute. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} Qubeterra. All rights reserved.</p>
           <p>{ORGANIZATION_LOCATIONS.join(' | ')}</p>
         </div>
       </div>

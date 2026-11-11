@@ -19,13 +19,13 @@ Plain HTML/CSS/JS. No build step.
 - Then attach your domain, and replace YOUR-DOMAIN in robots.txt and sitemap.xml.
 
 ## Forms
-The demo and meeting forms use the Qubeterra Institute Formspree endpoint configured
+The demo and meeting forms use the Qubeterra Formspree endpoint configured
 in `config.js`, so submitted enquiries are delivered to the team's configured inbox.
 If the endpoint changes, replace it with another URL that accepts JSON POSTs and
 update the privacy notice before collecting sensitive information.
 
 ## What is real and what is illustrative
-Real: pages, navigation, responsive layout, reduced-motion support, and form code connected to Formspree.
+Real: pages, navigation, responsive layout, reduced-motion support, and enquiry forms connected to Formspree.
 Illustrative: every map, simulation, persona, segment and number. All data is invented,
 and no simulation is a validated model or real research. Keep those labels when editing.
 Not built yet: Nature AI Labs page, backend, analytics, privacy policy text.

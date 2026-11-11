@@ -20,9 +20,9 @@ export function Home() {
       <PartnerTicker />
       <Impact />
       <ProjectsPreview />
+      <FellowshipPreview />
       <NextGenAchievementsBanner />
       <InternationalExpertsPreview />
-      <FellowshipPreview />
       <AboutSnapshot />
       <ServicesGrid />
       <DomainsOverview />

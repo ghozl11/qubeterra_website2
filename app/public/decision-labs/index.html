@@ -110,7 +110,7 @@ input:focus,textarea:focus,select:focus{outline:1px solid var(--cyan)}
 <body>
 <nav><div class="wrap"><a class="brand" href="#hero">QUBETERRA <b>/</b> DECISION LABS</a>
 <ul><li><a href="#complexity">Complexity</a></li><li><a href="#engine">Decision Engine</a></li><li><a href="#nature">Nature AI Labs</a></li><li><a href="#industries">Industries</a></li><li><a href="#trust">Trust</a></li><li><a href="#about">About</a></li></ul>
-<a class="parent-link" href="/">Qubeterra Institute</a><button class="btn s" data-open="Request a demonstration">Request a demo</button><button class="mb" id="mb" aria-expanded="false" aria-controls="mp">Menu</button></div></nav>
+<a class="parent-link" href="/">Qubeterra</a><button class="btn s" data-open="Request a demonstration">Request a demo</button><button class="mb" id="mb" aria-expanded="false" aria-controls="mp">Menu</button></div></nav>
 <div class="mp" id="mp"><a href="#complexity">Complexity</a><a href="#engine">Decision Engine</a><a href="#nature">Nature AI Labs</a><a href="#industries">Industries</a><a href="#trust">Trust</a><a href="#about">About</a><a href="#" data-open="Request a demonstration">Request a demonstration</a></div>
 
 <header id="hero"><canvas id="net" aria-hidden="true"></canvas>
@@ -205,7 +205,7 @@ input:focus,textarea:focus,select:focus{outline:1px solid var(--cyan)}
 <footer><div class="wrap"><span>© Qubeterra Decision Labs. Products are in development and not publicly available.</span><span><a href="manufacturing.html">Manufacturing</a> · <a href="fintech.html">Fintech</a><a href="healthcare.html">Healthcare</a> · <a href="policy.html">Public policy</a> · <a href="consumer.html">Consumer products</a></span><span><a href="#" data-info="privacy">Privacy</a> · <a href="#" data-info="status">Status</a> · <a href="#" data-open="Contact">Contact</a></span></div></footer>
 
 <dialog id="dlg"><form id="f"><input name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px"><h3 id="dt">Request a demonstration</h3>
-<p id="dn" style="color:var(--slate);font-size:14px">Demo form: nothing is sent or stored yet.</p>
+<p id="dn" style="color:var(--slate);font-size:14px">Share a few details and the Qubeterra team will reply.</p>
 <label>Name<input required name="n"></label><label>Work email<input required type="email" name="e"></label>
 <label>Organisation<input name="o"></label><label id="tm" hidden>Preferred time<input name="t" placeholder="e.g. weekday mornings (nothing is scheduled yet)"></label><label>Message<textarea rows="3" name="m"></textarea></label>
 <div class="note" id="nt"></div><div class="row"><button class="btn" type="submit">Submit</button><button class="btn s" type="button" id="cl">Close</button></div></form></dialog>
@@ -353,16 +353,15 @@ function tick(){jobs.forEach(o=>{if(o.vis||R){o.x.clearRect(0,0,o.w,o.h);o.draw(
 tick();if(R)addEventListener('scroll',()=>{pp();nat()},{passive:true});
 const io=new IntersectionObserver(e=>e.forEach(i=>i.isIntersecting&&i.target.classList.add('on')),{threshold:.15});$$('.rv').forEach(el=>io.observe(el));
 
-/* Dummy forms */
+/* Enquiry forms */
 const dlg=$('#dlg');$$('[data-open]').forEach(b=>b.addEventListener('click',e=>{e.preventDefault();$('#dt').textContent=b.dataset.open;$('#tm').hidden=b.dataset.open!='Schedule a meeting';mp.classList.remove('on');$('#nt').textContent='';dlg.showModal()}));
 $('#cl').onclick=()=>dlg.close();
-const mp=$('#mp'),mb=$('#mb'),idg=$('#idg'),INFO={privacy:['Privacy','This site currently collects nothing. The forms are demonstrations and do not send or store data. A full privacy notice will be published before any form is connected.'],status:['Product status','Decision Intelligence Engine and Nature AI Labs are under development. Neither is publicly available. Nothing on this site is a live product, real data or a performance claim.']};
+const mp=$('#mp'),mb=$('#mb'),idg=$('#idg'),INFO={privacy:['Privacy','Enquiries submitted through this form are sent to the Qubeterra team through Formspree. Please do not include sensitive personal information.'],status:['Product status','Decision Intelligence Engine and Nature AI Labs are under development. Neither is publicly available. Nothing on this site is a live product, real data or a performance claim.']};
 mb.onclick=()=>{const on=mp.classList.toggle('on');mb.setAttribute('aria-expanded',on)};$$('#mp a[href^="#"]:not([data-open])').forEach(a=>a.addEventListener('click',()=>mp.classList.remove('on')));
 $$('[data-info]').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();const v=INFO[a.dataset.info];$('#it').textContent=v[0];$('#ip').textContent=v[1];idg.showModal()}));$('#ic').onclick=()=>idg.close();
 if((window.QT_CONFIG||{}).formEndpoint)$('#dn').textContent='Share a few details and we will reply.';
 if(location.hash=='#demo'){$('#dt').textContent='Request a demonstration';$('#nt').textContent='';dlg.showModal()}
-$('#f').addEventListener('submit',async e=>{e.preventDefault();const fd=Object.fromEntries(new FormData(e.target)),ep=(window.QT_CONFIG||{}).formEndpoint,nt=$('#nt');if(fd.website){e.target.reset();return}
-if(!ep){nt.textContent='Demo mode: nothing was sent. Set formEndpoint in config.js to receive enquiries.';return}
+$('#f').addEventListener('submit',async e=>{e.preventDefault();const fd=Object.fromEntries(new FormData(e.target)),ep=(window.QT_CONFIG||{}).formEndpoint||'https://formspree.io/f/xqpejzbo',nt=$('#nt');if(fd.website){e.target.reset();return}
 nt.textContent='Sending…';try{const r=await fetch(ep,{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},body:JSON.stringify({type:$('#dt').textContent,...fd})});if(!r.ok)throw 0;nt.textContent='Thank you. We will be in touch.';e.target.reset()}catch(_){nt.textContent='Something went wrong. Please try again later.'}});
 </script>
 </body>

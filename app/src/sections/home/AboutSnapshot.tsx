@@ -10,12 +10,12 @@ export function AboutSnapshot() {
           {/* Left: Text */}
           <ScrollReveal pattern="A">
             <div>
-              <SectionLabel text="ABOUT THE INSTITUTE" />
+              <SectionLabel text="ABOUT QUBETERRA" />
               <h2 className="font-heading font-medium text-[28px] md:text-[40px] lg:text-[48px] text-electric-white leading-[1.1] mt-4 mb-6">
                 Building the people who build the future.
               </h2>
               <p className="font-body text-base md:text-lg text-lunar-silver leading-[1.7] mb-8">
-                Qubeterra Institute is a premier Deep Tech Think Tank and Capacity
+                Qubeterra is a premier Deep Tech Think Tank and Capacity
                 Building Hub focused on the Global South and Africa. We exist to build
                 the human capabilities required to solve humanity's greatest
                 challenges — through rigorous education, strategic policy consultancy,

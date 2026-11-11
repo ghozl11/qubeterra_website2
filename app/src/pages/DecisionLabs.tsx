@@ -45,7 +45,7 @@ export function DecisionLabs({ page = 'overview' }: DecisionLabsProps) {
     const description = document.querySelector('meta[name="description"]');
     if (description) description.setAttribute('content', details.description);
     return () => {
-      document.title = 'Qubeterra Institute';
+      document.title = 'Qubeterra';
     };
   }, [details]);
 

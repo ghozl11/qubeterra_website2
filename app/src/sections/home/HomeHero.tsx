@@ -30,7 +30,7 @@ export function HomeHero() {
         <div className="absolute inset-0 bg-gradient-to-b from-[#05070a]/55 via-[#05070a]/35 to-[#05070a]/95" />
       </div>
       <div ref={contentRef} className="mx-auto w-full max-w-5xl px-5 text-center md:px-12">
-        <div><SectionLabel text="QUBETERRA INSTITUTE" /></div>
+        <div><SectionLabel text="QUBETERRA" /></div>
         <p className="mt-6 font-mono text-xs uppercase tracking-[0.16em] text-quantum-blue sm:text-sm">
           Engineering Tomorrow. Empowering Humanity.
         </p>

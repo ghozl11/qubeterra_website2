@@ -43,7 +43,7 @@ export function Navigation() {
       <nav aria-label="Main navigation" className={`fixed inset-x-0 top-0 z-[100] h-[72px] transition-colors duration-300 ${scrolled || mobileOpen ? 'border-b border-white/10 bg-[rgba(5,7,10,0.92)] backdrop-blur-xl' : 'border-b border-transparent bg-transparent'}`}>
         <div className="mx-auto flex h-full w-full max-w-7xl items-center justify-between px-5 md:px-12">
           <Link to="/" onClick={closeMenu} className="flex min-w-0 items-center rounded-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-quantum-blue" aria-label="Qubeterra home">
-            <img src="/images/new/qubeterra_horizontal_hq.png" alt="Qubeterra Institute" className="h-10 w-[168px] object-cover" />
+            <img src="/images/new/qubeterra_horizontal_hq.png" alt="Qubeterra" className="h-10 w-[168px] object-cover" />
           </Link>
           <div className="hidden items-center gap-4 lg:flex xl:gap-6">
             {navLinks.map((link) => <Link key={link.path} to={link.path} onClick={closeMenu} aria-current={location.pathname === link.path ? 'page' : undefined} className={`whitespace-nowrap border-b-2 pb-1 font-mono text-[10px] uppercase tracking-[.07em] transition-colors xl:text-[11px] ${location.pathname === link.path ? 'border-quantum-blue text-quantum-blue' : 'border-transparent text-lunar-silver hover:text-electric-white'}`}>{link.label}</Link>)}

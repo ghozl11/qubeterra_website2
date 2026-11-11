@@ -45,7 +45,7 @@ export function AboutHero() {
           We exist to build the people who build the future.
         </h1>
         <p ref={subRef} className="font-body text-base md:text-lg text-lunar-silver max-w-[700px] mx-auto opacity-0">
-          Qubeterra Institute is not an events company. It is a structured educational
+          Qubeterra is not an events company. It is a structured educational
           framework, a deep tech school with rigorous curriculum, and a strategic policy
           consultancy for the Global South.
         </p>
