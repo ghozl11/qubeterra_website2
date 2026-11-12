@@ -18,9 +18,9 @@ export function Home() {
       <HomeHero />
       <DecisionLabsGateway />
       <PartnerTicker />
+      <FellowshipPreview />
       <Impact />
       <ProjectsPreview />
-      <FellowshipPreview />
       <NextGenAchievementsBanner />
       <InternationalExpertsPreview />
       <AboutSnapshot />
